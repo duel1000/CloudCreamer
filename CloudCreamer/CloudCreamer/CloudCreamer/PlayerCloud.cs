@@ -17,14 +17,15 @@ namespace CloudCreamer
             Speed = 300;
         }
 
-        public override void Update(KeyboardState keyboardState, GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            UpdateVelocity(keyboardState);
-            base.Update(keyboardState, gameTime);
+            UpdateVelocity();
+            base.Update(gameTime);
         }
 
-        private void UpdateVelocity(KeyboardState keyboardState)
+        private void UpdateVelocity()
         {
+            var keyboardState = Keyboard.GetState();
             var keyDictionary = new Dictionary<Keys, Vector2>
                                     {
                                         { Keys.Left, new Vector2(-1, 0) },
@@ -44,7 +45,7 @@ namespace CloudCreamer
             if (velocity != Vector2.Zero)
                 velocity.Normalize(); // If its a diagonal movement it wont be faster
 
-            Velocity = velocity * Speed;
+            Velocity = velocity;
         }
     }
 }

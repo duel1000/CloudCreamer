@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -7,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace CloudCreamer
+namespace FlappahBird
 {
     /// <summary>
     /// This is the main type for your game
@@ -17,16 +18,14 @@ namespace CloudCreamer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Sprite background;
-        private PlayerCloud playerCloud;
-        private SpriteFont gameFont;
-
-        private EnemyManager enemyManger;
-
-        private int score = 0;
+        private PlayerBird flappy;
+        private TubeGenerator tubeGenerator;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 450;
+            graphics.PreferredBackBufferWidth = 250;
             Content.RootDirectory = "Content";
         }
 
@@ -52,20 +51,15 @@ namespace CloudCreamer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            background = new Sprite(Content.Load<Texture2D>("background"), Vector2.Zero, graphics.GraphicsDevice.Viewport.Bounds);
+            background = new Sprite(Content.Load<Texture2D>("fBackground"), Vector2.Zero);
 
-            var cloudTexture = Content.Load<Texture2D>("singleCloud");
+            var flappyTexture = Content.Load<Texture2D>("flappy1");
 
-            //Position the cloud at the center of the screen to begin with
-            var xPositionOfCloud = graphics.GraphicsDevice.Viewport.Width / 2 - (cloudTexture.Width/8);
-            var yPositionOfCloud = (graphics.GraphicsDevice.Viewport.Height / 2) - (cloudTexture.Height/8);
+            var flappyXPosition = graphics.GraphicsDevice.Viewport.Width/2;
+            var flappyYPosition = graphics.GraphicsDevice.Viewport.Height / 2;
 
-            var playerBounds = new Rectangle(0, -30, graphics.GraphicsDevice.Viewport.Width - 125, graphics.GraphicsDevice.Viewport.Height - 95);
-            playerCloud = new PlayerCloud(cloudTexture, new Vector2(xPositionOfCloud,yPositionOfCloud), playerBounds);
-
-            enemyManger = new EnemyManager(Content.Load<Texture2D>("Enemy"), graphics.GraphicsDevice.Viewport.Bounds);
-
-            gameFont = Content.Load<SpriteFont>("GameFont");
+            flappy = new PlayerBird(flappyTexture, new Vector2((int)flappyXPosition, (int)flappyYPosition));
+            // use this.Content to load your game content here
         }
 
         /// <summary>
@@ -74,7 +68,7 @@ namespace CloudCreamer
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -84,9 +78,8 @@ namespace CloudCreamer
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            var keyboardState = Keyboard.GetState();
-            playerCloud.Update(gameTime);
-            enemyManger.Update(gameTime);
+            // Allows the game to exit
+            flappy.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -99,20 +92,9 @@ namespace CloudCreamer
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
             background.Draw(spriteBatch);
-            playerCloud.Draw(spriteBatch);
-            enemyManger.Draw(spriteBatch);
-
-            var scoreText = string.Format("Score: {0}", score);
-            var scoreDimensions = gameFont.MeasureString(scoreText); 
-
-            var scoreX = 0 + 10;
-            var scoreY = 0 + 5;
-
-            spriteBatch.DrawString(gameFont, scoreText, new Vector2(scoreX, scoreY), Color.White);
-
+            flappy.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

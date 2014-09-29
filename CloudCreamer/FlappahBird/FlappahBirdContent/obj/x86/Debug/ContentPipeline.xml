@@ -2,40 +2,22 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>background.jpg</Source>
-      <Name>background</Name>
+      <Source>fBackground.png</Source>
+      <Name>fBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2014-09-29T10:53:23.8576503+02:00</Time>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\fBackground.xnb</Output>
+      <Time>2014-09-30T00:34:03.4780884+02:00</Time>
     </Item>
     <Item>
-      <Source>GameFont.spritefont</Source>
-      <Name>GameFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2014-09-29T11:03:26.1467792+02:00</Time>
-    </Item>
-    <Item>
-      <Source>singleCloud.png</Source>
-      <Name>singleCloud</Name>
+      <Source>flappy1.png</Source>
+      <Name>flappy1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\singleCloud.xnb</Output>
-      <Time>2014-09-29T14:35:32.489579+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Enemy.png</Source>
-      <Name>Enemy</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\Enemy.xnb</Output>
-      <Time>2014-09-29T22:51:51.1394502+02:00</Time>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\flappy1.xnb</Output>
+      <Time>2014-09-30T00:42:20.9387612+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -43,10 +25,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamerContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamerContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBirdContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBirdContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

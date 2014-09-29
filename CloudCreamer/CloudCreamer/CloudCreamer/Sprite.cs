@@ -33,9 +33,9 @@ namespace CloudCreamer
             spriteBatch.Draw(texture, position, Color.White);
         }
 
-        public virtual void Update(KeyboardState keyboardState, GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
-            var newPosition = position + (Velocity* (float) gameTime.ElapsedGameTime.TotalSeconds);
+            var newPosition = position + (Velocity* (float) gameTime.ElapsedGameTime.TotalSeconds) * Speed;
 
             if (Blocked(newPosition))
                 return;

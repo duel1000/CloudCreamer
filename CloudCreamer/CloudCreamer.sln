@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudCreamer", "CloudCreamer\CloudCreamer\CloudCreamer.csproj", "{EF4F2F78-9110-40FD-8F73-963B09F5B30C}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "CloudCreamerContent", "CloudCreamer\CloudCreamerContent\CloudCreamerContent.contentproj", "{23AC143F-636A-412A-9F15-F7AAF7C8D254}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudCreamerContent", "CloudCreamer\CloudCreamerContent\CloudCreamerContent.contentproj", "{23AC143F-636A-412A-9F15-F7AAF7C8D254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlappahBird", "FlappahBird\FlappahBird\FlappahBird.csproj", "{852E3DE6-032B-4597-A5C8-045AA803A1AB}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "FlappahBirdContent", "FlappahBird\FlappahBirdContent\FlappahBirdContent.contentproj", "{098EF007-F8FD-475B-AD21-C63956BE6E6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,12 @@ Global
 		{EF4F2F78-9110-40FD-8F73-963B09F5B30C}.Release|x86.Build.0 = Release|x86
 		{23AC143F-636A-412A-9F15-F7AAF7C8D254}.Debug|x86.ActiveCfg = Debug|x86
 		{23AC143F-636A-412A-9F15-F7AAF7C8D254}.Release|x86.ActiveCfg = Release|x86
+		{852E3DE6-032B-4597-A5C8-045AA803A1AB}.Debug|x86.ActiveCfg = Debug|x86
+		{852E3DE6-032B-4597-A5C8-045AA803A1AB}.Debug|x86.Build.0 = Debug|x86
+		{852E3DE6-032B-4597-A5C8-045AA803A1AB}.Release|x86.ActiveCfg = Release|x86
+		{852E3DE6-032B-4597-A5C8-045AA803A1AB}.Release|x86.Build.0 = Release|x86
+		{098EF007-F8FD-475B-AD21-C63956BE6E6A}.Debug|x86.ActiveCfg = Debug|x86
+		{098EF007-F8FD-475B-AD21-C63956BE6E6A}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

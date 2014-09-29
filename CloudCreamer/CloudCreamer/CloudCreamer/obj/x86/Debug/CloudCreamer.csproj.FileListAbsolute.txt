@@ -7,3 +7,4 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\ob
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\background.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\GameFont.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\singleCloud.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\Enemy.xnb
