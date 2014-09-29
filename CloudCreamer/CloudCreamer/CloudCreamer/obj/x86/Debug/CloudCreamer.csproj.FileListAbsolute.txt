@@ -1,0 +1,9 @@
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\CloudCreamer.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\CloudCreamer.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\obj\x86\Debug\CloudCreamer.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\obj\x86\Debug\CloudCreamer.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\obj\x86\Debug\CloudCreamer.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\background.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\GameFont.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\CloudCreamer\CloudCreamer\bin\x86\Debug\Content\singleCloud.xnb
