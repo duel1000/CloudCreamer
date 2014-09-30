@@ -11,13 +11,22 @@
       <Time>2014-09-30T00:34:03.4780884+02:00</Time>
     </Item>
     <Item>
-      <Source>flappy1.png</Source>
-      <Name>flappy1</Name>
+      <Source>bird.png</Source>
+      <Name>bird</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\flappy1.xnb</Output>
-      <Time>2014-09-30T00:42:20.9387612+02:00</Time>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\bird.xnb</Output>
+      <Time>2014-09-30T20:45:52.9144653+02:00</Time>
+    </Item>
+    <Item>
+      <Source>earth.png</Source>
+      <Name>earth</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\earth.xnb</Output>
+      <Time>2014-09-30T22:21:58.0795781+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

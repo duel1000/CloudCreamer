@@ -5,4 +5,5 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\x86\Debug\FlappahBird.pdb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\x86\Debug\FlappahBird.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\fBackground.xnb
-C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\flappy1.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\bird.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\earth.xnb

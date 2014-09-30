@@ -18,6 +18,7 @@ namespace FlappahBird
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Sprite background;
+        private Earth earth;
         private PlayerBird flappy;
         private TubeGenerator tubeGenerator;
 
@@ -51,11 +52,12 @@ namespace FlappahBird
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            background = new Sprite(Content.Load<Texture2D>("fBackground"), Vector2.Zero);
+            background = new Sprite(Content.Load<Texture2D>("fBackground"), new Vector2(0,-45));
+            earth = new Earth(Content.Load<Texture2D>("earth"), new Vector2(0,350));
 
-            var flappyTexture = Content.Load<Texture2D>("flappy1");
+            var flappyTexture = Content.Load<Texture2D>("bird");
 
-            var flappyXPosition = graphics.GraphicsDevice.Viewport.Width/2;
+            var flappyXPosition = graphics.GraphicsDevice.Viewport.Width/4;
             var flappyYPosition = graphics.GraphicsDevice.Viewport.Height / 2;
 
             flappy = new PlayerBird(flappyTexture, new Vector2((int)flappyXPosition, (int)flappyYPosition));
@@ -80,6 +82,7 @@ namespace FlappahBird
         {
             // Allows the game to exit
             flappy.Update(gameTime);
+            earth.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -94,6 +97,7 @@ namespace FlappahBird
 
             spriteBatch.Begin();
             background.Draw(spriteBatch);
+            earth.Draw(spriteBatch);
             flappy.Draw(spriteBatch);
             spriteBatch.End();
 
