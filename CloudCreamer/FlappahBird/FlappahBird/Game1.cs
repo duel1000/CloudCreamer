@@ -21,6 +21,7 @@ namespace FlappahBird
         private TubeManager tubeManager;
         private EarthManager earthManager;
         private SoundManager soundManager;
+        private CollisionManager collisionManager;
 
         public Game1()
         {
@@ -65,6 +66,8 @@ namespace FlappahBird
             var flappyYPosition = graphics.GraphicsDevice.Viewport.Height / 8;
             flappy = new PlayerBird(flappyTexture, new Vector2((int)flappyXPosition, (int)flappyYPosition), soundManager);
 
+            collisionManager = new CollisionManager(flappy, earthManager, tubeManager);
+
             soundManager.PlayBackgroundMusic();
             // use this.Content to load your game content here
         }
@@ -89,6 +92,7 @@ namespace FlappahBird
             flappy.Update(gameTime);
             earthManager.Update(gameTime);
             tubeManager.Update(gameTime);
+            collisionManager.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -102,9 +106,14 @@ namespace FlappahBird
 
             spriteBatch.Begin();
             background.Draw(spriteBatch);
-            earthManager.Draw(spriteBatch);
+            
             tubeManager.Draw(spriteBatch);
-            flappy.Draw(spriteBatch);
+            earthManager.Draw(spriteBatch);
+            if (!flappy.IsDead)
+            {
+                flappy.Draw(spriteBatch);
+            }
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollisionManager.cs" />
     <Compile Include="Earth.cs" />
     <Compile Include="EarthManager.cs" />
     <Compile Include="PlayerBird.cs" />

@@ -34,7 +34,8 @@ namespace FlappahBird
         protected float RotationAngle { get; set; }
         protected Vector2 Origin { get; set; }
 
-        public Sprite(Texture2D texture, Vector2 position) : this(texture, position, 1, 1, 1)
+        public Sprite(Texture2D texture, Vector2 position)
+            : this(texture, position, 1, 1, 1)
         {
            
         }
@@ -61,7 +62,7 @@ namespace FlappahBird
                                                 imageHeight);
             var destinationRectangle = new Rectangle((int)position.X, (int)position.Y, imageWidth, imageHeight);
 
-            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, RotationAngle, Origin, SpriteEffects.None,1);
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, Color.White, RotationAngle, Origin, SpriteEffects.None, 1);
         }
 
         public virtual void Update(GameTime gameTime)

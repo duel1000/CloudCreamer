@@ -18,6 +18,11 @@ namespace FlappahBird
             CreateTubes();
         }
 
+        public IEnumerable<Tube> TubeList
+        {
+            get { return tubeList; }
+        } 
+
         private void CreateTubes()
         {
             var position = new Vector2(500, -250);
@@ -61,10 +66,7 @@ namespace FlappahBird
             {
                 tube.Update(gameTime);
 
-                if (tube.position.X < -55)
-                {
-                    tube.position.X = 430;
-                }
+                
             }
         }
     }

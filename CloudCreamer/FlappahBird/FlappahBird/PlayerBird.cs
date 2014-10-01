@@ -20,26 +20,35 @@ namespace FlappahBird
 
         public override void Update(GameTime gameTime)
         {
-            position.Y = position.Y + Velocity.Y;
-            Velocity = new Vector2(Velocity.X, Velocity.Y + gravity);
-            
-            if(timeSinceLastJump > 180 && RotationAngle < 1.2)
-                RotationAngle += 0.1f;
-
-            if(Keyboard.GetState().IsKeyDown(Keys.Space) && timeSinceLastJump > 70)
+            if (!IsDead)
             {
-                soundManager.PlayJumpEffect();
-                Velocity = new Vector2(0, -6);
-                RotationAngle = -0.4f;
-                timeSinceLastJump = 0;
-            }
+                position.Y = position.Y + Velocity.Y;
+                Velocity = new Vector2(Velocity.X, Velocity.Y + gravity);
 
-            if (Keyboard.GetState().IsKeyUp(Keys.Space))
-            {
-                timeSinceLastJump += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            }
+                if (timeSinceLastJump > 180 && RotationAngle < 1.2)
+                    RotationAngle += 0.1f;
 
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && timeSinceLastJump > 70)
+                {
+                    soundManager.PlayJumpEffect();
+                    Velocity = new Vector2(0, -6);
+                    RotationAngle = -0.4f;
+                    timeSinceLastJump = 0;
+                }
+
+                if (Keyboard.GetState().IsKeyUp(Keys.Space))
+                {
+                    timeSinceLastJump += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                }
+            }
             base.Update(gameTime);
         }
+
+        public void Hit()
+        {
+            IsDead = true;
+        }
+
+        public bool IsDead { get; private set; }
     }
 }

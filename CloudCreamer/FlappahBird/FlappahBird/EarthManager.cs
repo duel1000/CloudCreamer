@@ -15,6 +15,11 @@ namespace FlappahBird
             CreateEarths();
         }
 
+        public IEnumerable<Earth> EarthList
+        {
+            get { return earthList; }
+        } 
+
         private void CreateEarths()
         {
             var position = new Vector2(0, 350);
