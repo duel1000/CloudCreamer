@@ -8,11 +8,13 @@ namespace FlappahBird
 {
     public class PlayerBird : Sprite
     {
+        private readonly SoundManager soundManager;
         public float gravity = 0.4f;
         public float timeSinceLastJump = 0;
 
-        public PlayerBird(Texture2D texture, Vector2 position) : base(texture, position, 1, 3, 8)
+        public PlayerBird(Texture2D texture, Vector2 position, SoundManager soundManager) : base(texture, position, 1, 3, 14)
         {
+            this.soundManager = soundManager;
             Origin = new Vector2(texture.Width/6,texture.Height/2);
         }
 
@@ -26,6 +28,7 @@ namespace FlappahBird
 
             if(Keyboard.GetState().IsKeyDown(Keys.Space) && timeSinceLastJump > 70)
             {
+                soundManager.PlayJumpEffect();
                 Velocity = new Vector2(0, -6);
                 RotationAngle = -0.4f;
                 timeSinceLastJump = 0;

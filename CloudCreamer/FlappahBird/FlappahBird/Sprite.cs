@@ -23,7 +23,7 @@ namespace FlappahBird
             }
         }
 
-        protected Vector2 position;
+        public Vector2 position;
         private readonly int rows;
         private readonly int columns;
         private readonly double framesPerSecond;

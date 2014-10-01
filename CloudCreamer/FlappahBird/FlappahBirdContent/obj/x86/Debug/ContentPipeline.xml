@@ -28,6 +28,43 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\earth.xnb</Output>
       <Time>2014-09-30T22:21:58.0795781+02:00</Time>
     </Item>
+    <Item>
+      <Source>sounds\flap.wav</Source>
+      <Name>sounds\flap</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\sounds\flap.xnb</Output>
+      <Time>2014-10-01T16:08:02.443809+02:00</Time>
+    </Item>
+    <Item>
+      <Source>sounds\loop.wav</Source>
+      <Name>sounds\loop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\sounds\loop.xnb</Output>
+      <Extra>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\sounds\loop.wma</Extra>
+      <Time>2014-10-01T15:55:16.2016463+02:00</Time>
+    </Item>
+    <Item>
+      <Source>upperTube.png</Source>
+      <Name>upperTube</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\upperTube.xnb</Output>
+      <Time>2014-10-01T16:42:31.5565086+02:00</Time>
+    </Item>
+    <Item>
+      <Source>lowerTube.png</Source>
+      <Name>lowerTube</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\lowerTube.xnb</Output>
+      <Time>2014-10-01T16:43:13.0799115+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

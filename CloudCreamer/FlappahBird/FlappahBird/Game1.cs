@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -18,9 +17,10 @@ namespace FlappahBird
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Sprite background;
-        private Earth earth;
         private PlayerBird flappy;
-        private TubeGenerator tubeGenerator;
+        private TubeManager tubeManager;
+        private EarthManager earthManager;
+        private SoundManager soundManager;
 
         public Game1()
         {
@@ -51,16 +51,21 @@ namespace FlappahBird
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             background = new Sprite(Content.Load<Texture2D>("fBackground"), new Vector2(0,-45));
-            earth = new Earth(Content.Load<Texture2D>("earth"), new Vector2(0,350));
+            soundManager = new SoundManager(Content);
+            earthManager = new EarthManager(Content.Load<Texture2D>("earth"));
+
+            var upperTube = Content.Load<Texture2D>("upperTube");
+            var lowerTube = Content.Load<Texture2D>("lowerTube");
+            tubeManager = new TubeManager(upperTube,lowerTube);
 
             var flappyTexture = Content.Load<Texture2D>("bird");
+            var flappyXPosition = graphics.GraphicsDevice.Viewport.Width/5;
+            var flappyYPosition = graphics.GraphicsDevice.Viewport.Height / 8;
+            flappy = new PlayerBird(flappyTexture, new Vector2((int)flappyXPosition, (int)flappyYPosition), soundManager);
 
-            var flappyXPosition = graphics.GraphicsDevice.Viewport.Width/4;
-            var flappyYPosition = graphics.GraphicsDevice.Viewport.Height / 2;
-
-            flappy = new PlayerBird(flappyTexture, new Vector2((int)flappyXPosition, (int)flappyYPosition));
+            soundManager.PlayBackgroundMusic();
             // use this.Content to load your game content here
         }
 
@@ -82,8 +87,8 @@ namespace FlappahBird
         {
             // Allows the game to exit
             flappy.Update(gameTime);
-            earth.Update(gameTime);
-
+            earthManager.Update(gameTime);
+            tubeManager.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -97,7 +102,8 @@ namespace FlappahBird
 
             spriteBatch.Begin();
             background.Draw(spriteBatch);
-            earth.Draw(spriteBatch);
+            earthManager.Draw(spriteBatch);
+            tubeManager.Draw(spriteBatch);
             flappy.Draw(spriteBatch);
             spriteBatch.End();
 
