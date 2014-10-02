@@ -1,8 +1,12 @@
 Content\fBackground.xnb
 Content\bird.xnb
 Content\earth.xnb
-Content\sounds\flap.xnb
 Content\sounds\loop.xnb
 Content\sounds\loop.wma
 Content\upperTube.xnb
 Content\lowerTube.xnb
+Content\sounds\hitSound.xnb
+Content\sounds\flap.xnb
+Content\sounds\point.xnb
+Content\PointsFont.xnb
+Content\pressSpace.xnb

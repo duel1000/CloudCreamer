@@ -55,5 +55,13 @@ namespace FlappahBird
                 }
             }
         }
+
+        public void StopEarth()
+        {
+            foreach (var earth in earthList)
+            {
+                earth.Speed = 0;
+            }
+        }
     }
 }

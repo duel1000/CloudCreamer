@@ -4,48 +4,61 @@ namespace FlappahBird
 {
     public  class CollisionManager
     {
-        private readonly PlayerBird flappy;
+        private readonly PlayerBird playerBird;
         private readonly EarthManager earthManager;
         private readonly TubeManager tubeManager;
+        private readonly PointManager pointManager;
 
-        public CollisionManager(PlayerBird flappy, EarthManager earthManager, TubeManager tubeManager)
+
+        public CollisionManager(PlayerBird playerBird, EarthManager earthManager, TubeManager tubeManager, PointManager pointManager)
         {
-            this.flappy = flappy;
+            this.playerBird = playerBird;
             this.earthManager = earthManager;
             this.tubeManager = tubeManager;
+            this.pointManager = pointManager;
         }
 
         public void Update(GameTime gameTime)
         {
-            CheckCollisions();
+            CheckCollisions(gameTime);
         }
 
-        private void CheckCollisions()
+        private void CheckCollisions(GameTime gameTime)
         {
             CheckFlappyToEarth();
-            CheckFlappyToTubes();
-        }
-
-        private void CheckFlappyToTubes()
-        {
-            foreach (var tube in tubeManager.TubeList)
-            {
-                //if (tube.BoundingBox.Intersects(flappy.BoundingBox))
-                //{
-                //    flappy.Hit();
-                //}
-            }
+            CheckFlappyToTubesAndPoints(gameTime);
         }
 
         private void CheckFlappyToEarth()
         {
             foreach (var earth in earthManager.EarthList)
             {
-                //if (earth.BoundingBox.Intersects(flappy.BoundingBox))
-                //{
-                //    flappy.Hit();
-                //}
+                if (earth.BoundingBox.Intersects(playerBird.BoundingBox))
+                {
+                    playerBird.Hit();
+                    tubeManager.StopTubes();
+                    earthManager.StopEarth();
+                }
             }
         }
+
+        private void CheckFlappyToTubesAndPoints(GameTime gameTime)
+        {
+            foreach (var tube in tubeManager.TubeList)
+            {
+                if (tube.BoundingBox.Intersects(playerBird.BoundingBox))
+                {
+                    playerBird.Hit();
+                    tubeManager.StopTubes();
+                    earthManager.StopEarth();
+                }
+                if (tube.position.X < 26 && tube.position.X > 23)
+                {
+                    pointManager.ScorePoint(gameTime);
+                }
+            }
+        }
+
+        
     }
 }

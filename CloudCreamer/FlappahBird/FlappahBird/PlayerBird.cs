@@ -41,12 +41,17 @@ namespace FlappahBird
                     timeSinceLastJump += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 }
             }
+
+            BoundingBox = new Rectangle((int)position.X, (int)position.Y, 26, 18);
+
             base.Update(gameTime);
         }
 
         public void Hit()
         {
             IsDead = true;
+            soundManager.PlayHitEffect();
+            position.X = -5000;
         }
 
         public bool IsDead { get; private set; }

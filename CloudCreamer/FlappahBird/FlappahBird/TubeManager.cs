@@ -69,5 +69,13 @@ namespace FlappahBird
                 
             }
         }
+
+        public void StopTubes()
+        {
+            foreach (var tube in tubeList)
+            {
+                tube.Speed = 0;
+            }
+        }
     }
 }

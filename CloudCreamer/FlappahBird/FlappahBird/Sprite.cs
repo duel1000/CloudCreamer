@@ -7,22 +7,9 @@ namespace FlappahBird
     public class Sprite
     {
         private readonly Texture2D texture;
-        public float Height 
-        {
-            get
-            {
-                return texture.Width/columns;
-            }
-        }
 
-        public float Width
-        {
-            get
-            {
-                return texture.Height / rows;
-            }
-        }
-
+        private int imageWidth { get; set; }
+        private int imageHeight { get; set; }
         public Vector2 position;
         private readonly int rows;
         private readonly int columns;
@@ -33,6 +20,8 @@ namespace FlappahBird
         protected Vector2 Velocity { get; set; }
         protected float RotationAngle { get; set; }
         protected Vector2 Origin { get; set; }
+        public Rectangle BoundingBox { get; set; }
+        public float Speed { get; set; }
 
         public Sprite(Texture2D texture, Vector2 position)
             : this(texture, position, 1, 1, 1)
@@ -47,14 +36,13 @@ namespace FlappahBird
             this.rows = rows;
             this.columns = columns;
             this.framesPerSecond = framesPerSecond;
+            this.imageWidth = texture.Width / columns;
+            this.imageHeight = texture.Height / rows;
             totalFrames = rows*columns;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            var imageWidth = texture.Width/columns;
-            var imageHeight = texture.Height/rows;
-
             var currentRow = currentFrame/columns;
             var currentColumn = currentFrame%columns;
 
@@ -67,6 +55,7 @@ namespace FlappahBird
 
         public virtual void Update(GameTime gameTime)
         {
+            
             UpdateAnimation(gameTime);
         }
 

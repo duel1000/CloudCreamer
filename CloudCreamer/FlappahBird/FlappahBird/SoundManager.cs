@@ -8,11 +8,15 @@ namespace FlappahBird
     {
         private Song backgroundMusic;
         private SoundEffect jumpSoundEffect;
+        private SoundEffect hitSoundEffect;
+        private SoundEffect scorePointEffect;
 
         public SoundManager(ContentManager content)
         {
             backgroundMusic = content.Load<Song>(@"sounds\loop");
             jumpSoundEffect = content.Load<SoundEffect>(@"sounds\flap");
+            hitSoundEffect = content.Load<SoundEffect>(@"sounds\hitSound");
+            scorePointEffect = content.Load<SoundEffect>(@"sounds\point");
         }
 
         public void PlayBackgroundMusic()
@@ -28,6 +32,16 @@ namespace FlappahBird
         public void PlayJumpEffect()
         {
             jumpSoundEffect.Play();
+        }
+
+        public void PlayHitEffect()
+        {
+            hitSoundEffect.Play();
+        }
+
+        public void PlayScorePointEffect()
+        {
+            scorePointEffect.Play();
         }
     }
 }

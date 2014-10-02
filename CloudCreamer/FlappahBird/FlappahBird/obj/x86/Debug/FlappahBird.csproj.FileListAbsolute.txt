@@ -12,3 +12,11 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\sounds\loop.wma
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\upperTube.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\lowerTube.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\sounds\hitSound.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\sounds\point.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\FlappahBird.exe.manifest
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\FlappahBird.application
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\x86\Debug\FlappahBird.exe.manifest
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\x86\Debug\FlappahBird.application
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\PointsFont.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\pressSpace.xnb
