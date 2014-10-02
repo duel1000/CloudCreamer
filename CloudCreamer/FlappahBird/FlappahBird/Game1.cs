@@ -32,8 +32,6 @@ namespace FlappahBird
 
         private GameState gameState;
 
-       
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
