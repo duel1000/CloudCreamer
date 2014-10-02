@@ -101,6 +101,33 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\pressSpace.xnb</Output>
       <Time>2014-10-02T21:00:26.8063562+02:00</Time>
     </Item>
+    <Item>
+      <Source>gameOver.png</Source>
+      <Name>gameOver</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\gameOver.xnb</Output>
+      <Time>2014-10-02T22:20:39.6095528+02:00</Time>
+    </Item>
+    <Item>
+      <Source>getReady.png</Source>
+      <Name>getReady</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\getReady.xnb</Output>
+      <Time>2014-10-02T22:45:18.3647637+02:00</Time>
+    </Item>
+    <Item>
+      <Source>whiteSmack.png</Source>
+      <Name>whiteSmack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\whiteSmack.xnb</Output>
+      <Time>2014-10-03T00:16:25.1477365+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

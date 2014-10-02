@@ -24,7 +24,7 @@ namespace FlappahBird
             var position = new Vector2(scoreX, scoreY);
             var text = Points < 10 ? "0" + Points : Points.ToString();
 
-            spriteBatch.DrawString(spriteFont, text, position, Color.Black);
+            spriteBatch.DrawString(spriteFont, text, position, Color.White);
         }
 
         public void ScorePoint(GameTime gameTime)
@@ -38,6 +38,11 @@ namespace FlappahBird
                 TimeSinceLastPoint = 0;
             }
             
+        }
+
+        public void ResetPoints()
+        {
+            Points = 0;
         }
     }
 }

@@ -15,13 +15,6 @@ namespace FlappahBird
         {
             position.X -= Speed;
 
-            if (position.X < -55)
-            {
-                position.X = 430;
-            }
-
-            BoundingBox = new Rectangle((int)position.X + 5, (int)position.Y, 52, 410);
-
             base.Update(gameTime);
         }
     }

@@ -9,7 +9,6 @@ namespace FlappahBird
         private readonly TubeManager tubeManager;
         private readonly PointManager pointManager;
 
-
         public CollisionManager(PlayerBird playerBird, EarthManager earthManager, TubeManager tubeManager, PointManager pointManager)
         {
             this.playerBird = playerBird;
@@ -26,7 +25,18 @@ namespace FlappahBird
         private void CheckCollisions(GameTime gameTime)
         {
             CheckFlappyToEarth();
+            CheckFlappyToHeaven();
             CheckFlappyToTubesAndPoints(gameTime);
+        }
+
+        private void CheckFlappyToHeaven()
+        {
+            if (playerBird.position.Y < -50)
+            {
+                playerBird.Hit();
+                tubeManager.StopTubes();
+                earthManager.StopEarth();
+            }
         }
 
         private void CheckFlappyToEarth()

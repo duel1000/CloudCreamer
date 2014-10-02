@@ -17,7 +17,10 @@ namespace FlappahBird
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Sprite startScreen;
+        private Sprite gameOverScreen;
+        private Sprite getReadySign;
         private Sprite background;
+        private Sprite whiteSmack;
         private PlayerBird playerBird;
         private TubeManager tubeManager;
         private EarthManager earthManager;
@@ -25,10 +28,11 @@ namespace FlappahBird
         private CollisionManager collisionManager;
         private PointManager pointManager;
         private SpriteFont pointFont;
+        private float elapsedGameTime;
 
         private GameState gameState;
 
-        private bool atStartScreen = true;
+       
 
         public Game1()
         {
@@ -60,7 +64,10 @@ namespace FlappahBird
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             startScreen = new Sprite(Content.Load<Texture2D>("pressSpace"), new Vector2(80, 95));
+            gameOverScreen = new Sprite(Content.Load<Texture2D>("gameOver"), new Vector2(26,102));
             background = new Sprite(Content.Load<Texture2D>("fBackground"), new Vector2(0,-45));
+            getReadySign = new Sprite(Content.Load<Texture2D>("getReady"), new Vector2(26, 102));
+            whiteSmack = new Sprite(Content.Load<Texture2D>("whiteSmack"), new Vector2(0,0));
             soundManager = new SoundManager(Content);
             earthManager = new EarthManager(Content.Load<Texture2D>("earth"));
 
@@ -116,6 +123,8 @@ namespace FlappahBird
             earthManager.Draw(spriteBatch);
             pointManager.Draw(spriteBatch);
 
+            
+
             gameState.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -127,7 +136,19 @@ namespace FlappahBird
         {
             public StartScreenState(Game1 game) : base(game)
             {
+                game.earthManager = new EarthManager(game.Content.Load<Texture2D>("earth"));
+                game.soundManager = new SoundManager(game.Content);
+                var upperTube = game.Content.Load<Texture2D>("upperTube");
+                var lowerTube = game.Content.Load<Texture2D>("lowerTube");
+                game.tubeManager = new TubeManager(upperTube, lowerTube);
+                var flappyTexture = game.Content.Load<Texture2D>("bird");
+                var flappyXPosition = game.graphics.GraphicsDevice.Viewport.Width / 5;
+                var flappyYPosition = -25;
+                game.playerBird = new PlayerBird(flappyTexture, new Vector2((int)flappyXPosition, (int)flappyYPosition), game.soundManager);
+                game.pointManager = new PointManager(game.soundManager, game.pointFont);
+                game.collisionManager = new CollisionManager(game.playerBird, game.earthManager, game.tubeManager, game.pointManager);
 
+                game.pointManager.ResetPoints();
             }
 
             public override void Update(GameTime gameTime)
@@ -135,7 +156,6 @@ namespace FlappahBird
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     game.gameState = new PlayingState(game);
-                    game.atStartScreen = false;
                     game.playerBird.Update(gameTime);
                 }
             }
@@ -161,22 +181,70 @@ namespace FlappahBird
                 game.earthManager.Update(gameTime);
                 game.tubeManager.Update(gameTime);
                 game.collisionManager.Update(gameTime);
+
+                game.elapsedGameTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                if (game.playerBird.IsDead)
+                {
+                    game.elapsedGameTime = 0;
+                    game.gameState = new GameOverState(game);
+                }
             }
 
             public override void Draw(SpriteBatch spriteBatch)
             {
                 if (!game.playerBird.IsDead)
                 {
+                    if (game.elapsedGameTime > 1000 && game.elapsedGameTime < 2200)
+                        game.getReadySign.Draw(spriteBatch);
+
                     game.playerBird.Draw(spriteBatch);
                 }
             }
         }
+
+        public class GameOverState : GameState
+        {
+            public GameOverState(Game1 game) : base(game)
+            {
+                
+            }
+
+            public override void Update(GameTime gameTime)
+            {
+                game.playerBird.AnimationOn = false;
+                game.playerBird.Update(gameTime);
+                game.earthManager.Update(gameTime);
+                game.tubeManager.Update(gameTime);
+                game.elapsedGameTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.X))
+                {
+                    game.gameState = new StartScreenState(game);
+                    game.elapsedGameTime = 0;
+                }
+            }
+
+            public override void Draw(SpriteBatch spriteBatch)
+            {
+                if (game.elapsedGameTime < 2)
+                {
+                    game.whiteSmack.Draw(spriteBatch);
+                }
+                game.playerBird.Draw(spriteBatch);
+                game.gameOverScreen.Draw(spriteBatch);
+
+                var scoreX = 60;
+                var scoreY = 390;
+                var position = new Vector2(scoreX, scoreY);
+                spriteBatch.DrawString(game.pointFont, "PRESS X...", position, Color.White);
+            }
+        }
     }
+
+    
 }
 
-// Game over skilt
-// Måde at genstarte spillet på
-// Random Tube positions
-// Flappy skal lande på jorden når den dør
+// Kanterne skal vibrere ved death
 
 // Highscore vises?

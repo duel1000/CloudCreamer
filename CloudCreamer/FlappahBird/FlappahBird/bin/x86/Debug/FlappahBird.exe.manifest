@@ -63,14 +63,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FlappahBird.exe" size="19968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FlappahBird.exe" size="22016">
       <assemblyIdentity name="FlappahBird" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>C6Zcf9CndwFTKS7wyI0G3d2+eUk=</dsig:DigestValue>
+        <dsig:DigestValue>Qyrg9WtOdbyuDcbP9qlqF5MFIjg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -99,6 +99,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>MhzZXBs5E/o4uYswTxMfS0Bq5qw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\gameOver.xnb" size="36187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>qKUzTDs+mAt/fxfeItFyHiAMpxE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\getReady.xnb" size="44187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>2dHTRgIEdUgM3rgR0UwKcUAqeMw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\lowerTube.xnb" size="83387">
@@ -180,6 +198,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>3mpc1exJ4iUna/YNd4wFRJJ+RLU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\whiteSmack.xnb" size="450187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Mzj9srCL61chIbTXkqYKtxb8ZS4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Game.ico" size="4286">

@@ -20,3 +20,6 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\obj\x86\Debug\FlappahBird.application
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\PointsFont.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\pressSpace.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\gameOver.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\getReady.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\FlappahBird\FlappahBird\bin\x86\Debug\Content\whiteSmack.xnb

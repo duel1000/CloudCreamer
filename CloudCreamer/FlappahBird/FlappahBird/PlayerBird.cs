@@ -11,6 +11,7 @@ namespace FlappahBird
         private readonly SoundManager soundManager;
         public float gravity = 0.4f;
         public float timeSinceLastJump = 0;
+        public bool IsDead { get; private set; }
 
         public PlayerBird(Texture2D texture, Vector2 position, SoundManager soundManager) : base(texture, position, 1, 3, 14)
         {
@@ -28,7 +29,7 @@ namespace FlappahBird
                 if (timeSinceLastJump > 180 && RotationAngle < 1.2)
                     RotationAngle += 0.1f;
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && timeSinceLastJump > 70)
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && timeSinceLastJump > 70 && !IsDead)
                 {
                     soundManager.PlayJumpEffect();
                     Velocity = new Vector2(0, -6);
@@ -41,8 +42,15 @@ namespace FlappahBird
                     timeSinceLastJump += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 }
             }
+            else if(position.Y < 333)
+            {
+                position.Y = position.Y + Velocity.Y;
+                Velocity = new Vector2(Velocity.X, Velocity.Y + gravity);
+                RotationAngle = 1.2f;
+                AnimationOn = false;
+            }
 
-            BoundingBox = new Rectangle((int)position.X, (int)position.Y, 26, 18);
+            BoundingBox = new Rectangle((int)position.X, (int)position.Y, 19, 18);
 
             base.Update(gameTime);
         }
@@ -51,9 +59,8 @@ namespace FlappahBird
         {
             IsDead = true;
             soundManager.PlayHitEffect();
-            position.X = -5000;
         }
 
-        public bool IsDead { get; private set; }
+        
     }
 }

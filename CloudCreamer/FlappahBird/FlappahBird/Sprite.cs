@@ -13,8 +13,8 @@ namespace FlappahBird
         public Vector2 position;
         private readonly int rows;
         private readonly int columns;
-        private readonly double framesPerSecond;
-        private int totalFrames;
+        protected double framesPerSecond;
+        protected int totalFrames;
         private double timeSinceLastFrame;
         private int currentFrame;
         protected Vector2 Velocity { get; set; }
@@ -22,6 +22,7 @@ namespace FlappahBird
         protected Vector2 Origin { get; set; }
         public Rectangle BoundingBox { get; set; }
         public float Speed { get; set; }
+        public bool AnimationOn = true;
 
         public Sprite(Texture2D texture, Vector2 position)
             : this(texture, position, 1, 1, 1)
@@ -55,8 +56,10 @@ namespace FlappahBird
 
         public virtual void Update(GameTime gameTime)
         {
-            
-            UpdateAnimation(gameTime);
+            if (AnimationOn)
+            {
+                UpdateAnimation(gameTime);
+            }
         }
 
         private void UpdateAnimation(GameTime gameTime)
