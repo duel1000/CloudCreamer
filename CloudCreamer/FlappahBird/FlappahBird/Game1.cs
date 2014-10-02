@@ -121,8 +121,6 @@ namespace FlappahBird
             earthManager.Draw(spriteBatch);
             pointManager.Draw(spriteBatch);
 
-            
-
             gameState.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -242,7 +240,5 @@ namespace FlappahBird
 
     
 }
-
-// Kanterne skal vibrere ved death
 
 // Highscore vises?
