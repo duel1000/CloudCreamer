@@ -1,0 +1,8 @@
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\bin\x86\Debug\SuperMarioBros.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\bin\x86\Debug\SuperMarioBros.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\obj\x86\Debug\SuperMarioBros.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\obj\x86\Debug\SuperMarioBros.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\obj\x86\Debug\SuperMarioBros.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\bin\x86\Debug\Content\Font1.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros\SuperMarioBros\bin\x86\Debug\Content\fade.xnb

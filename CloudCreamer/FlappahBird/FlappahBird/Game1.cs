@@ -149,7 +149,7 @@ namespace FlappahBird
 
             public override void Update(GameTime gameTime)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) || Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     game.gameState = new PlayingState(game);
                     game.playerBird.Update(gameTime);

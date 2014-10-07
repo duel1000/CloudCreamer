@@ -7,7 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudCreamerContent", "Clou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlappahBird", "FlappahBird\FlappahBird\FlappahBird.csproj", "{852E3DE6-032B-4597-A5C8-045AA803A1AB}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "FlappahBirdContent", "FlappahBird\FlappahBirdContent\FlappahBirdContent.contentproj", "{098EF007-F8FD-475B-AD21-C63956BE6E6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlappahBirdContent", "FlappahBird\FlappahBirdContent\FlappahBirdContent.contentproj", "{098EF007-F8FD-475B-AD21-C63956BE6E6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros", "SuperMarioBros\SuperMarioBros\SuperMarioBros.csproj", "{9A4E3AA8-7F07-452F-9A7E-082088B462F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBrosContent", "SuperMarioBros\SuperMarioBrosContent\SuperMarioBrosContent.contentproj", "{11A97897-0E8F-460B-92F4-17474A62CB7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros2", "SuperMarioBros2\SuperMarioBros2\SuperMarioBros2.csproj", "{A20D6C67-5C2E-4A34-BAD7-72D811367F2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros2Content", "SuperMarioBros2\SuperMarioBros2Content\SuperMarioBros2Content.contentproj", "{7118EBB6-718C-4D7B-A29C-57E8CA1069D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros3", "SuperMarioBros3\SuperMarioBros3\SuperMarioBros3.csproj", "{1419C4BC-4852-4E1F-89A4-32AD171B4483}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SuperMarioBros3Content", "SuperMarioBros3\SuperMarioBros3Content\SuperMarioBros3Content.contentproj", "{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +39,24 @@ Global
 		{852E3DE6-032B-4597-A5C8-045AA803A1AB}.Release|x86.Build.0 = Release|x86
 		{098EF007-F8FD-475B-AD21-C63956BE6E6A}.Debug|x86.ActiveCfg = Debug|x86
 		{098EF007-F8FD-475B-AD21-C63956BE6E6A}.Release|x86.ActiveCfg = Release|x86
+		{9A4E3AA8-7F07-452F-9A7E-082088B462F9}.Debug|x86.ActiveCfg = Debug|x86
+		{9A4E3AA8-7F07-452F-9A7E-082088B462F9}.Debug|x86.Build.0 = Debug|x86
+		{9A4E3AA8-7F07-452F-9A7E-082088B462F9}.Release|x86.ActiveCfg = Release|x86
+		{9A4E3AA8-7F07-452F-9A7E-082088B462F9}.Release|x86.Build.0 = Release|x86
+		{11A97897-0E8F-460B-92F4-17474A62CB7B}.Debug|x86.ActiveCfg = Debug|x86
+		{11A97897-0E8F-460B-92F4-17474A62CB7B}.Release|x86.ActiveCfg = Release|x86
+		{A20D6C67-5C2E-4A34-BAD7-72D811367F2D}.Debug|x86.ActiveCfg = Debug|x86
+		{A20D6C67-5C2E-4A34-BAD7-72D811367F2D}.Debug|x86.Build.0 = Debug|x86
+		{A20D6C67-5C2E-4A34-BAD7-72D811367F2D}.Release|x86.ActiveCfg = Release|x86
+		{A20D6C67-5C2E-4A34-BAD7-72D811367F2D}.Release|x86.Build.0 = Release|x86
+		{7118EBB6-718C-4D7B-A29C-57E8CA1069D0}.Debug|x86.ActiveCfg = Debug|x86
+		{7118EBB6-718C-4D7B-A29C-57E8CA1069D0}.Release|x86.ActiveCfg = Release|x86
+		{1419C4BC-4852-4E1F-89A4-32AD171B4483}.Debug|x86.ActiveCfg = Debug|x86
+		{1419C4BC-4852-4E1F-89A4-32AD171B4483}.Debug|x86.Build.0 = Debug|x86
+		{1419C4BC-4852-4E1F-89A4-32AD171B4483}.Release|x86.ActiveCfg = Release|x86
+		{1419C4BC-4852-4E1F-89A4-32AD171B4483}.Release|x86.Build.0 = Release|x86
+		{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}.Debug|x86.ActiveCfg = Debug|x86
+		{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

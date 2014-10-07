@@ -1,0 +1,11 @@
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\SuperMarioBros2.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\SuperMarioBros2.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\obj\x86\Debug\SuperMarioBros2.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\obj\x86\Debug\SuperMarioBros2.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\Content\singleEarthBlock.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\Content\mario.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\obj\x86\Debug\SuperMarioBros2.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\Content\sounds\jumpSound.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\Content\sounds\theme.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros2\SuperMarioBros2\bin\x86\Debug\Content\sounds\theme.wma

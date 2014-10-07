@@ -25,11 +25,13 @@ namespace FlappahBird
             {
                 position.Y = position.Y + Velocity.Y;
                 Velocity = new Vector2(Velocity.X, Velocity.Y + gravity);
-
+                var mouseState = Mouse.GetState();
                 if (timeSinceLastJump > 180 && RotationAngle < 1.2)
                     RotationAngle += 0.1f;
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && timeSinceLastJump > 70 && !IsDead)
+                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || 
+                    mouseState.LeftButton == ButtonState.Pressed) && 
+                    timeSinceLastJump > 70 && !IsDead)
                 {
                     soundManager.PlayJumpEffect();
                     Velocity = new Vector2(0, -6);
@@ -37,7 +39,7 @@ namespace FlappahBird
                     timeSinceLastJump = 0;
                 }
 
-                if (Keyboard.GetState().IsKeyUp(Keys.Space))
+                if (Keyboard.GetState().IsKeyUp(Keys.Space) && mouseState.LeftButton == ButtonState.Released)
                 {
                     timeSinceLastJump += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 }

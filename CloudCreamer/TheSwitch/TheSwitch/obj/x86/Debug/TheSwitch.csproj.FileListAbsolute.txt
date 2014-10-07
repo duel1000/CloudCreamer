@@ -1,0 +1,6 @@
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\TheSwitch\TheSwitch\bin\x86\Debug\TheSwitch.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\TheSwitch\TheSwitch\bin\x86\Debug\TheSwitch.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\TheSwitch\TheSwitch\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\TheSwitch\TheSwitch\obj\x86\Debug\TheSwitch.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\TheSwitch\TheSwitch\obj\x86\Debug\TheSwitch.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\TheSwitch\TheSwitch\obj\x86\Debug\TheSwitch.csprojResolveAssemblyReference.cache
