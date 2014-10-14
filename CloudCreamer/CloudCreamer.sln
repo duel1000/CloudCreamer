@@ -19,7 +19,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros2Content", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros3", "SuperMarioBros3\SuperMarioBros3\SuperMarioBros3.csproj", "{1419C4BC-4852-4E1F-89A4-32AD171B4483}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SuperMarioBros3Content", "SuperMarioBros3\SuperMarioBros3Content\SuperMarioBros3Content.contentproj", "{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros3Content", "SuperMarioBros3\SuperMarioBros3Content\SuperMarioBros3Content.contentproj", "{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMarioBros4", "SuperMarioBros4\SuperMarioBros4\SuperMarioBros4.csproj", "{4163D99A-E386-47E3-B488-15C58DF8665A}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "SuperMarioBros4Content", "SuperMarioBros4\SuperMarioBros4Content\SuperMarioBros4Content.contentproj", "{F3CB4CF6-B09F-4569-9D09-185B10321F85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,12 @@ Global
 		{1419C4BC-4852-4E1F-89A4-32AD171B4483}.Release|x86.Build.0 = Release|x86
 		{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}.Debug|x86.ActiveCfg = Debug|x86
 		{BC801AA6-1D8A-4D7D-82D8-0A208B5102D3}.Release|x86.ActiveCfg = Release|x86
+		{4163D99A-E386-47E3-B488-15C58DF8665A}.Debug|x86.ActiveCfg = Debug|x86
+		{4163D99A-E386-47E3-B488-15C58DF8665A}.Debug|x86.Build.0 = Debug|x86
+		{4163D99A-E386-47E3-B488-15C58DF8665A}.Release|x86.ActiveCfg = Release|x86
+		{4163D99A-E386-47E3-B488-15C58DF8665A}.Release|x86.Build.0 = Release|x86
+		{F3CB4CF6-B09F-4569-9D09-185B10321F85}.Debug|x86.ActiveCfg = Debug|x86
+		{F3CB4CF6-B09F-4569-9D09-185B10321F85}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

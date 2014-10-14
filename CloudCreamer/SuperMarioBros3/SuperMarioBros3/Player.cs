@@ -6,89 +6,122 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SuperMarioBros3.Managers;
 
 namespace SuperMarioBros3
 {
-    class Player
+    class Player : SpriteAnimation
     {
-        private Texture2D texture;
-        private Vector2 position = new Vector2(64, 384);
-        private Vector2 velocity;
-        private Rectangle rectangle;
-
         private bool hasJumped = false;
+        private bool walking = false;
+        private bool jumpKeyReleased;
 
-        public Vector2 Position
+        public Player() : base("mario", new Vector2(64,384),1,9,1)
         {
-            get { return position; }
-        }
 
-        public Player(){}
-
-        public void Load(ContentManager Content)
-        {
-            texture = Content.Load<Texture2D>("spelunkyMan");
         }
 
         public void Update(GameTime gameTime)
         {
             position += velocity;
-            rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
 
             Input(gameTime);
 
             if (velocity.Y < 10)
                 velocity.Y += 0.4f;
+
+            DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, imageWidth, imageHeight);
+            BoundingBox = DestinationRectangle;
+
+            base.Update(gameTime);
         }
 
         private void Input(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                velocity.X = (float) gameTime.ElapsedGameTime.TotalMilliseconds/3;
+            {
+                velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                flipSprite = false;
+                WalkAnimation();
+            }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
                 velocity.X = -(float) gameTime.ElapsedGameTime.TotalMilliseconds/3;
-            else velocity.X = 0f;
+                flipSprite = true;
+                WalkAnimation();
+            }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false)
+            else
+            {
+                StopWalkAnimation();
+                velocity.X = 0f;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false && jumpKeyReleased)
             {
                 position.Y -= 5f;
                 velocity.Y = -9f;
                 hasJumped = true;
+                jumpKeyReleased = false;
             }
-
+            if (Keyboard.GetState().IsKeyUp(Keys.Space))
+                jumpKeyReleased = true;
         }
 
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        private void StopWalkAnimation()
         {
-            if (rectangle.TouchTopOf(newRectangle))
+            walking = false;
+            currentFrame = 1;
+            framesPerSecond = 0;
+            endFrame = 1;
+        }
+
+        private void WalkAnimation()
+        {
+            if (walking == false)
             {
-                rectangle.Y = newRectangle.Y - rectangle.Height;
+                currentFrame = 1;
+                rows = 1;
+                columns = 9;
+                framesPerSecond = 10;
+                endFrame = 9;
+                walking = true;
+            }
+        }
+
+        public void Collision(Tile tile, int xOffset, int yOffset)
+        {
+            if (BoundingBox.TouchTopOf(tile.BoundingBox))
+            {
+                DestinationRectangle.Y = tile.BoundingBox.Y - DestinationRectangle.Height;
                 velocity.Y = 0f;
                 hasJumped = false;
             }
 
-            if (rectangle.TouchLeftOf(newRectangle))
+            if (BoundingBox.TouchLeftOf(tile.BoundingBox))
             {
-                position.X = newRectangle.X - rectangle.Width - 2;
+                position.X = tile.BoundingBox.X - DestinationRectangle.Width - 2;
             }
-            if (rectangle.TouchRightOf(newRectangle))
+            if (BoundingBox.TouchRightOf(tile.BoundingBox))
             {
-                position.X = newRectangle.X + newRectangle.Width + 2;
+                position.X = tile.BoundingBox.X + tile.BoundingBox.Width + 2;
             }
-            if (rectangle.TouchBottomOf(newRectangle))
+            if (BoundingBox.TouchBottomOf(tile.BoundingBox))
             {
-                velocity.Y = 1f;
+                if(velocity.Y < 0)
+                    velocity.Y = 1f;
+                var type = tile.GetType();
+                if (type.Name == "BrickTile")
+                {
+                    tile.Status = "Destroy";
+                }
             }
 
             if (position.X < 0) position.X = 0;
-            if (position.X > xOffset - rectangle.Width) position.X = xOffset - rectangle.Width;
+            if (position.X > xOffset - DestinationRectangle.Width) position.X = xOffset - DestinationRectangle.Width;
             if (position.Y < 0) velocity.Y = 1f;
-            if (position.Y > yOffset - rectangle.Height) position.Y = yOffset - rectangle.Height;
+            if (position.Y > yOffset - DestinationRectangle.Height) position.Y = yOffset - DestinationRectangle.Height;
         }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, rectangle, Color.White);
-        }
+        
     }
 }

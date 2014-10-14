@@ -62,7 +62,5 @@ namespace FlappahBird
             IsDead = true;
             soundManager.PlayHitEffect();
         }
-
-        
     }
 }

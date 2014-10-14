@@ -214,6 +214,8 @@ namespace FlappahBird
                 game.tubeManager.Update(gameTime);
                 game.elapsedGameTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
+                game.pointManager.SavePoints();
+
                 if (Keyboard.GetState().IsKeyDown(Keys.X))
                 {
                     game.gameState = new StartScreenState(game);
@@ -229,6 +231,7 @@ namespace FlappahBird
                 }
                 game.playerBird.Draw(spriteBatch);
                 game.gameOverScreen.Draw(spriteBatch);
+                game.pointManager.DrawHighscore(spriteBatch);
 
                 var scoreX = 60;
                 var scoreY = 390;

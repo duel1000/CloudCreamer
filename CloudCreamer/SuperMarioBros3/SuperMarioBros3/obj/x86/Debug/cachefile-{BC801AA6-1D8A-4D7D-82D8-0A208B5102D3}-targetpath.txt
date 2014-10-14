@@ -1,2 +1,6 @@
 Content\singleEarthBlock.xnb
 Content\spelunkyMan.xnb
+Content\brick.xnb
+Content\destroyedbrick.xnb
+Content\mario.xnb
+Content\Sounds\brickexplosion.xnb

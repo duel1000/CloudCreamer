@@ -19,6 +19,42 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\spelunkyMan.xnb</Output>
       <Time>2014-10-07T23:55:59.9884915+02:00</Time>
     </Item>
+    <Item>
+      <Source>brick.png</Source>
+      <Name>brick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\brick.xnb</Output>
+      <Time>2014-10-08T15:12:07.1588319+02:00</Time>
+    </Item>
+    <Item>
+      <Source>destroyedbrick.png</Source>
+      <Name>destroyedbrick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\destroyedbrick.xnb</Output>
+      <Time>2014-10-11T18:18:24.190876+02:00</Time>
+    </Item>
+    <Item>
+      <Source>mario.png</Source>
+      <Name>mario</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\mario.xnb</Output>
+      <Time>2014-10-13T14:57:52.6863726+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\brickexplosion.mp3</Source>
+      <Name>Sounds\brickexplosion</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\brickexplosion.xnb</Output>
+      <Time>2014-10-13T22:25:34.4991691+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

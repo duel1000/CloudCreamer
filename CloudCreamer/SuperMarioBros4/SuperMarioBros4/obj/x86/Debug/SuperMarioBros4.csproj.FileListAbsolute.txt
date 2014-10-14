@@ -1,0 +1,7 @@
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\bin\x86\Debug\Content\spelunkyMan.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\bin\x86\Debug\SuperMarioBros4.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\bin\x86\Debug\SuperMarioBros4.pdb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\obj\x86\Debug\SuperMarioBros4.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\obj\x86\Debug\SuperMarioBros4.exe
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros4\SuperMarioBros4\obj\x86\Debug\SuperMarioBros4.pdb
