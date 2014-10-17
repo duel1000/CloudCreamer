@@ -21,6 +21,7 @@ namespace SuperMarioBros3
         private Camera camera;
         private ExplosionManager explosionManager;
         private SoundManager soundManager;
+        private EntityManager entityManager;
 
         public Game1()
         {
@@ -33,8 +34,10 @@ namespace SuperMarioBros3
             Content_Manager.GetInstance().LoadTextures(Content);
             explosionManager = new ExplosionManager();
             soundManager = new SoundManager(Content);
-            map = new Map(explosionManager, soundManager);
-            player = new Player();
+            entityManager = new EntityManager();
+            map = new Map(explosionManager, soundManager, entityManager);
+            player = new Player(soundManager);
+            soundManager.PlayBackgroundMusic();
             base.Initialize();
         }
 
@@ -58,11 +61,25 @@ namespace SuperMarioBros3
             foreach (EarthTile tile in map.EarthTiles)
             {
                 player.Collision(tile, map.Width, map.Height);
+
+                foreach (var mushroom in entityManager.evilMushrooms)
+                {
+                    mushroom.TileCollision(tile);
+                    player.EvilMushroomCollision(mushroom);
+                }
                 camera.Update(player.position, map.Width, map.Height);
             }
             foreach (BrickTile brick in map.BrickTiles)
             {
                 player.Collision(brick, map.Width, map.Height);
+                foreach (var mushroom in entityManager.evilMushrooms)
+                {
+                    mushroom.TileCollision(brick);
+                }
+            }
+            foreach (var hardBrick in map.HardTiles)
+            {
+                player.Collision(hardBrick, map.Width, map.Height);
             }
 
             explosionManager.Update(gameTime);

@@ -29,11 +29,19 @@ namespace SuperMarioBros3.Managers
         public void LoadTextures(ContentManager content)
         {
             CM = content;
+            AddTexture("oldmario");
+            AddTexture("smallstillmario");
+            AddTexture("smalljumpmario");
+            AddTexture("bigmariowalking");
+            AddTexture("bigmariostanding");
+            AddTexture("bigmariojumping");
             AddTexture("spelunkyMan");
             AddTexture("mario");
             AddTexture("brick");
             AddTexture("destroyedbrick");
             AddTexture("singleEarthBlock");
+            AddTexture("hardbrick");
+            AddTexture("evilmushroom");
         }
 
         public void AddTexture(String file, String name = "")

@@ -20,13 +20,13 @@ namespace SuperMarioBros3
             {
                 if (shiftDirection)
                 {
-                    explosion.position.X += 0.5f;
+                    explosion.position.X += 2.5f;
                     shiftDirection = !shiftDirection;
                 }
                     
                 else
                 {
-                    explosion.position.X -= 0.5f;
+                    explosion.position.X -= 2.5f;
                     shiftDirection = !shiftDirection;
                 }
 
@@ -38,18 +38,24 @@ namespace SuperMarioBros3
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var explosion in brickExplosions)
+            for (int i = 0; i < brickExplosions.Count; i++)
             {
-                explosion.Draw(spriteBatch);
+                brickExplosions[i].Draw(spriteBatch);
+
+                if (brickExplosions[i].position.Y > 3000)
+                {
+                    brickExplosions.Remove(brickExplosions[i]);
+                    i--;
+                }
             }
         }
 
         public void CreateTileExplosion(BrickTile brickTile)
         {
-            var topLeft = new Vector2(brickTile.Rectangle.X + 15, brickTile.Rectangle.Y);
-            var topRight = new Vector2(brickTile.Rectangle.X - 15 + brickTile.Rectangle.Width, brickTile.Rectangle.Y);
-            var bottomLeft = new Vector2(brickTile.Rectangle.X + 15, brickTile.Rectangle.Y + brickTile.Rectangle.Height - 20);
-            var bottomRight = new Vector2(brickTile.Rectangle.X - 15 + brickTile.Rectangle.Width, brickTile.Rectangle.Y + brickTile.Rectangle.Height - 20);
+            var topLeft = new Vector2(brickTile.Rectangle.X + 10, brickTile.Rectangle.Y - 10);
+            var topRight = new Vector2(brickTile.Rectangle.X - 25 + brickTile.Rectangle.Width, brickTile.Rectangle.Y - 10);
+            var bottomLeft = new Vector2(brickTile.Rectangle.X + 10, brickTile.Rectangle.Y + brickTile.Rectangle.Height - 30);
+            var bottomRight = new Vector2(brickTile.Rectangle.X - 25 + brickTile.Rectangle.Width, brickTile.Rectangle.Y + brickTile.Rectangle.Height - 30);
             brickExplosions.Add(new BrickExplosion(topLeft));
             brickExplosions.Add(new BrickExplosion(topRight));
             brickExplosions.Add(new BrickExplosion(bottomLeft));
@@ -59,8 +65,6 @@ namespace SuperMarioBros3
 
     public class BrickExplosion : SpriteAnimation
     {
-        private Vector2 velocity;
-
         public bool IsDone()
         {
             return animationPlayedOnce;
@@ -80,12 +84,6 @@ namespace SuperMarioBros3
                 velocity.Y += 0.4f;
             }
             rotationAngle += 0.01f;
-
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
     }
 }

@@ -4,3 +4,17 @@ Content\brick.xnb
 Content\destroyedbrick.xnb
 Content\mario.xnb
 Content\Sounds\brickexplosion.xnb
+Content\Sounds\theme.xnb
+Content\Sounds\theme.wma
+Content\hardbrick.xnb
+Content\Sounds\hardbrickbump.xnb
+Content\evilmushroom.xnb
+Content\Sounds\stomp.xnb
+Content\Sounds\smalljump.xnb
+Content\Sounds\powerup.xnb
+Content\oldmario.xnb
+Content\smallstillmario.xnb
+Content\smalljumpmario.xnb
+Content\bigmariowalking.xnb
+Content\bigmariostanding.xnb
+Content\bigmariojumping.xnb
