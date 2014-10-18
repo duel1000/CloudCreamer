@@ -67,6 +67,11 @@ namespace SuperMarioBros3
                     mushroom.TileCollision(tile);
                     player.EvilMushroomCollision(mushroom);
                 }
+                foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
+                {
+                    mushroomPowerUp.TileCollision(tile);
+                    player.PowerUpCollision(mushroomPowerUp);
+                }
                 camera.Update(player.position, map.Width, map.Height);
             }
             foreach (BrickTile brick in map.BrickTiles)
@@ -76,10 +81,31 @@ namespace SuperMarioBros3
                 {
                     mushroom.TileCollision(brick);
                 }
+                foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
+                {
+                    mushroomPowerUp.TileCollision(brick);
+                }
             }
             foreach (var hardBrick in map.HardTiles)
             {
                 player.Collision(hardBrick, map.Width, map.Height);
+
+                foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
+                {
+                    mushroomPowerUp.TileCollision(hardBrick);
+                }
+            }
+            foreach (var questionMarkTile in map.QuestionMarkTiles)
+            {
+                player.Collision(questionMarkTile, map.Width, map.Height);
+            }
+            foreach (var tube in map.Tubes)
+            {
+                foreach (var evilMushroom in entityManager.evilMushrooms)
+                {
+                    evilMushroom.SimpleCollision(tube.BoundingBox);
+                }
+                player.SimpelCollision(tube.BoundingBox);
             }
 
             explosionManager.Update(gameTime);

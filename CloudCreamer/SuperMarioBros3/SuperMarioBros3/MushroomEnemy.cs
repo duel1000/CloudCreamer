@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 
 namespace SuperMarioBros3
 {
-    public class Mushroom : SpriteAnimation
+    public class MushroomEnemy : SpriteAnimation
     {
         private bool walkingLeft = false;
         public bool IsDead { get; set; }
 
-        public Mushroom(Vector2 position) : base("evilmushroom", position, 1,1,1)
+        public MushroomEnemy(Vector2 position) : base("evilmushroom", position, 1,1,1)
         {
             IsDead = false;
             velocity.X = 2f;
@@ -22,7 +22,7 @@ namespace SuperMarioBros3
             position += velocity;
 
             if (velocity.Y < 10)
-                velocity.Y += 0.4f;
+                velocity.Y += 0.45f;
 
             BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y, DestinationRectangle.Width - 10, DestinationRectangle.Height);
 
@@ -46,6 +46,33 @@ namespace SuperMarioBros3
                 }
             }
             else if (BoundingBox.TouchRightOf(tile.BoundingBox))
+            {
+                if (walkingLeft)
+                {
+                    velocity.X += 4;
+                    walkingLeft = false;
+                    flipSprite = false;
+                }
+            }
+        }
+
+        public void SimpleCollision(Rectangle objectBoundingBox)
+        {
+            if (BoundingBox.TouchTopOf(objectBoundingBox))
+            {
+                position.Y = objectBoundingBox.Y - DestinationRectangle.Height;
+                velocity.Y = 0f;
+            }
+            else if (BoundingBox.TouchLeftOf(objectBoundingBox))
+            {
+                if (!walkingLeft)
+                {
+                    velocity.X -= 4;
+                    walkingLeft = true;
+                    flipSprite = true;
+                }
+            }
+            else if (BoundingBox.TouchRightOf(objectBoundingBox))
             {
                 if (walkingLeft)
                 {

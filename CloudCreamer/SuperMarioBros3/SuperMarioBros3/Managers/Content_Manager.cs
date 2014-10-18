@@ -41,7 +41,10 @@ namespace SuperMarioBros3.Managers
             AddTexture("destroyedbrick");
             AddTexture("singleEarthBlock");
             AddTexture("hardbrick");
+            AddTexture("questionmarktile");
             AddTexture("evilmushroom");
+            AddTexture("mushroompowerup");
+            AddTexture("tube");
         }
 
         public void AddTexture(String file, String name = "")

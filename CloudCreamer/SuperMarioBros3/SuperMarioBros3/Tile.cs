@@ -19,7 +19,7 @@ namespace SuperMarioBros3
         public string Status = "Alive";
         public bool TurnsToHardTile = false;
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, Rectangle, Color.White);
         }
@@ -37,12 +37,15 @@ namespace SuperMarioBros3
 
     public class BrickTile : Tile
     {
-        public BrickTile(Rectangle newRectangle, bool turnsToHardTile = false)
+        public string IsContaining { get; set; }
+
+        public BrickTile(Rectangle newRectangle, bool turnsToHardTile = false, string isContaining = "")
         {
             texture = Content_Manager.GetInstance().Textures["brick"];
             this.Rectangle = newRectangle;
             BoundingBox = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height - 10);
             this.TurnsToHardTile = turnsToHardTile;
+            this.IsContaining = isContaining;
         }
     }
 
@@ -85,6 +88,55 @@ namespace SuperMarioBros3
                     Rectangle = new Rectangle(Rectangle.X, (int)_newPositionY, Rectangle.Width, Rectangle.Height);
                 }
             }
+        }
+    }
+
+    public class QuestionMarkTile : Tile
+    {
+        public string IsContaining { get; set; }
+        private float _timeSinceColorChange = 0;
+        private int _frameWidth = 50;
+        private int _currentFrame = 0;
+
+        public QuestionMarkTile(Rectangle newRectangle, bool turnsToHardTile = false, string isContaining = "")
+        {
+            texture = Content_Manager.GetInstance().Textures["questionmarktile"];
+            this.Rectangle = newRectangle;
+            this.TurnsToHardTile = turnsToHardTile;
+            this.IsContaining = isContaining;
+            this.BoundingBox = newRectangle;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            _timeSinceColorChange += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (_timeSinceColorChange < 300)
+                _currentFrame = 0;
+            else if (_timeSinceColorChange < 500)
+                _currentFrame = 1;
+            else if (_timeSinceColorChange < 700)
+                _currentFrame = 2;
+            else if (_timeSinceColorChange < 900)
+                _currentFrame = 1;
+            else if(_timeSinceColorChange < 1200)
+                _timeSinceColorChange = 0;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, Rectangle, Color.White);
+
+            var DestinationRectangle = new Rectangle(Rectangle.X, Rectangle.Y, 50,50);
+            var SourceRectangle = new Rectangle(50 * _currentFrame, 0, 50,50);
+            spriteBatch.Draw(texture,
+                             DestinationRectangle,
+                             SourceRectangle,
+                             Color.White,
+                             0,
+                             new Vector2(0,0), 
+                             SpriteEffects.None,
+                             1);
         }
     }
 }

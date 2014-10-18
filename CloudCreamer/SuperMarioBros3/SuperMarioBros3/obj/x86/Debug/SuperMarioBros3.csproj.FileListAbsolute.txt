@@ -24,3 +24,9 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBr
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\bigmariowalking.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\bigmariostanding.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\bigmariojumping.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\mushroompowerup.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\questionmarktile.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\powerupappear.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\powerdown.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\mariodeath.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\tube.xnb

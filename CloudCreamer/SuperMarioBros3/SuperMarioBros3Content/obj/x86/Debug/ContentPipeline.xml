@@ -173,6 +173,60 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\bigmariojumping.xnb</Output>
       <Time>2014-10-18T00:47:32.0817807+02:00</Time>
     </Item>
+    <Item>
+      <Source>mushroompowerup.png</Source>
+      <Name>mushroompowerup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\mushroompowerup.xnb</Output>
+      <Time>2014-10-18T20:42:14.748336+02:00</Time>
+    </Item>
+    <Item>
+      <Source>questionmarktile.png</Source>
+      <Name>questionmarktile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\questionmarktile.xnb</Output>
+      <Time>2014-10-19T01:47:28.1390123+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\powerupappear.wav</Source>
+      <Name>Sounds\powerupappear</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\powerupappear.xnb</Output>
+      <Time>2014-10-18T22:09:09.5131852+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\powerdown.wav</Source>
+      <Name>Sounds\powerdown</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\powerdown.xnb</Output>
+      <Time>2014-10-18T23:29:50.3702643+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\mariodeath.wav</Source>
+      <Name>Sounds\mariodeath</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\mariodeath.xnb</Output>
+      <Time>2014-10-18T23:49:28.2851629+02:00</Time>
+    </Item>
+    <Item>
+      <Source>tube.png</Source>
+      <Name>tube</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\tube.xnb</Output>
+      <Time>2014-10-19T01:17:28.899376+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -11,6 +11,9 @@ namespace SuperMarioBros3
         private SoundEffect stomp;
         private SoundEffect smallJump;
         private SoundEffect _powerUp;
+        private SoundEffect _powerUpAppear;
+        private SoundEffect _powerDown;
+        private SoundEffect _playerDeath;
         private Song backgroundMusic;
 
         public SoundManager(ContentManager content)
@@ -20,6 +23,9 @@ namespace SuperMarioBros3
             stomp = content.Load<SoundEffect>(@"Sounds\stomp");
             smallJump = content.Load<SoundEffect>(@"Sounds\smalljump");
             _powerUp = content.Load<SoundEffect>(@"Sounds\powerup");
+            _powerUpAppear = content.Load<SoundEffect>(@"Sounds\powerupappear");
+            _powerDown = content.Load<SoundEffect>(@"Sounds\powerdown");
+            _playerDeath = content.Load<SoundEffect>(@"Sounds\mariodeath");
             backgroundMusic = content.Load<Song>(@"Sounds\theme");
         }
 
@@ -53,6 +59,18 @@ namespace SuperMarioBros3
         {
             _powerUp.Play();
         }
+        public void PowerUpAppearEffect()
+        {
+            _powerUpAppear.Play();
+        }
+        public void PowerDown()
+        {
+            _powerDown.Play();
+        }
 
+        public void PlayerDeath()
+        {
+            _playerDeath.Play();
+        }
     }
 }

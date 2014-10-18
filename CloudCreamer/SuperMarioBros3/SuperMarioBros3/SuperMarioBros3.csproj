@@ -109,7 +109,7 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="EntityManager.cs" />
-    <Compile Include="Mushroom.cs" />
+    <Compile Include="MushroomEnemy.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="Managers\Content_Manager.cs" />
     <Compile Include="Managers\SoundManager.cs" />
@@ -121,6 +121,7 @@
     <Compile Include="RectangleHelper.cs" />
     <Compile Include="SpriteAnimation.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="Tube.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

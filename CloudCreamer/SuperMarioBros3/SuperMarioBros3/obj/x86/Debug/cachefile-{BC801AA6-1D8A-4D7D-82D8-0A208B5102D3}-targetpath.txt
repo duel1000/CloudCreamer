@@ -18,3 +18,9 @@ Content\smalljumpmario.xnb
 Content\bigmariowalking.xnb
 Content\bigmariostanding.xnb
 Content\bigmariojumping.xnb
+Content\mushroompowerup.xnb
+Content\questionmarktile.xnb
+Content\Sounds\powerupappear.xnb
+Content\Sounds\powerdown.xnb
+Content\Sounds\mariodeath.xnb
+Content\tube.xnb
