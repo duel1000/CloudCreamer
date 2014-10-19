@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="CoinManager.cs" />
     <Compile Include="EntityManager.cs" />
     <Compile Include="MushroomEnemy.cs" />
     <Compile Include="ExplosionManager.cs" />

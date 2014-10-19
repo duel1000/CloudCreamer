@@ -14,8 +14,10 @@ namespace SuperMarioBros3
         private List<BrickTile> brickTiles = new List<BrickTile>();
         private List<HardTile> hardTiles = new List<HardTile>(); 
         private List<QuestionMarkTile> questionMarkTiles = new List<QuestionMarkTile>(); 
-        private List<Tube> tubes = new List<Tube>(); 
-        private ExplosionManager explosionManager = new ExplosionManager();
+        private List<Tube> tubes = new List<Tube>();
+        private ExplosionManager explosionManager;
+        private CoinManager coinManager;
+
         private SoundManager soundManager;
         private EntityManager entityManager;
 
@@ -50,11 +52,12 @@ namespace SuperMarioBros3
             get { return height; }
         }
 
-        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager)
+        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager)
         {
             this.explosionManager = explosionManager;
             this.soundManager = soundManager;
             this.entityManager = entityManager;
+            this.coinManager = coinManager;
         }
 
         public void GenerateMap(int size)
@@ -67,10 +70,21 @@ namespace SuperMarioBros3
                 height = 480; //Hardcoded
             }
 
-            brickTiles.Add(new BrickTile(new Rectangle(1300, 250, 50, 50)));
-            brickTiles.Add(new BrickTile(new Rectangle(1400, 250, 50, 50)));
-            brickTiles.Add(new BrickTile(new Rectangle(1500, 250, 50, 50)));
-            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1350, 250, 50, 50), true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(350, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(450, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(550, 250, 50, 50), true, "", true));
+
+
+            earthTiles.RemoveAt(95);
+            earthTiles.RemoveAt(95);
+
+            earthTiles.RemoveAt(109);
+            earthTiles.RemoveAt(109);
+
+            brickTiles.Add(new BrickTile(new Vector2(1300, 250)));
+            brickTiles.Add(new BrickTile(new Vector2(1400, 250)));
+            brickTiles.Add(new BrickTile(new Vector2(1500, 250)));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1350, 250, 50, 50), true,"",true));
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1450, 250, 50, 50), true));
 
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1400, 50, 50, 50), true));
@@ -81,7 +95,30 @@ namespace SuperMarioBros3
 
             //Tube
             tubes.Add(new Tube(new Vector2(1700, 350)));
-            
+            tubes.Add(new Tube(new Vector2(2700, 300)));
+            entityManager.evilMushrooms.Add(new MushroomEnemy(new Vector2(3000, 350)));
+            tubes.Add(new Tube(new Vector2(3100, 240)));
+            entityManager.evilMushrooms.Add(new MushroomEnemy(new Vector2(3200, 350)));
+            entityManager.evilMushrooms.Add(new MushroomEnemy(new Vector2(3500, 350)));
+            tubes.Add(new Tube(new Vector2(3600, 240)));
+
+
+            brickTiles.Add(new BrickTile(new Vector2(4800, 250)));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(4850, 250, 50, 50), true));
+            brickTiles.Add(new BrickTile(new Vector2(4900, 250)));
+            brickTiles.Add(new BrickTile(new Vector2(4950, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5000, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5050, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5100, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5150, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5200, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5250, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5300, 50)));
+            brickTiles.Add(new BrickTile(new Vector2(5350, 50)));
+
+            //Lav sections?
+
+
             //Hardbrick
             //brickTiles.Add(new BrickTile(new Rectangle(1100, 250, 50, 50), true));
 
@@ -151,6 +188,11 @@ namespace SuperMarioBros3
                         soundManager.PowerUpAppearEffect();
                         entityManager.mushroomPowerUps.Add(new MushroomPowerUp(new Vector2(questionMarkTiles[i].Rectangle.X, questionMarkTiles[i].Rectangle.Y - questionMarkTiles[i].Rectangle.Height)));
                     }
+                    else if (questionMarkTiles[i].ContainsCoin)
+                    {
+                        soundManager.CoinEffect();
+                        coinManager.AddCoinAnimation(new Vector2(questionMarkTiles[i].Rectangle.Center.X - 15, questionMarkTiles[i].Rectangle.Y - 35)); // Hardcoded 
+                    }
                     else 
                         soundManager.HardBrickBumpEffect();
 
@@ -161,6 +203,7 @@ namespace SuperMarioBros3
             }
             
             entityManager.Update(gameTime, soundManager);
+            coinManager.Update(gameTime, soundManager);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -185,9 +228,9 @@ namespace SuperMarioBros3
             {
                 tile.Draw(spriteBatch);
             }
-            
 
             entityManager.Draw(spriteBatch);
+            coinManager.Draw(spriteBatch);
         }
     }
 }

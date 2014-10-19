@@ -38,11 +38,11 @@ namespace SuperMarioBros3
     public class BrickTile : Tile
     {
         public string IsContaining { get; set; }
-
-        public BrickTile(Rectangle newRectangle, bool turnsToHardTile = false, string isContaining = "")
+        
+        public BrickTile(Vector2 position, bool turnsToHardTile = false, string isContaining = "", bool containsCoin = false)
         {
             texture = Content_Manager.GetInstance().Textures["brick"];
-            this.Rectangle = newRectangle;
+            this.Rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Height, texture.Width);
             BoundingBox = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height - 10);
             this.TurnsToHardTile = turnsToHardTile;
             this.IsContaining = isContaining;
@@ -94,17 +94,19 @@ namespace SuperMarioBros3
     public class QuestionMarkTile : Tile
     {
         public string IsContaining { get; set; }
+        public bool ContainsCoin { get; set; }
         private float _timeSinceColorChange = 0;
         private int _frameWidth = 50;
         private int _currentFrame = 0;
 
-        public QuestionMarkTile(Rectangle newRectangle, bool turnsToHardTile = false, string isContaining = "")
+        public QuestionMarkTile(Rectangle newRectangle, bool turnsToHardTile = false, string isContaining = "", bool containsCoin = false)
         {
             texture = Content_Manager.GetInstance().Textures["questionmarktile"];
             this.Rectangle = newRectangle;
             this.TurnsToHardTile = turnsToHardTile;
             this.IsContaining = isContaining;
             this.BoundingBox = newRectangle;
+            this.ContainsCoin = containsCoin;
         }
 
         public void Update(GameTime gameTime)

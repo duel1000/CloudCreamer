@@ -227,6 +227,33 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\tube.xnb</Output>
       <Time>2014-10-19T01:17:28.899376+02:00</Time>
     </Item>
+    <Item>
+      <Source>death.png</Source>
+      <Name>death</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\death.xnb</Output>
+      <Time>2014-10-19T16:17:48.8507167+02:00</Time>
+    </Item>
+    <Item>
+      <Source>coinspin.png</Source>
+      <Name>coinspin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\coinspin.xnb</Output>
+      <Time>2014-10-19T20:34:28.5408742+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\coin.wav</Source>
+      <Name>Sounds\coin</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\coin.xnb</Output>
+      <Time>2014-10-19T22:24:05.714964+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

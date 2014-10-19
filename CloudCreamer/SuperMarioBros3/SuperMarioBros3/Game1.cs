@@ -20,6 +20,7 @@ namespace SuperMarioBros3
         private Player player;
         private Camera camera;
         private ExplosionManager explosionManager;
+        private CoinManager coinManager;
         private SoundManager soundManager;
         private EntityManager entityManager;
 
@@ -34,8 +35,9 @@ namespace SuperMarioBros3
             Content_Manager.GetInstance().LoadTextures(Content);
             explosionManager = new ExplosionManager();
             soundManager = new SoundManager(Content);
+            coinManager = new CoinManager(soundManager);
             entityManager = new EntityManager();
-            map = new Map(explosionManager, soundManager, entityManager);
+            map = new Map(explosionManager, soundManager, entityManager, coinManager);
             player = new Player(soundManager);
             soundManager.PlayBackgroundMusic();
             base.Initialize();
@@ -117,7 +119,7 @@ namespace SuperMarioBros3
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(new Color(183,165,255));
 
             spriteBatch.Begin(SpriteSortMode.Deferred,
                               BlendState.AlphaBlend,

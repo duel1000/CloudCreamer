@@ -17,12 +17,19 @@ namespace SuperMarioBros3
         private bool walking = false;
         private bool jumpKeyReleased;
         private float _powerUpAnimationTimer = 0;
+        private float _powerDownAnimationTimer = 0;
 
+        private bool _isDead;
         private bool _isBigMario = false;
+        private bool _isSmallMario;
+        private bool _isInvulnerable;
         private bool _powerUpAnimationPlayed = false;
+        private bool _powerDownAnimationPlayed = false;
+        private bool _DeathAnimationPlayed = false;
 
         private bool _frozen = false;
         private int _stepsIntoPowerUpAnimation = 0;
+        private int _stepsIntoPowerDownAnimation = 0;
 
         private SoundManager _soundManager;
         private bool _takeDamageSoundPlayed;
@@ -39,8 +46,16 @@ namespace SuperMarioBros3
             if (_isBigMario && !_powerUpAnimationPlayed)
             {
                 PowerUpAnimation(gameTime);
+                BoundingBox = new Rectangle(0,0,0,0);
             }
-            else if(!_frozen)
+            else if(_isSmallMario && !_powerDownAnimationPlayed)
+            {
+                PowerDownAnimation(gameTime);
+                BoundingBox = new Rectangle(0, 0, 0, 0);
+            }
+            else if(_isDead)
+                KillPlayer();
+            else if(!_frozen && !_isDead)
             {
                 position += velocity;
 
@@ -56,8 +71,6 @@ namespace SuperMarioBros3
 
             base.Update(gameTime);
         }
-
-        
 
         private void Input(GameTime gameTime)
         {
@@ -122,35 +135,70 @@ namespace SuperMarioBros3
                 _powerUpAnimationPlayed = false;
                 _soundManager.PowerUpEffect();
                 _isBigMario = true;
+                _isSmallMario = false;
             }
-        }
-
-        private void TakeDamage()
-        {
-            _hitPoints--;
-
-            if (_hitPoints == 0)
-                KillPlayer();
-
-            if (_hitPoints == 1)
-                PowerDown();
         }
 
         private void PowerDown()
         {
             if (!_takeDamageSoundPlayed)
             {
+                _isInvulnerable = true;
                 _soundManager.PowerDown();
                 _takeDamageSoundPlayed = true;
+                _isBigMario = false;
+                _isSmallMario = true;
+                _powerUpAnimationPlayed = false;
             }
         }
 
-        private void KillPlayer() // Jeg kom hertil
+        private void TakeDamage()
+        {
+            if(!_isInvulnerable)
+                _hitPoints--;
+
+            if (_hitPoints == 0)
+                _isDead = true;
+            else if (_hitPoints == 1)
+                PowerDown();
+        }
+
+        private void KillPlayer()
         {
             if (!_killPlayerSoundPlayed)
             {
                 _soundManager.PlayerDeath();
                 _killPlayerSoundPlayed = true;
+            }
+            RunDeathAnimation();
+        }
+
+        private void RunDeathAnimation()
+        {
+            if (!_DeathAnimationPlayed)
+            {
+                texture = Content_Manager.GetInstance().Textures["death"];
+                rows = 1;
+                framesPerSecond = 0;
+                columns = 1;
+                currentFrame = 1;
+                endFrame = 1;
+                velocity.X = (velocity.X *-1)/2;
+                position.Y -= 15;
+                velocity.Y -= 10f;
+                _DeathAnimationPlayed = true;
+            }
+
+            if (position.Y < 1000)
+            {
+                position += velocity;
+
+                if (velocity.Y < 10)
+                    velocity.Y += 0.45f;
+            }
+            else
+            {
+                position = position;
             }
         }
 
@@ -218,6 +266,72 @@ namespace SuperMarioBros3
             }
         }
 
+        private void PowerDownAnimation(GameTime gameTime)
+        {
+            _powerDownAnimationTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            _frozen = true;
+            walking = false;
+            currentFrame = 1;
+            rows = 1;
+            columns = 1;
+            framesPerSecond = 0;
+            endFrame = 1;
+
+            if (_powerDownAnimationTimer < 200)
+            {
+                if (_stepsIntoPowerDownAnimation == 0)
+                {
+                    position.Y += 25; //Hardcoded value for big mario height
+                    _stepsIntoPowerDownAnimation++;
+                }
+                texture = Content_Manager.GetInstance().Textures["smallstillmario"];
+            }
+            else if (_powerDownAnimationTimer < 400)
+            {
+                if (_stepsIntoPowerDownAnimation == 1)
+                {
+                    position.Y -= 25;
+                    _stepsIntoPowerDownAnimation++;
+                }
+                texture = Content_Manager.GetInstance().Textures["bigmariostanding"];
+            }
+            else if (_powerDownAnimationTimer < 600)
+            {
+                if (_stepsIntoPowerDownAnimation == 2)
+                {
+                    position.Y += 25;
+                    _stepsIntoPowerDownAnimation++;
+                }
+                texture = Content_Manager.GetInstance().Textures["smallstillmario"];
+            }
+            else if (_powerDownAnimationTimer < 800)
+            {
+                if (_stepsIntoPowerDownAnimation == 3)
+                {
+                    position.Y -= 25;
+                    _stepsIntoPowerDownAnimation++;
+                }
+                texture = Content_Manager.GetInstance().Textures["bigmariostanding"];
+            }
+            else if (_powerDownAnimationTimer < 1000)
+            {
+                if (_stepsIntoPowerDownAnimation == 4)
+                {
+                    position.Y += 25;
+                    _stepsIntoPowerDownAnimation++;
+                }
+                texture = Content_Manager.GetInstance().Textures["smallstillmario"];
+            }
+            else if (_powerDownAnimationTimer < 1200)
+            {
+                _frozen = false;
+                _powerDownAnimationPlayed = true;
+                _powerDownAnimationTimer = 0;
+                _isInvulnerable = false;
+            }
+        }
+
+
         private void StopWalkAnimation()
         {
             if (!hasJumped)
@@ -274,7 +388,7 @@ namespace SuperMarioBros3
 
         public void Collision(Tile tile, int xOffset, int yOffset)
         {
-            if (BoundingBox.TouchTopOf(tile.BoundingBox))
+            if (BoundingBox.TouchTopOf(tile.BoundingBox) && !_isDead)
             {
                 if (velocity.Y > 0)
                 {
@@ -316,7 +430,8 @@ namespace SuperMarioBros3
             if (position.X < 0) position.X = 0;
             if (position.X > xOffset - DestinationRectangle.Width) position.X = xOffset - DestinationRectangle.Width;
             //if (position.Y < 0) velocity.Y = 1f; Makes mario able to jump out top of the map
-            if (position.Y > yOffset - DestinationRectangle.Height) position.Y = yOffset - DestinationRectangle.Height;
+            if (position.Y > yOffset && !_isDead)
+                _isDead = true; //;position.Y = yOffset - DestinationRectangle.Height;
         }
 
         public void EvilMushroomCollision(MushroomEnemy mushroom)
@@ -356,21 +471,23 @@ namespace SuperMarioBros3
 
 /*Player*/
 //Shift key for speed run + superjumpsound
-//PlayerDeath
 
 /*Tile*/ 
 //Add hard earth tiles
-//TileAnimation only for big mario
 
 /*Game*/
-//Add coins
+//Layout Map - create a sectionmanager + level manager?
 //Add lives
+//Add score
 //Add timer
 //Add Castle
 //Add Background
+//Restart Map
 
 /*Enemies*/
 //De skal kunne collide med hinanden
+//Lav animation på dem
+//Spawn point
 
 /*Bugs*/
 //If you release jumpkey mid air and press it down before he hits the ground he insta-jumps which feels bad

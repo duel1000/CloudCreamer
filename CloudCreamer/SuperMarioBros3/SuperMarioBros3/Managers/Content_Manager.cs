@@ -38,6 +38,8 @@ namespace SuperMarioBros3.Managers
             AddTexture("spelunkyMan");
             AddTexture("mario");
             AddTexture("brick");
+            AddTexture("death");
+            AddTexture("coinspin");
             AddTexture("destroyedbrick");
             AddTexture("singleEarthBlock");
             AddTexture("hardbrick");

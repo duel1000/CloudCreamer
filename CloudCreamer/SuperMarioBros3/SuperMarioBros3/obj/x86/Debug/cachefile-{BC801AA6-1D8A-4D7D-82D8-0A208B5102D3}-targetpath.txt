@@ -24,3 +24,6 @@ Content\Sounds\powerupappear.xnb
 Content\Sounds\powerdown.xnb
 Content\Sounds\mariodeath.xnb
 Content\tube.xnb
+Content\death.xnb
+Content\coinspin.xnb
+Content\Sounds\coin.xnb
