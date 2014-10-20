@@ -20,6 +20,7 @@ namespace SuperMarioBros3
         private float _powerDownAnimationTimer = 0;
 
         private bool _isDead;
+        private bool _respawn;
         private bool _isBigMario = false;
         private bool _isSmallMario;
         private bool _isInvulnerable;
@@ -34,6 +35,8 @@ namespace SuperMarioBros3
         private SoundManager _soundManager;
         private bool _takeDamageSoundPlayed;
         private bool _killPlayerSoundPlayed;
+
+        public bool RespawnPlayer { get; set; }
 
         public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1)
         {
@@ -69,11 +72,19 @@ namespace SuperMarioBros3
                 BoundingBox = DestinationRectangle;
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.O) && _isDead)
+            {
+                RespawnPlayer = true;
+                _frozen = false;
+            }
+
             base.Update(gameTime);
         }
 
         private void Input(GameTime gameTime)
         {
+            
+
             if (Keyboard.GetState().IsKeyDown(Keys.P))
             {
                 PowerUp();
@@ -462,6 +473,12 @@ namespace SuperMarioBros3
                 mushroomPowerUp.IsEaten = true;
                 PowerUp();
             }
+        }
+
+        public void Respawn()
+        {
+            position = new Vector2(300,50);
+            RespawnPlayer = false;
         }
     }
 }

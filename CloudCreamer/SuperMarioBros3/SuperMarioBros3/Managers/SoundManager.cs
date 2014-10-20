@@ -15,6 +15,7 @@ namespace SuperMarioBros3
         private SoundEffect _powerDown;
         private SoundEffect _playerDeath;
         private SoundEffect _coin;
+        private SoundEffect _runningOutOfTime;
         private Song backgroundMusic;
 
         public SoundManager(ContentManager content)
@@ -28,6 +29,7 @@ namespace SuperMarioBros3
             _powerDown = content.Load<SoundEffect>(@"Sounds\powerdown");
             _playerDeath = content.Load<SoundEffect>(@"Sounds\mariodeath");
             _coin = content.Load<SoundEffect>(@"Sounds\coin");
+            _runningOutOfTime = content.Load<SoundEffect>(@"Sounds\runningoutoftime");
             backgroundMusic = content.Load<Song>(@"Sounds\theme");
         }
 
@@ -74,9 +76,15 @@ namespace SuperMarioBros3
         {
             _playerDeath.Play();
         }
+
         public void CoinEffect()
         {
             _coin.Play();
+        }
+
+        public void RunningOutOfTime()
+        {
+            _runningOutOfTime.Play();
         }
     }
 }

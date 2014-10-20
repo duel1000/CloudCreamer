@@ -17,6 +17,7 @@ namespace SuperMarioBros3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Map map;
+        private Score score;
         private Player player;
         private Camera camera;
         private ExplosionManager explosionManager;
@@ -36,8 +37,9 @@ namespace SuperMarioBros3
             explosionManager = new ExplosionManager();
             soundManager = new SoundManager(Content);
             coinManager = new CoinManager(soundManager);
+            score = new Score(soundManager);
             entityManager = new EntityManager();
-            map = new Map(explosionManager, soundManager, entityManager, coinManager);
+            map = new Map(explosionManager, soundManager, entityManager, coinManager, score);
             player = new Player(soundManager);
             soundManager.PlayBackgroundMusic();
             base.Initialize();
@@ -74,7 +76,7 @@ namespace SuperMarioBros3
                     mushroomPowerUp.TileCollision(tile);
                     player.PowerUpCollision(mushroomPowerUp);
                 }
-                camera.Update(player.position, map.Width, map.Height);
+                camera.Update(player.position, map.Width, map.Height, score);
             }
             foreach (BrickTile brick in map.BrickTiles)
             {
@@ -100,6 +102,11 @@ namespace SuperMarioBros3
             foreach (var questionMarkTile in map.QuestionMarkTiles)
             {
                 player.Collision(questionMarkTile, map.Width, map.Height);
+                
+                foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
+                {
+                    mushroomPowerUp.TileCollision(questionMarkTile);
+                }
             }
             foreach (var tube in map.Tubes)
             {
@@ -111,9 +118,15 @@ namespace SuperMarioBros3
             }
 
             explosionManager.Update(gameTime);
-
+            score.Update(gameTime);
             map.Update(gameTime);
-                
+
+            if (player.RespawnPlayer)
+            {
+                map.GenerateMap(45);
+                player.Respawn();
+            }
+
             base.Update(gameTime);
         }
 

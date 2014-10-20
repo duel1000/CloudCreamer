@@ -15,10 +15,12 @@ namespace SuperMarioBros3.Managers
         private ContentManager CM;
 
         public Dictionary<String, Texture2D> Textures;
+        public Dictionary<String, SpriteFont> SpriteFonts; 
 
         private Content_Manager()
         {
             Textures = new Dictionary<String, Texture2D>();
+            SpriteFonts = new Dictionary<String, SpriteFont>();
         }
 
         public static Content_Manager GetInstance()
@@ -47,6 +49,8 @@ namespace SuperMarioBros3.Managers
             AddTexture("evilmushroom");
             AddTexture("mushroompowerup");
             AddTexture("tube");
+
+            AddSpriteFont("PointsFont");
         }
 
         public void AddTexture(String file, String name = "")
@@ -57,6 +61,13 @@ namespace SuperMarioBros3.Managers
                 Textures.Add(file, newTexture);
             else
                 Textures.Add(name, newTexture);
+        }
+
+        public void AddSpriteFont(String file)
+        {
+            var newSpriteFont = CM.Load<SpriteFont>(file);
+
+            SpriteFonts.Add(file, newSpriteFont);
         }
     }
 }

@@ -9,17 +9,19 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SuperMarioBros3
 {
     class Map
-    { 
+    {
         private List<EarthTile> earthTiles = new List<EarthTile>();
         private List<BrickTile> brickTiles = new List<BrickTile>();
-        private List<HardTile> hardTiles = new List<HardTile>(); 
-        private List<QuestionMarkTile> questionMarkTiles = new List<QuestionMarkTile>(); 
+        private List<HardTile> hardTiles = new List<HardTile>();
+        private List<QuestionMarkTile> questionMarkTiles = new List<QuestionMarkTile>();
         private List<Tube> tubes = new List<Tube>();
         private ExplosionManager explosionManager;
         private CoinManager coinManager;
 
         private SoundManager soundManager;
         private EntityManager entityManager;
+
+        private Score score;
 
         public List<EarthTile> EarthTiles
         {
@@ -52,12 +54,13 @@ namespace SuperMarioBros3
             get { return height; }
         }
 
-        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager)
+        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager, Score score)
         {
             this.explosionManager = explosionManager;
             this.soundManager = soundManager;
             this.entityManager = entityManager;
             this.coinManager = coinManager;
+            this.score = score;
         }
 
         public void GenerateMap(int size)
@@ -74,6 +77,14 @@ namespace SuperMarioBros3
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(450, 250, 50, 50), true, "", true));
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(550, 250, 50, 50), true, "", true));
 
+            //
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(650, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(750, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(850, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(950, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1050, 250, 50, 50), true, "", true));
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1100, 250, 50, 50), true, "", true));
+            //
 
             earthTiles.RemoveAt(95);
             earthTiles.RemoveAt(95);
@@ -190,6 +201,8 @@ namespace SuperMarioBros3
                     }
                     else if (questionMarkTiles[i].ContainsCoin)
                     {
+                        score.AddPoint(200);
+                        score.AddCoin();
                         soundManager.CoinEffect();
                         coinManager.AddCoinAnimation(new Vector2(questionMarkTiles[i].Rectangle.Center.X - 15, questionMarkTiles[i].Rectangle.Y - 35)); // Hardcoded 
                     }
@@ -204,6 +217,7 @@ namespace SuperMarioBros3
             
             entityManager.Update(gameTime, soundManager);
             coinManager.Update(gameTime, soundManager);
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -231,6 +245,7 @@ namespace SuperMarioBros3
 
             entityManager.Draw(spriteBatch);
             coinManager.Draw(spriteBatch);
+            score.Draw(spriteBatch);
         }
     }
 }

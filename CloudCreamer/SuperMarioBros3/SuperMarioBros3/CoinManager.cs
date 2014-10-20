@@ -14,7 +14,6 @@ namespace SuperMarioBros3
 
         public CoinManager(SoundManager soundManager)
         {
-            coinAnimations.Add(new CoinAnimation(new Vector2(200,200)));
             this._soundManager = soundManager;
         }
 
@@ -27,7 +26,6 @@ namespace SuperMarioBros3
         {
             for (int i = 0; i < coinAnimations.Count; i++)
             {
-
                 if (!coinAnimations[i]._soundEffectPlayed)
                 {
                     soundManager.CoinEffect();

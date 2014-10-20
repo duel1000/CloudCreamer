@@ -120,6 +120,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="RectangleHelper.cs" />
+    <Compile Include="Score.cs" />
     <Compile Include="SpriteAnimation.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Tube.cs" />

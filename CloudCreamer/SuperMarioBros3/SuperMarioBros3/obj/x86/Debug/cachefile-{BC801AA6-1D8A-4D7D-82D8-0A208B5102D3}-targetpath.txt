@@ -27,3 +27,5 @@ Content\tube.xnb
 Content\death.xnb
 Content\coinspin.xnb
 Content\Sounds\coin.xnb
+Content\PointsFont.xnb
+Content\Sounds\runningoutoftime.xnb

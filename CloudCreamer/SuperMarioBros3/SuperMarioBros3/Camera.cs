@@ -24,7 +24,7 @@ namespace SuperMarioBros3
             viewport = newViewport;
         }
 
-        public void Update(Vector2 position, int xOffset, int yOffset)
+        public void Update(Vector2 position, int xOffset, int yOffset, Score score)
         {
             if (position.X < viewport.Width/2)
                 centre.X = viewport.Width/2;
@@ -40,6 +40,8 @@ namespace SuperMarioBros3
             
             transform = Matrix.CreateTranslation(new Vector3(-centre.X + (viewport.Width/2),
                                                              -centre.Y + (viewport.Height/2), 0));
+
+            score.FollowCamera(centre);
         }
     }
 }

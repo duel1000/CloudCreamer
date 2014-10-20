@@ -254,6 +254,24 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\coin.xnb</Output>
       <Time>2014-10-19T22:24:05.714964+02:00</Time>
     </Item>
+    <Item>
+      <Source>PointsFont.spritefont</Source>
+      <Name>PointsFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\PointsFont.xnb</Output>
+      <Time>2014-10-20T22:28:38.6755507+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\runningoutoftime.wav</Source>
+      <Name>Sounds\runningoutoftime</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\runningoutoftime.xnb</Output>
+      <Time>2014-10-20T23:14:59.3088449+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
