@@ -64,6 +64,12 @@ namespace SuperMarioBros3
             player.Update(gameTime);
             foreach (EarthTile tile in map.EarthTiles)
             {
+                foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
+                {
+                    mushroomPowerUp.TileCollision(tile);
+                    player.PowerUpCollision(mushroomPowerUp);
+                }
+
                 player.Collision(tile, map.Width, map.Height);
 
                 foreach (var mushroom in entityManager.evilMushrooms)
@@ -71,11 +77,7 @@ namespace SuperMarioBros3
                     mushroom.TileCollision(tile);
                     player.EvilMushroomCollision(mushroom);
                 }
-                foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
-                {
-                    mushroomPowerUp.TileCollision(tile);
-                    player.PowerUpCollision(mushroomPowerUp);
-                }
+               
                 camera.Update(player.position, map.Width, map.Height, score);
             }
             foreach (BrickTile brick in map.BrickTiles)
@@ -101,12 +103,11 @@ namespace SuperMarioBros3
             }
             foreach (var questionMarkTile in map.QuestionMarkTiles)
             {
-                player.Collision(questionMarkTile, map.Width, map.Height);
-                
                 foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
                 {
                     mushroomPowerUp.TileCollision(questionMarkTile);
                 }
+                player.Collision(questionMarkTile, map.Width, map.Height);
             }
             foreach (var tube in map.Tubes)
             {
@@ -123,8 +124,9 @@ namespace SuperMarioBros3
 
             if (player.RespawnPlayer)
             {
-                map.GenerateMap(45);
+                map.ReGenerate();
                 player.Respawn();
+                score.SetScoreStartingPosition();
             }
 
             base.Update(gameTime);

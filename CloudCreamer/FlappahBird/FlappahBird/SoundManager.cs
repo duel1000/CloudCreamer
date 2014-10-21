@@ -25,23 +25,23 @@ namespace FlappahBird
             {
                 MediaPlayer.Play(backgroundMusic);
                 MediaPlayer.IsRepeating = true;
-                MediaPlayer.Volume = 0.1f;
+                MediaPlayer.Volume = 0.05f;
             }
         }
 
         public void PlayJumpEffect()
         {
-            jumpSoundEffect.Play();
+            jumpSoundEffect.Play(0.7f,0,0);
         }
 
         public void PlayHitEffect()
         {
-            hitSoundEffect.Play();
+            hitSoundEffect.Play(0.5f,0,0);
         }
 
         public void PlayScorePointEffect()
         {
-            scorePointEffect.Play();
+            scorePointEffect.Play(0.5f,0,0);
         }
     }
 }

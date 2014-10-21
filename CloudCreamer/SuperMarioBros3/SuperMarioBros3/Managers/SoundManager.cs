@@ -57,7 +57,7 @@ namespace SuperMarioBros3
         }
         public void SmallJumpEffect()
         {
-            smallJump.Play();
+            smallJump.Play(0.4f,0,0);
         }
         public void PowerUpEffect()
         {
@@ -79,7 +79,7 @@ namespace SuperMarioBros3
 
         public void CoinEffect()
         {
-            _coin.Play();
+            _coin.Play(0.4f, 0,0);
         }
 
         public void RunningOutOfTime()

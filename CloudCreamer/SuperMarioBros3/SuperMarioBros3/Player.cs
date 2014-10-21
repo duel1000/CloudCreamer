@@ -20,7 +20,6 @@ namespace SuperMarioBros3
         private float _powerDownAnimationTimer = 0;
 
         private bool _isDead;
-        private bool _respawn;
         private bool _isBigMario = false;
         private bool _isSmallMario;
         private bool _isInvulnerable;
@@ -74,8 +73,8 @@ namespace SuperMarioBros3
 
             if (Keyboard.GetState().IsKeyDown(Keys.O) && _isDead)
             {
+                _isDead = false;
                 RespawnPlayer = true;
-                _frozen = false;
             }
 
             base.Update(gameTime);
@@ -83,8 +82,6 @@ namespace SuperMarioBros3
 
         private void Input(GameTime gameTime)
         {
-            
-
             if (Keyboard.GetState().IsKeyDown(Keys.P))
             {
                 PowerUp();
@@ -342,7 +339,6 @@ namespace SuperMarioBros3
             }
         }
 
-
         private void StopWalkAnimation()
         {
             if (!hasJumped)
@@ -412,6 +408,7 @@ namespace SuperMarioBros3
             {
                 if (velocity.Y < 0)
                 {
+                    tile.IsPunched = true;
                     velocity.Y = 2.5f;
                     if (tile.GetType().Name == "BrickTile")
                     {
@@ -423,9 +420,10 @@ namespace SuperMarioBros3
                     if (tile.GetType().Name == "QuestionMarkTile")
                     {
                         if (tile.TurnsToHardTile)
+                        {
                             tile.Status = "TurnHard";
-                        else if(_isBigMario)
-                            tile.Status = "Destroy";
+                        }
+                            
                     }
                 }
             }
@@ -475,16 +473,26 @@ namespace SuperMarioBros3
             }
         }
 
+        //resets all his stats
         public void Respawn()
         {
-            position = new Vector2(300,50);
+            texture = Content_Manager.GetInstance().Textures["smallstillmario"];
             RespawnPlayer = false;
+            position = new Vector2(64,384);
+            _isDead = false;
+            _frozen = false;
+            _hitPoints = 1;
+            _isInvulnerable = false;
+            _DeathAnimationPlayed = false;
+            _killPlayerSoundPlayed = false;
+            rows = 1;
+            framesPerSecond = 0;
+            columns = 1;
+            currentFrame = 1;
+            endFrame = 1;
         }
     }
 }
-
-
-//TODO
 
 /*Player*/
 //Shift key for speed run + superjumpsound
@@ -495,17 +503,24 @@ namespace SuperMarioBros3
 /*Game*/
 //Layout Map - create a sectionmanager + level manager?
 //Add lives
-//Add score
-//Add timer
 //Add Castle
 //Add Background
-//Restart Map
 
 /*Enemies*/
 //De skal kunne collide med hinanden
 //Lav animation på dem
-//Spawn point
+//Spawn point -> de spawner først når mario kommer tæt på dem
 
 /*Bugs*/
 //If you release jumpkey mid air and press it down before he hits the ground he insta-jumps which feels bad
 //PowerUp animation starts very quickly in the ground for some reason
+//When PowerUp hits the ground its first frame is in the ground for some reason
+//Prøvede at respawne hvor den var "store-mario" og så døde den bare hele tiden..
+
+/*???*/
+//Hvorfor får GenerateMap 45 ind?
+
+/*OPTIONAL*/
+//Add Menu?
+//Add highscore?
+//Add Game Over?

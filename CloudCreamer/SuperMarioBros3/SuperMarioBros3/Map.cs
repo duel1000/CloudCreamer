@@ -101,6 +101,7 @@ namespace SuperMarioBros3
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1400, 50, 50, 50), true));
 
             entityManager.evilMushrooms.Add(new MushroomEnemy(new Vector2(800, 350)));
+            entityManager.evilMushrooms.Add(new MushroomEnemy(new Vector2(800, 350)));
 
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1000,250,50,50), true, "PowerUp"));
 
@@ -222,6 +223,7 @@ namespace SuperMarioBros3
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            entityManager.Draw(spriteBatch);
             foreach (var tube in tubes)
             {
                 tube.Draw(spriteBatch);
@@ -242,10 +244,20 @@ namespace SuperMarioBros3
             {
                 tile.Draw(spriteBatch);
             }
-
-            entityManager.Draw(spriteBatch);
+            
             coinManager.Draw(spriteBatch);
             score.Draw(spriteBatch);
+        }
+
+        public void ReGenerate()
+        {
+            earthTiles = new List<EarthTile>();
+            brickTiles = new List<BrickTile>();
+            hardTiles = new List<HardTile>();
+            questionMarkTiles = new List<QuestionMarkTile>();
+            tubes = new List<Tube>();
+            entityManager.ReLoad();
+            GenerateMap(45);
         }
     }
 }

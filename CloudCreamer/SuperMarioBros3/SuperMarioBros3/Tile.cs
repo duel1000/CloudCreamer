@@ -18,6 +18,7 @@ namespace SuperMarioBros3
 
         public string Status = "Alive";
         public bool TurnsToHardTile = false;
+        public bool IsPunched;
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
@@ -61,7 +62,7 @@ namespace SuperMarioBros3
             texture = Content_Manager.GetInstance().Textures["hardbrick"];
             BoundingBox = oldTile.BoundingBox;
             TurnsToHardTile = false;
-            
+
             _startingPosition = new Vector2(oldTile.Rectangle.X, oldTile.Rectangle.Y);
 
             this.Rectangle = new Rectangle(oldTile.Rectangle.X, oldTile.Rectangle.Y - 5, oldTile.Rectangle.Width, oldTile.Rectangle.Height); 
@@ -73,6 +74,7 @@ namespace SuperMarioBros3
         {
             if (!_animationPlayedOnce) // No reason to update still standing bricks all the time
             {
+                IsPunched = true;
                 Rectangle = new Rectangle(Rectangle.X, (int)_newPositionY, Rectangle.Width, Rectangle.Height);
 
                 if (Rectangle.Y < _startingPosition.Y)
@@ -87,6 +89,10 @@ namespace SuperMarioBros3
                     _animationPlayedOnce = true;
                     Rectangle = new Rectangle(Rectangle.X, (int)_newPositionY, Rectangle.Width, Rectangle.Height);
                 }
+            }
+            else
+            {
+                IsPunched = false;
             }
         }
     }

@@ -55,6 +55,12 @@ namespace SuperMarioBros3
                 mushroomPowerUp.Draw(spriteBatch);
             }
         }
+
+        public void ReLoad()
+        {
+            evilMushrooms = new List<MushroomEnemy>();
+            mushroomPowerUps = new List<MushroomPowerUp>();
+        }
     }
 
     public class MushroomPowerUp : SpriteAnimation
@@ -65,6 +71,7 @@ namespace SuperMarioBros3
         public MushroomPowerUp(Vector2 position) : base("mushroompowerup", position, 1, 1, 1)
         {
             velocity.X = 2f;
+            velocity.Y = 0;
         }
 
         public override void Update(GameTime gameTime)
@@ -81,14 +88,19 @@ namespace SuperMarioBros3
 
         public void TileCollision(Tile tile)
         {
-            if (BoundingBox.TouchTopOf(tile.BoundingBox))
+            if (BoundingBox.TouchTopOf(tile.BoundingBox) && tile.IsPunched)
+            {
+                position.Y -= 10;
+                velocity.Y = -11;
+            }
+            if (BoundingBox.TouchTopOf(tile.BoundingBox) && !tile.IsPunched)
             {
                 position.Y = tile.BoundingBox.Y - DestinationRectangle.Height;
                 velocity.Y = 0f;
             }
             else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
             {
-                if (!_goingLeft)
+                if (!_goingLeft && velocity.Y != 10)
                 {
                     velocity.X -= 4;
                     _goingLeft = true;
@@ -97,7 +109,7 @@ namespace SuperMarioBros3
             }
             else if (BoundingBox.TouchRightOf(tile.BoundingBox))
             {
-                if (_goingLeft)
+                if (_goingLeft && velocity.Y != 10)
                 {
                     velocity.X += 4;
                     _goingLeft = false;

@@ -130,7 +130,14 @@ namespace SuperMarioBros3
                 _coinCounterPosition.X += centre.X - _coinCounterPosition.X - 160;
                 _timerPosition.X += centre.X - _timerPosition.X + 280;
             }
-                
+        }
+
+        public void SetScoreStartingPosition()
+        {
+            _timerPosition = new Vector2(0,40);
+            _scorePosition = new Vector2(10,40);
+            _gameTextPosition = new Vector2(20,8);
+            _coinCounterPosition = new Vector2(0,40);
         }
     }
 }

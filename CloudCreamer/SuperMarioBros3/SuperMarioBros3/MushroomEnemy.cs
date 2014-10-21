@@ -24,36 +24,36 @@ namespace SuperMarioBros3
             if (velocity.Y < 10)
                 velocity.Y += 0.45f;
 
-            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y, DestinationRectangle.Width - 10, DestinationRectangle.Height);
+            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y, DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
 
             base.Update(gameTime);
         }
 
         public void TileCollision(Tile tile)
         {
-            if (BoundingBox.TouchTopOf(tile.BoundingBox))
-            {
+                if (BoundingBox.TouchTopOf(tile.BoundingBox))
+                {
                     position.Y = tile.BoundingBox.Y - DestinationRectangle.Height;
                     velocity.Y = 0f;
-            }
-            else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
-            {
-                if (!walkingLeft)
-                {
-                    velocity.X -= 4;
-                    walkingLeft = true;
-                    flipSprite = true;
                 }
-            }
-            else if (BoundingBox.TouchRightOf(tile.BoundingBox))
-            {
-                if (walkingLeft)
+                else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
                 {
-                    velocity.X += 4;
-                    walkingLeft = false;
-                    flipSprite = false;
+                    if (!walkingLeft)
+                    {
+                        velocity.X -= 4;
+                        walkingLeft = true;
+                        flipSprite = true;
+                    }
                 }
-            }
+                else if (BoundingBox.TouchRightOf(tile.BoundingBox))
+                {
+                    if (walkingLeft)
+                    {
+                        velocity.X += 4;
+                        walkingLeft = false;
+                        flipSprite = false;
+                    }
+                }
         }
 
         public void SimpleCollision(Rectangle objectBoundingBox)
