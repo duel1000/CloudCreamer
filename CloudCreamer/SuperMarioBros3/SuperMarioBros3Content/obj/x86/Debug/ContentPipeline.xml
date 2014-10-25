@@ -272,6 +272,33 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\runningoutoftime.xnb</Output>
       <Time>2014-10-20T23:14:59.3088449+02:00</Time>
     </Item>
+    <Item>
+      <Source>hardearthtile.png</Source>
+      <Name>hardearthtile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\hardearthtile.xnb</Output>
+      <Time>2014-10-24T20:11:01.6147667+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Castle.png</Source>
+      <Name>Castle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Castle.xnb</Output>
+      <Time>2014-10-25T02:27:12.6655758+02:00</Time>
+    </Item>
+    <Item>
+      <Source>flagpole.png</Source>
+      <Name>flagpole</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\flagpole.xnb</Output>
+      <Time>2014-10-25T02:36:00.137634+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

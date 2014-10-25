@@ -49,6 +49,9 @@ namespace SuperMarioBros3.Managers
             AddTexture("evilmushroom");
             AddTexture("mushroompowerup");
             AddTexture("tube");
+            AddTexture("hardearthtile");
+            AddTexture("castle");
+            AddTexture("flagpole");
 
             AddSpriteFont("PointsFont");
         }

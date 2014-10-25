@@ -62,6 +62,9 @@ namespace SuperMarioBros3
         protected override void Update(GameTime gameTime)
         {
             player.Update(gameTime);
+
+            CheckSpawnPoints();
+
             foreach (EarthTile tile in map.EarthTiles)
             {
                 foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
@@ -75,11 +78,17 @@ namespace SuperMarioBros3
                 foreach (var mushroom in entityManager.evilMushrooms)
                 {
                     mushroom.TileCollision(tile);
-                    player.EvilMushroomCollision(mushroom);
                 }
                
                 camera.Update(player.position, map.Width, map.Height, score);
             }
+
+            foreach (var evilshroom in entityManager.evilMushrooms)
+            {
+                if(evilshroom.Spawned)
+                    player.EvilMushroomCollision(evilshroom);
+            }
+
             foreach (BrickTile brick in map.BrickTiles)
             {
                 player.Collision(brick, map.Width, map.Height);
@@ -117,6 +126,34 @@ namespace SuperMarioBros3
                 }
                 player.SimpelCollision(tube.BoundingBox);
             }
+            foreach (var hardEarthTile in map.HardEarthTiles)
+            {
+                player.SimpelCollision(hardEarthTile.BoundingBox);
+            }
+            foreach (var hiddenTile in map.HiddenTiles)
+            {
+                if(!hiddenTile.IsPunched)
+                    player.HiddenTileCollision(hiddenTile);
+                else
+                    player.Collision(hiddenTile, map.Width, map.Height);
+
+                foreach (var powerUp in entityManager.mushroomPowerUps)
+                {
+                    powerUp.TileCollision(hiddenTile);
+                }
+            }
+
+            //Check collision for all evil mushrooms
+            foreach (var enemy in entityManager.evilMushrooms)
+            {
+                var newList = new List<MushroomEnemy>(entityManager.evilMushrooms); //clones the list by value
+                newList.Remove(enemy);
+
+                foreach (var anotherEnemy in newList)
+                {
+                    anotherEnemy.SimpleCollision(enemy.BoundingBox);
+                }
+            }
 
             explosionManager.Update(gameTime);
             score.Update(gameTime);
@@ -130,6 +167,14 @@ namespace SuperMarioBros3
             }
 
             base.Update(gameTime);
+        }
+
+        private void CheckSpawnPoints()
+        {
+            foreach (var evilMushroom in entityManager.evilMushrooms)
+            {
+                evilMushroom.CheckIfSpawnPointReached(player.position.X);
+            }
         }
 
         protected override void Draw(GameTime gameTime)

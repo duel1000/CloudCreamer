@@ -10,6 +10,7 @@ namespace SuperMarioBros3
     {
         private bool walkingLeft = false;
         public bool IsDead { get; set; }
+        public bool Spawned { get; set; }
 
         public MushroomEnemy(Vector2 position) : base("evilmushroom", position, 1,1,1)
         {
@@ -19,14 +20,23 @@ namespace SuperMarioBros3
 
         public override void Update(GameTime gameTime)
         {
+            if (!Spawned) return;
+            
             position += velocity;
 
             if (velocity.Y < 10)
                 velocity.Y += 0.45f;
 
-            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y, DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
+            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y,
+                DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
 
             base.Update(gameTime);
+        }
+
+        public void CheckIfSpawnPointReached(float x)
+        {
+            if (this.position.X - 1000 < x)
+                Spawned = true;
         }
 
         public void TileCollision(Tile tile)

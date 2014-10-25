@@ -36,6 +36,61 @@ namespace SuperMarioBros3
         }
     }
 
+    class HardEarthTile : Tile
+    {
+        public HardEarthTile(Vector2 position)
+        {
+            texture = Content_Manager.GetInstance().Textures["hardearthtile"];
+            this.Rectangle = new Rectangle((int) position.X, (int) position.Y, texture.Height, texture.Width);
+            BoundingBox = Rectangle;
+        }
+    }
+
+    public class HiddenTile : Tile
+    {
+        private bool _animationPlayedOnce = false;
+        private float _newPositionY;
+        private Vector2 _startingPosition;
+        private float _velocity;
+        public bool IsEmpty;
+
+        public HiddenTile(Vector2 position)
+        {
+            IsPunched = false;
+            texture = null;
+            this.Rectangle = new Rectangle((int)position.X, (int)position.Y - 10, 50, 50); //hardcoded
+            BoundingBox = Rectangle;
+
+            TurnsToHardTile = false;
+
+            _startingPosition = position;
+            _velocity -= 5f;
+            _newPositionY = Rectangle.Y;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            this.texture = Content_Manager.GetInstance().Textures["hardbrick"];
+            if (!_animationPlayedOnce) // No reason to update still standing bricks all the time
+            {
+                 Rectangle = new Rectangle(Rectangle.X, (int)_newPositionY, Rectangle.Width, Rectangle.Height);
+
+                if (Rectangle.Y < _startingPosition.Y)
+                {
+                    _newPositionY += _velocity;
+                    _velocity += 2.5f;
+                }
+                else
+                {
+                    _velocity = 0f;
+                    _newPositionY = _startingPosition.Y;
+                    _animationPlayedOnce = true;
+                    Rectangle = new Rectangle(Rectangle.X, (int)_newPositionY, Rectangle.Width, Rectangle.Height);
+                }
+            }
+        }
+    }
+
     public class BrickTile : Tile
     {
         public string IsContaining { get; set; }

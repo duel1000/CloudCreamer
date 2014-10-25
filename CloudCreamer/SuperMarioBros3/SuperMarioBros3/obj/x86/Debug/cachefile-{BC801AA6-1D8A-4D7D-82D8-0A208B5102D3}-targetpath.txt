@@ -29,3 +29,6 @@ Content\coinspin.xnb
 Content\Sounds\coin.xnb
 Content\PointsFont.xnb
 Content\Sounds\runningoutoftime.xnb
+Content\hardearthtile.xnb
+Content\Castle.xnb
+Content\flagpole.xnb

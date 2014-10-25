@@ -22,7 +22,7 @@ namespace SuperMarioBros3
         private bool _isDead;
         private bool _isBigMario = false;
         private bool _isSmallMario;
-        private bool _isInvulnerable;
+        public bool IsInvulnerable;
         private bool _powerUpAnimationPlayed = false;
         private bool _powerDownAnimationPlayed = false;
         private bool _DeathAnimationPlayed = false;
@@ -37,7 +37,7 @@ namespace SuperMarioBros3
 
         public bool RespawnPlayer { get; set; }
 
-        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1)
+        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(8500,384),1,3,1) // 64
         {
             this._soundManager = soundManager;
             _hitPoints = 1;
@@ -151,7 +151,7 @@ namespace SuperMarioBros3
         {
             if (!_takeDamageSoundPlayed)
             {
-                _isInvulnerable = true;
+                IsInvulnerable = true;
                 _soundManager.PowerDown();
                 _takeDamageSoundPlayed = true;
                 _isBigMario = false;
@@ -162,7 +162,7 @@ namespace SuperMarioBros3
 
         private void TakeDamage()
         {
-            if(!_isInvulnerable)
+            if(!IsInvulnerable)
                 _hitPoints--;
 
             if (_hitPoints == 0)
@@ -335,7 +335,7 @@ namespace SuperMarioBros3
                 _frozen = false;
                 _powerDownAnimationPlayed = true;
                 _powerDownAnimationTimer = 0;
-                _isInvulnerable = false;
+                IsInvulnerable = false;
             }
         }
 
@@ -425,6 +425,10 @@ namespace SuperMarioBros3
                         }
                             
                     }
+                    if (tile.GetType().Name == "HiddenTile")
+                    {
+                        tile.IsPunched = true;
+                    }
                 }
             }
             else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
@@ -441,6 +445,16 @@ namespace SuperMarioBros3
             //if (position.Y < 0) velocity.Y = 1f; Makes mario able to jump out top of the map
             if (position.Y > yOffset && !_isDead)
                 _isDead = true; //;position.Y = yOffset - DestinationRectangle.Height;
+        }
+
+        public void HiddenTileCollision(HiddenTile tile)
+        {
+            if (BoundingBox.TouchBottomOf(tile.BoundingBox) && velocity.Y < 0)
+            {
+                    tile.IsPunched = true;
+                    velocity.Y = 2.5f;
+                    _soundManager.PowerUpAppearEffect();
+            }
         }
 
         public void EvilMushroomCollision(MushroomEnemy mushroom)
@@ -482,7 +496,7 @@ namespace SuperMarioBros3
             _isDead = false;
             _frozen = false;
             _hitPoints = 1;
-            _isInvulnerable = false;
+            IsInvulnerable = false;
             _DeathAnimationPlayed = false;
             _killPlayerSoundPlayed = false;
             rows = 1;
@@ -496,26 +510,28 @@ namespace SuperMarioBros3
 
 /*Player*/
 //Shift key for speed run + superjumpsound
-
-/*Tile*/ 
-//Add hard earth tiles
+//Star mode = invulnerable/killer
+//FireMario
 
 /*Game*/
-//Layout Map - create a sectionmanager + level manager?
+//PowerUp FireFlower
+//Create ending
 //Add lives
-//Add Castle
 //Add Background
 
 /*Enemies*/
-//De skal kunne collide med hinanden
 //Lav animation på dem
-//Spawn point -> de spawner først når mario kommer tæt på dem
+//Skal give point
 
 /*Bugs*/
 //If you release jumpkey mid air and press it down before he hits the ground he insta-jumps which feels bad
 //PowerUp animation starts very quickly in the ground for some reason
 //When PowerUp hits the ground its first frame is in the ground for some reason
 //Prøvede at respawne hvor den var "store-mario" og så døde den bare hele tiden..
+//Ved powerup ryger mario gennem jorden nogle gange
+//Fjender spawner mega højt oppe i luften?
+//BigMario kan hoppe igennem nogle bricks?
+//Fjender lander nede i jorden og skifter retning randomly når de rammer
 
 /*???*/
 //Hvorfor får GenerateMap 45 ind?

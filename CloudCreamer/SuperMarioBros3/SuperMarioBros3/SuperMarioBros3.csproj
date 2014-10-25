@@ -108,8 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="Castle.cs" />
     <Compile Include="CoinManager.cs" />
     <Compile Include="EntityManager.cs" />
+    <Compile Include="Flagpole.cs" />
     <Compile Include="MushroomEnemy.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="Managers\Content_Manager.cs" />
