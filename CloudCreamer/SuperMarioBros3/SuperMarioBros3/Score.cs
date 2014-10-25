@@ -28,6 +28,8 @@ namespace SuperMarioBros3
 
         private readonly SpriteFont spriteFont;
         
+        public int Timer{get { return _timer; }}
+
         public Score(SoundManager soundManager)
         {
             spriteFont = Content_Manager.GetInstance().SpriteFonts["PointsFont"];
@@ -38,7 +40,7 @@ namespace SuperMarioBros3
         {
             _elapsedGameTime += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
             _elapsedGameTimeForColorChange += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (_elapsedGameTime > 1000)
+            if (_elapsedGameTime > 1000 && _timer != 0)
             {
                 _timer--;
                 _elapsedGameTime = 0;
@@ -134,6 +136,7 @@ namespace SuperMarioBros3
 
         public void SetScoreStartingPosition()
         {
+            _timer = 120; //hardcoded
             _timerPosition = new Vector2(0,40);
             _scorePosition = new Vector2(10,40);
             _gameTextPosition = new Vector2(20,8);

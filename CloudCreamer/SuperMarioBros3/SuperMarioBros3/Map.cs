@@ -21,8 +21,10 @@ namespace SuperMarioBros3
         private Flagpole flagpole;
         private ExplosionManager explosionManager;
         private CoinManager coinManager;
+        private Player player;
 
-
+        public Flagpole Flagpole{get { return flagpole; }}
+        
         private SoundManager soundManager;
         private EntityManager entityManager;
 
@@ -60,13 +62,14 @@ namespace SuperMarioBros3
             get { return height; }
         }
 
-        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager, Score score)
+        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager, Score score, Player player)
         {
             this.explosionManager = explosionManager;
             this.soundManager = soundManager;
             this.entityManager = entityManager;
             this.coinManager = coinManager;
             this.score = score;
+            this.player = player;
         }
 
         public void GenerateMap(int size)
@@ -90,8 +93,13 @@ namespace SuperMarioBros3
                     if (BrickTiles[i].IsContaining == "PowerUp")
                     {
                         soundManager.PowerUpAppearEffect();
-                        entityManager.mushroomPowerUps.Add(new MushroomPowerUp(new Vector2(BrickTiles[i].Rectangle.X, BrickTiles[i].Rectangle.Y - BrickTiles[i].Rectangle.Height)));
+
+                        if(player.IsBigMario)
+                            entityManager.fireFlowers.Add(new FireFlower(new Vector2(BrickTiles[i].Rectangle.X, BrickTiles[i].Rectangle.Y - BrickTiles[i].Rectangle.Height)));
+                        else
+                            entityManager.mushroomPowerUps.Add(new MushroomPowerUp(new Vector2(BrickTiles[i].Rectangle.X, BrickTiles[i].Rectangle.Y - BrickTiles[i].Rectangle.Height)));
                     }
+                        
                     else
                         soundManager.HardBrickBumpEffect();
                     
@@ -114,7 +122,11 @@ namespace SuperMarioBros3
                     if (questionMarkTiles[i].IsContaining == "PowerUp")
                     {
                         soundManager.PowerUpAppearEffect();
-                        entityManager.mushroomPowerUps.Add(new MushroomPowerUp(new Vector2(questionMarkTiles[i].Rectangle.X, questionMarkTiles[i].Rectangle.Y - questionMarkTiles[i].Rectangle.Height)));
+
+                        if(player.IsBigMario)
+                            entityManager.fireFlowers.Add(new FireFlower(new Vector2(questionMarkTiles[i].Rectangle.X + 3, questionMarkTiles[i].Rectangle.Y - questionMarkTiles[i].Rectangle.Height + 15)));
+                        else
+                            entityManager.mushroomPowerUps.Add(new MushroomPowerUp(new Vector2(questionMarkTiles[i].Rectangle.X, questionMarkTiles[i].Rectangle.Y - questionMarkTiles[i].Rectangle.Height)));
                     }
                     else if (questionMarkTiles[i].ContainsCoin)
                     {

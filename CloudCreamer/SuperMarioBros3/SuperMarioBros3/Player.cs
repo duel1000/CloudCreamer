@@ -21,11 +21,18 @@ namespace SuperMarioBros3
 
         private bool _isDead;
         private bool _isBigMario = false;
-        private bool _isSmallMario;
+        private bool _isSmallMario = true;
+        private bool _isFireMario;
         public bool IsInvulnerable;
         private bool _powerUpAnimationPlayed = false;
         private bool _powerDownAnimationPlayed = false;
         private bool _DeathAnimationPlayed = false;
+
+        private bool _fireFlowerAnimationSetup;
+
+        public bool OnTheFlagPole;
+        private bool _flagPoleAnimationSetup;
+        private bool _walkIntoCastleAnimationSetup;
 
         private bool _frozen = false;
         private int _stepsIntoPowerUpAnimation = 0;
@@ -35,9 +42,12 @@ namespace SuperMarioBros3
         private bool _takeDamageSoundPlayed;
         private bool _killPlayerSoundPlayed;
 
+        public bool LevelComplete;
         public bool RespawnPlayer { get; set; }
 
-        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(8500,384),1,3,1) // 64
+        public bool IsBigMario{get { return _isBigMario; }}
+
+        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1) // 64
         {
             this._soundManager = soundManager;
             _hitPoints = 1;
@@ -45,12 +55,26 @@ namespace SuperMarioBros3
 
         public override void Update(GameTime gameTime)
         {
+            if (OnTheFlagPole)
+            {
+                RunFlagPoleAnimation();
+                base.Update(gameTime);
+                return;
+            }
+
+            if (_isFireMario && !_powerUpAnimationPlayed)
+            {
+                FireMarioPowerUpAnimation(gameTime);
+                BoundingBox = new Rectangle(0, 0, 0, 0);
+                base.Update(gameTime);
+                return;
+            }
             if (_isBigMario && !_powerUpAnimationPlayed)
             {
                 PowerUpAnimation(gameTime);
                 BoundingBox = new Rectangle(0,0,0,0);
             }
-            else if(_isSmallMario && !_powerDownAnimationPlayed)
+            else if(_isSmallMario && !_powerDownAnimationPlayed && IsInvulnerable)
             {
                 PowerDownAnimation(gameTime);
                 BoundingBox = new Rectangle(0, 0, 0, 0);
@@ -78,6 +102,14 @@ namespace SuperMarioBros3
             }
 
             base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (LevelComplete)
+                return;
+
+            base.Draw(spriteBatch);
         }
 
         private void Input(GameTime gameTime)
@@ -108,12 +140,14 @@ namespace SuperMarioBros3
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && hasJumped == false && jumpKeyReleased && velocity.Y <= 0)
             {
-                if(_isBigMario)
-                    texture = Content_Manager.GetInstance().Textures["bigmariojumping"];
-                else    
+                if(_isSmallMario)
                     texture = Content_Manager.GetInstance().Textures["smalljumpmario"];
-                
-                currentFrame = 1;
+                else if(_isBigMario && !_isFireMario)
+                    texture = Content_Manager.GetInstance().Textures["bigmariojumping"];
+                else if (_isFireMario)
+                    texture = Content_Manager.GetInstance().Textures["firemariojumping"]; // Jeg nåede hertil!
+
+                currentFrame = 1; 
                 rows = 1;
                 columns = 1;
                 framesPerSecond = 0;
@@ -147,6 +181,19 @@ namespace SuperMarioBros3
             }
         }
 
+        private void FireFlowerPowerUp()
+        {
+            if (!_isFireMario)
+            {
+                _hitPoints = 2;
+                _powerUpAnimationPlayed = false;
+                _soundManager.PowerUpEffect();
+                _isBigMario = true;
+                _isFireMario = true;
+                _isSmallMario = false;
+            }
+        }
+
         private void PowerDown()
         {
             if (!_takeDamageSoundPlayed)
@@ -156,11 +203,12 @@ namespace SuperMarioBros3
                 _takeDamageSoundPlayed = true;
                 _isBigMario = false;
                 _isSmallMario = true;
+                _isFireMario = false;
                 _powerUpAnimationPlayed = false;
             }
         }
 
-        private void TakeDamage()
+        public void TakeDamage()
         {
             if(!IsInvulnerable)
                 _hitPoints--;
@@ -171,7 +219,7 @@ namespace SuperMarioBros3
                 PowerDown();
         }
 
-        private void KillPlayer()
+        public void KillPlayer()
         {
             if (!_killPlayerSoundPlayed)
             {
@@ -274,6 +322,36 @@ namespace SuperMarioBros3
             }
         }
 
+        private void FireMarioPowerUpAnimation(GameTime gameTime)
+        {
+            _powerUpAnimationTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (!_fireFlowerAnimationSetup)
+            {
+                texture = Content_Manager.GetInstance().Textures["fireflowerpowerupanimation"];
+
+                flipSprite = !flipSprite;
+
+                _frozen = true;
+                walking = false;
+                currentFrame = 1;
+                rows = 1;
+                columns = 4;
+                framesPerSecond = 20;
+                endFrame = 4;
+                _fireFlowerAnimationSetup = true;
+            }
+
+            if (_powerUpAnimationTimer > 600)
+            {
+                _powerUpAnimationTimer = 0;
+                _powerUpAnimationPlayed = true;
+                _frozen = false;
+                StopWalkAnimation();
+            }
+
+        }
+
         private void PowerDownAnimation(GameTime gameTime)
         {
             _powerDownAnimationTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -343,10 +421,12 @@ namespace SuperMarioBros3
         {
             if (!hasJumped)
             {
-                if(_isBigMario)
-                    texture = Content_Manager.GetInstance().Textures["bigmariostanding"];
-                else
-                    texture = Content_Manager.GetInstance().Textures["smallstillmario"]; 
+                if(_isSmallMario)
+                    texture = Content_Manager.GetInstance().Textures["smallstillmario"];
+                else if(_isBigMario && !_isFireMario)
+                    texture = Content_Manager.GetInstance().Textures["bigmariostanding"]; 
+                else if(_isFireMario)
+                    texture = Content_Manager.GetInstance().Textures["firemariostanding"]; 
                 
                 walking = false;
                 currentFrame = 1;
@@ -361,11 +441,12 @@ namespace SuperMarioBros3
         {
             if (walking == false && !hasJumped)
             {
-                if(_isBigMario)
-                    texture = Content_Manager.GetInstance().Textures["bigmariowalking"];
-                else
+                if(_isSmallMario)
                     texture = Content_Manager.GetInstance().Textures["oldmario"];
-
+                else if(_isBigMario && !_isFireMario)
+                    texture = Content_Manager.GetInstance().Textures["bigmariowalking"];
+                else if(_isFireMario)
+                    texture = Content_Manager.GetInstance().Textures["firemariowalking"];
                 currentFrame = 1;
                 rows = 1;
                 columns = 3;
@@ -474,7 +555,7 @@ namespace SuperMarioBros3
             }
         }
 
-        public void PowerUpCollision(MushroomPowerUp mushroomPowerUp)
+        public void MushroomPowerUpCollision(MushroomPowerUp mushroomPowerUp)
         {
             if (BoundingBox.TouchTopOf(mushroomPowerUp.BoundingBox) ||
                 BoundingBox.TouchLeftOf(mushroomPowerUp.BoundingBox) ||
@@ -484,6 +565,19 @@ namespace SuperMarioBros3
             {
                 mushroomPowerUp.IsEaten = true;
                 PowerUp();
+            }
+        }
+
+        public void FireflowerPowerUpCollision(FireFlower fireflower)
+        {
+            if (BoundingBox.TouchTopOf(fireflower.BoundingBox) ||
+                BoundingBox.TouchLeftOf(fireflower.BoundingBox) ||
+                BoundingBox.TouchRightOf(fireflower.BoundingBox) ||
+                BoundingBox.TouchBottomOf(fireflower.BoundingBox) &&
+                !fireflower.IsEaten)
+            {
+                fireflower.IsEaten = true;
+                FireFlowerPowerUp();
             }
         }
 
@@ -499,11 +593,52 @@ namespace SuperMarioBros3
             IsInvulnerable = false;
             _DeathAnimationPlayed = false;
             _killPlayerSoundPlayed = false;
+            _flagPoleAnimationSetup = false;
             rows = 1;
             framesPerSecond = 0;
             columns = 1;
             currentFrame = 1;
             endFrame = 1;
+        }
+
+        public void RunFlagPoleAnimation()
+        {
+            if (position.Y < 440 - texture.Height)
+            {
+                if (!_flagPoleAnimationSetup)
+                {
+                    texture = _isBigMario ? Content_Manager.GetInstance().Textures["bigmariopole"] : Content_Manager.GetInstance().Textures["smallflagpolemario"];
+                    rows = 1;
+                    columns = 2; 
+                    currentFrame = 1;
+                    framesPerSecond = 10;
+                    endFrame = 2;
+                    velocity.X = 0;
+                    velocity.Y = 3f;
+                    _flagPoleAnimationSetup = true;
+                    BoundingBox = new Rectangle((int)position.X, (int)position.Y, texture.Width / 2, texture.Height);
+                }
+                position.Y += velocity.Y;
+            }
+            else
+            {
+                if (!_walkIntoCastleAnimationSetup)
+                {
+                    flipSprite = false;
+                    hasJumped = false;
+                    walking = false;
+                    WalkAnimation();
+                    velocity.Y = 0;
+                    velocity.X = 3f;
+                    _walkIntoCastleAnimationSetup = true;
+                }
+                position.X += velocity.X;
+
+                if (position.X >= 10015)
+                {
+                    LevelComplete = true;
+                }
+            }
         }
     }
 }
@@ -532,6 +667,7 @@ namespace SuperMarioBros3
 //Fjender spawner mega højt oppe i luften?
 //BigMario kan hoppe igennem nogle bricks?
 //Fjender lander nede i jorden og skifter retning randomly når de rammer
+//efter respawn ved powerup falder han gennem jorden
 
 /*???*/
 //Hvorfor får GenerateMap 45 ind?

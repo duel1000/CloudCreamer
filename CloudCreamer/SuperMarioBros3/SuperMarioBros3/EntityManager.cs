@@ -8,6 +8,7 @@ namespace SuperMarioBros3
     {
         public List<MushroomEnemy> evilMushrooms = new List<MushroomEnemy>();
         public List<MushroomPowerUp> mushroomPowerUps = new List<MushroomPowerUp>(); 
+        public List<FireFlower> fireFlowers = new List<FireFlower>(); 
 
         public EntityManager()
         {
@@ -33,13 +34,25 @@ namespace SuperMarioBros3
             {
                 if (mushroomPowerUps[i].IsEaten)
                 {
-                    soundManager.StompEffect();
                     mushroomPowerUps.Remove(mushroomPowerUps[i]);
                     i--;
                 }
                 else
                 {
                     mushroomPowerUps[i].Update(gameTime);
+                }
+            }
+
+            for (int i = 0; i < fireFlowers.Count; i++)
+            {
+                if (fireFlowers[i].IsEaten)
+                {
+                    fireFlowers.Remove(fireFlowers[i]);
+                    i--;
+                }
+                else
+                {
+                    fireFlowers[i].Update(gameTime);
                 }
             }
         }
@@ -53,6 +66,10 @@ namespace SuperMarioBros3
             foreach (var mushroomPowerUp in mushroomPowerUps)
             {
                 mushroomPowerUp.Draw(spriteBatch);
+            }
+            foreach (var fireflower in fireFlowers)
+            {
+                fireflower.Draw(spriteBatch);
             }
         }
 
@@ -116,6 +133,16 @@ namespace SuperMarioBros3
                     flipSprite = false;
                 }
             }
+        }
+    }
+
+    public class FireFlower : SpriteAnimation
+    {
+        public bool IsEaten { get; set; }
+
+        public FireFlower(Vector2 position) : base("fireflower", position,1,4,20)
+        {
+            BoundingBox = new Rectangle((int)position.X + 10, (int)position.Y, 15, 35);
         }
     }
 }

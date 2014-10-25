@@ -52,6 +52,13 @@ namespace SuperMarioBros3.Managers
             AddTexture("hardearthtile");
             AddTexture("castle");
             AddTexture("flagpole");
+            AddTexture("smallflagpolemario");
+            AddTexture("bigmariopole");
+            AddTexture("fireflower");
+            AddTexture("fireflowerpowerupanimation");
+            AddTexture("firemariostanding");
+            AddTexture("firemariowalking");
+
 
             AddSpriteFont("PointsFont");
         }

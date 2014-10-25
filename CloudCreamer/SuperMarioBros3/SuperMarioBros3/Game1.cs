@@ -24,6 +24,7 @@ namespace SuperMarioBros3
         private CoinManager coinManager;
         private SoundManager soundManager;
         private EntityManager entityManager;
+        private CollisionManager collisionManager;
 
         public Game1()
         {
@@ -39,9 +40,10 @@ namespace SuperMarioBros3
             coinManager = new CoinManager(soundManager);
             score = new Score(soundManager);
             entityManager = new EntityManager();
-            map = new Map(explosionManager, soundManager, entityManager, coinManager, score);
             player = new Player(soundManager);
+            map = new Map(explosionManager, soundManager, entityManager, coinManager, score, player);
             soundManager.PlayBackgroundMusic();
+            collisionManager = new CollisionManager();
             base.Initialize();
         }
 
@@ -63,6 +65,11 @@ namespace SuperMarioBros3
         {
             player.Update(gameTime);
 
+            if (score.Timer == 0)
+                player.TakeDamage();
+
+            collisionManager.PlayerFlagpoleCollision(player, map.Flagpole);
+
             CheckSpawnPoints();
 
             foreach (EarthTile tile in map.EarthTiles)
@@ -70,7 +77,12 @@ namespace SuperMarioBros3
                 foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
                 {
                     mushroomPowerUp.TileCollision(tile);
-                    player.PowerUpCollision(mushroomPowerUp);
+                    player.MushroomPowerUpCollision(mushroomPowerUp);
+                }
+
+                foreach (var fireflower in entityManager.fireFlowers)
+                {
+                    player.FireflowerPowerUpCollision(fireflower);
                 }
 
                 player.Collision(tile, map.Width, map.Height);

@@ -299,6 +299,60 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\flagpole.xnb</Output>
       <Time>2014-10-25T02:36:00.137634+02:00</Time>
     </Item>
+    <Item>
+      <Source>smallflagpolemario.png</Source>
+      <Name>smallflagpolemario</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\smallflagpolemario.xnb</Output>
+      <Time>2014-10-25T16:04:12.3988916+02:00</Time>
+    </Item>
+    <Item>
+      <Source>bigmariopole.png</Source>
+      <Name>bigmariopole</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\bigmariopole.xnb</Output>
+      <Time>2014-10-25T18:51:57.8238065+02:00</Time>
+    </Item>
+    <Item>
+      <Source>fireflower.png</Source>
+      <Name>fireflower</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\fireflower.xnb</Output>
+      <Time>2014-10-25T22:49:52.5899773+02:00</Time>
+    </Item>
+    <Item>
+      <Source>fireflowerpowerupanimation.png</Source>
+      <Name>fireflowerpowerupanimation</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\fireflowerpowerupanimation.xnb</Output>
+      <Time>2014-10-26T01:38:12.3769105+02:00</Time>
+    </Item>
+    <Item>
+      <Source>firemariostanding.png</Source>
+      <Name>firemariostanding</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariostanding.xnb</Output>
+      <Time>2014-10-26T01:22:11.0969912+02:00</Time>
+    </Item>
+    <Item>
+      <Source>firemariowalking.png</Source>
+      <Name>firemariowalking</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariowalking.xnb</Output>
+      <Time>2014-10-26T01:45:39.8345547+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

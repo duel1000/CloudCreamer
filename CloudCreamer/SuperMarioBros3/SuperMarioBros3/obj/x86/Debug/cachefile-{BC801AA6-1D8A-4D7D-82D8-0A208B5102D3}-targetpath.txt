@@ -32,3 +32,9 @@ Content\Sounds\runningoutoftime.xnb
 Content\hardearthtile.xnb
 Content\Castle.xnb
 Content\flagpole.xnb
+Content\smallflagpolemario.xnb
+Content\bigmariopole.xnb
+Content\fireflower.xnb
+Content\fireflowerpowerupanimation.xnb
+Content\firemariostanding.xnb
+Content\firemariowalking.xnb
