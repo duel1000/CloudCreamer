@@ -45,16 +45,35 @@ namespace SuperMarioBros3
         public bool LevelComplete;
         public bool RespawnPlayer { get; set; }
 
+        private int _fireBallCount;
+        private float _timeSinceLastFireball;
+        private List<FireBall> _fireBalls; 
+        public List<FireBall> FireBalls{get { return _fireBalls; }} 
+
         public bool IsBigMario{get { return _isBigMario; }}
 
         public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1) // 64
         {
             this._soundManager = soundManager;
+            _fireBalls = new List<FireBall>();
             _hitPoints = 1;
         }
 
         public override void Update(GameTime gameTime)
         {
+
+            for (int i = 0; i < _fireBalls.Count; i++)
+            {
+                _fireBalls[i].Update(gameTime);
+
+                if (_fireBalls[i].IsDead)
+                {
+                    _fireBalls.Remove(_fireBalls[i]);
+                    _fireBallCount--;
+                    i--;
+                }
+            }
+
             if (OnTheFlagPole)
             {
                 RunFlagPoleAnimation();
@@ -109,6 +128,11 @@ namespace SuperMarioBros3
             if (LevelComplete)
                 return;
 
+            foreach (var fireball in _fireBalls)
+            {
+                fireball.Draw(spriteBatch);
+            }
+
             base.Draw(spriteBatch);
         }
 
@@ -117,6 +141,18 @@ namespace SuperMarioBros3
             if (Keyboard.GetState().IsKeyDown(Keys.P))
             {
                 PowerUp();
+            }
+
+            _timeSinceLastFireball += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (_isFireMario && Keyboard.GetState().IsKeyDown(Keys.LeftControl) && _timeSinceLastFireball > 108 && _fireBallCount < 2)
+            {
+                var fireballPosition = flipSprite ? new Vector2(position.X - 24, position.Y + 36) : new Vector2(position.X + 24, position.Y + 36);
+                _fireBalls.Add(new FireBall(fireballPosition, flipSprite)); //Hardcoded
+                _timeSinceLastFireball = 0;
+                _fireBallCount++;
+                _soundManager.ShootFireball();
+
+                //  ThrowFireBallAnimation();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
@@ -145,7 +181,7 @@ namespace SuperMarioBros3
                 else if(_isBigMario && !_isFireMario)
                     texture = Content_Manager.GetInstance().Textures["bigmariojumping"];
                 else if (_isFireMario)
-                    texture = Content_Manager.GetInstance().Textures["firemariojumping"]; // Jeg nåede hertil!
+                    texture = Content_Manager.GetInstance().Textures["firemariojumping"];
 
                 currentFrame = 1; 
                 rows = 1;
@@ -607,6 +643,7 @@ namespace SuperMarioBros3
             {
                 if (!_flagPoleAnimationSetup)
                 {
+                    _soundManager.FlagpoleEffect();
                     texture = _isBigMario ? Content_Manager.GetInstance().Textures["bigmariopole"] : Content_Manager.GetInstance().Textures["smallflagpolemario"];
                     rows = 1;
                     columns = 2; 
@@ -624,6 +661,7 @@ namespace SuperMarioBros3
             {
                 if (!_walkIntoCastleAnimationSetup)
                 {
+                    _soundManager.StageClear();
                     flipSprite = false;
                     hasJumped = false;
                     walking = false;
@@ -646,11 +684,13 @@ namespace SuperMarioBros3
 /*Player*/
 //Shift key for speed run + superjumpsound
 //Star mode = invulnerable/killer
-//FireMario
+//FireMario -> powerdownanimation + flagpoleanimation
+//Fireball collisions
+//Fireball bør hoppe ligesom flappybird
 
 /*Game*/
-//PowerUp FireFlower
-//Create ending
+//PowerUp FireFlower -> grim animation
+//Create ending -> fireworks og pointtælling
 //Add lives
 //Add Background
 

@@ -28,6 +28,14 @@ namespace SuperMarioBros3
         protected Rectangle SourceRectangle;
         protected Vector2 velocity;
 
+        public SpriteAnimation()
+        {
+            this.imageWidth = texture.Width / columns;
+            this.imageHeight = texture.Height / rows;
+            endFrame = rows * columns;
+            startFrame = 0;
+        }
+
         public SpriteAnimation(String fileName, Vector2 position, int rows, int columns, double framesPerSecond)
         {
             texture = Content_Manager.GetInstance().Textures[fileName];

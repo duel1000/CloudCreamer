@@ -58,7 +58,8 @@ namespace SuperMarioBros3.Managers
             AddTexture("fireflowerpowerupanimation");
             AddTexture("firemariostanding");
             AddTexture("firemariowalking");
-
+            AddTexture("firemariojumping");
+            AddTexture("fireball");
 
             AddSpriteFont("PointsFont");
         }

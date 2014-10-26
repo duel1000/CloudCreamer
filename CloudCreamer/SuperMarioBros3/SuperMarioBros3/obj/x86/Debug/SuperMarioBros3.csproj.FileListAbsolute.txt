@@ -44,3 +44,8 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBr
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\fireflowerpowerupanimation.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariostanding.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariowalking.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariojumping.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\fireball.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\shootfireball.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\flagpole.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\stageclear.xnb

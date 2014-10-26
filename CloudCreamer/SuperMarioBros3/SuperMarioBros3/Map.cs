@@ -161,7 +161,6 @@ namespace SuperMarioBros3
             castle.Update(gameTime);
             entityManager.Update(gameTime, soundManager);
             coinManager.Update(gameTime, soundManager);
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -225,6 +224,11 @@ namespace SuperMarioBros3
                 height = 480; //Hardcoded
             }
 
+
+            //Test
+            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(250, 250, 50, 50), true, "PowerUp"));
+
+            //Level
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(950, 250, 50, 50), true, "PowerUp"));
 
             brickTiles.Add(new BrickTile(new Vector2(1150, 250)));

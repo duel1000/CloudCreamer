@@ -353,6 +353,51 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariowalking.xnb</Output>
       <Time>2014-10-26T01:45:39.8345547+02:00</Time>
     </Item>
+    <Item>
+      <Source>firemariojumping.png</Source>
+      <Name>firemariojumping</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\firemariojumping.xnb</Output>
+      <Time>2014-10-26T21:09:37.2212355+01:00</Time>
+    </Item>
+    <Item>
+      <Source>fireball.png</Source>
+      <Name>fireball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\fireball.xnb</Output>
+      <Time>2014-10-26T21:48:15.0496481+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\shootfireball.wav</Source>
+      <Name>Sounds\shootfireball</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\shootfireball.xnb</Output>
+      <Time>2014-10-26T23:02:50.5461565+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\flagpole.wav</Source>
+      <Name>Sounds\flagpole</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\flagpole.xnb</Output>
+      <Time>2014-10-26T23:10:06.1785565+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\stageclear.wav</Source>
+      <Name>Sounds\stageclear</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\stageclear.xnb</Output>
+      <Time>2014-10-26T23:12:44.4167509+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

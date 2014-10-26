@@ -112,6 +112,7 @@
     <Compile Include="CoinManager.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="EntityManager.cs" />
+    <Compile Include="FireBall.cs" />
     <Compile Include="Flagpole.cs" />
     <Compile Include="MushroomEnemy.cs" />
     <Compile Include="ExplosionManager.cs" />

@@ -69,6 +69,7 @@ namespace SuperMarioBros3
                 player.TakeDamage();
 
             collisionManager.PlayerFlagpoleCollision(player, map.Flagpole);
+            collisionManager.FireBallEarthCollision(player.FireBalls, map.EarthTiles);
 
             CheckSpawnPoints();
 

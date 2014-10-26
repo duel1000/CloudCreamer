@@ -16,6 +16,9 @@ namespace SuperMarioBros3
         private SoundEffect _playerDeath;
         private SoundEffect _coin;
         private SoundEffect _runningOutOfTime;
+        private SoundEffect _shootFireball;
+        private SoundEffect _flagpole;
+        private SoundEffect _stageClear;
         private Song backgroundMusic;
 
         public SoundManager(ContentManager content)
@@ -30,6 +33,9 @@ namespace SuperMarioBros3
             _playerDeath = content.Load<SoundEffect>(@"Sounds\mariodeath");
             _coin = content.Load<SoundEffect>(@"Sounds\coin");
             _runningOutOfTime = content.Load<SoundEffect>(@"Sounds\runningoutoftime");
+            _shootFireball = content.Load<SoundEffect>(@"Sounds\shootfireball");
+            _flagpole = content.Load<SoundEffect>(@"Sounds\flagpole");
+            _stageClear = content.Load<SoundEffect>(@"Sounds\stageclear");
             backgroundMusic = content.Load<Song>(@"Sounds\theme");
         }
 
@@ -85,6 +91,21 @@ namespace SuperMarioBros3
         public void RunningOutOfTime()
         {
             _runningOutOfTime.Play();
+        }
+
+        public void ShootFireball()
+        {
+            _shootFireball.Play();
+        }
+
+        public void FlagpoleEffect()
+        {
+            _flagpole.Play();
+        }
+
+        public void StageClear()
+        {
+            _stageClear.Play();
         }
     }
 }
