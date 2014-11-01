@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -148,6 +149,72 @@ namespace SuperMarioBros3
             else
             {
                 IsPunched = false;
+            }
+        }
+    }
+
+    public class CoinBrickTile : Tile
+    {
+        private Vector2 startingPosition;
+        private float velocity;
+        private float newPositionY;
+        private int totalCoins;
+        private int coinsTaken;
+        private bool isEmpty;
+        private bool animationPlayedOnce;
+        public bool ThrowCoin { get; set; }
+
+        public void TakeCoin()
+        {
+            coinsTaken++;
+        }
+
+        public CoinBrickTile(Vector2 position, int numberOfCoins)
+        {
+            texture = Content_Manager.GetInstance().Textures["brick"];
+            this.Rectangle = new Rectangle((int)position.X, (int)position.Y - 5, texture.Height, texture.Width);
+            BoundingBox = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height - 10);
+            totalCoins = numberOfCoins;
+            startingPosition = position;
+            
+            velocity -= 5f;
+            newPositionY = Rectangle.Y;
+        }
+
+        public void Punch()
+        {
+            animationPlayedOnce = false;
+            IsPunched = true;
+        }
+        
+
+        public void Update(GameTime gameTime)
+        {
+            if (!animationPlayedOnce && IsPunched && coinsTaken < totalCoins && !isEmpty)
+            {
+                Rectangle = new Rectangle(Rectangle.X, (int)newPositionY, Rectangle.Width, Rectangle.Height);
+
+                if (Rectangle.Y < startingPosition.Y)
+                {
+                    newPositionY += velocity;
+                    velocity += 2.5f;
+                }
+                else
+                {
+                    velocity = 0f;
+                    newPositionY = startingPosition.Y;
+                    animationPlayedOnce = true;
+                    Rectangle = new Rectangle(Rectangle.X, (int)newPositionY, Rectangle.Width, Rectangle.Height);
+                }
+                if (coinsTaken == totalCoins)
+                {
+                    texture = Content_Manager.GetInstance().Textures["hardbrick"];
+                    isEmpty = true;
+                }
+            }
+            else
+            {
+                ThrowCoin = true;
             }
         }
     }

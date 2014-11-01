@@ -19,6 +19,7 @@ namespace SuperMarioBros3
         private SoundEffect _shootFireball;
         private SoundEffect _flagpole;
         private SoundEffect _stageClear;
+        private SoundEffect _fireworks;
         private Song backgroundMusic;
 
         public SoundManager(ContentManager content)
@@ -36,6 +37,7 @@ namespace SuperMarioBros3
             _shootFireball = content.Load<SoundEffect>(@"Sounds\shootfireball");
             _flagpole = content.Load<SoundEffect>(@"Sounds\flagpole");
             _stageClear = content.Load<SoundEffect>(@"Sounds\stageclear");
+            _fireworks = content.Load<SoundEffect>(@"Sounds\fireworks");
             backgroundMusic = content.Load<Song>(@"Sounds\theme");
         }
 
@@ -106,6 +108,11 @@ namespace SuperMarioBros3
         public void StageClear()
         {
             _stageClear.Play();
+        }
+
+        public void FireworksEffect()
+        {
+            _fireworks.Play();
         }
     }
 }

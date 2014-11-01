@@ -114,6 +114,7 @@
     <Compile Include="EntityManager.cs" />
     <Compile Include="FireBall.cs" />
     <Compile Include="Flagpole.cs" />
+    <Compile Include="Managers\BackgroundManager.cs" />
     <Compile Include="MushroomEnemy.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="Managers\Content_Manager.cs" />

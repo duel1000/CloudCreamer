@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SuperMarioBros3.Managers;
 
 namespace SuperMarioBros3
 {
@@ -16,12 +17,18 @@ namespace SuperMarioBros3
         private List<HardTile> hardTiles = new List<HardTile>();
         private List<QuestionMarkTile> questionMarkTiles = new List<QuestionMarkTile>();
         private List<HiddenTile> hiddenTiles = new List<HiddenTile>();
+        private List<CoinBrickTile> coinBrickTiles = new List<CoinBrickTile>(); 
         private List<Tube> tubes = new List<Tube>();
+        
         private Castle castle;
+        public Vector2 CastlePosition { get { return castle.position; } } // For fireworks
+
         private Flagpole flagpole;
         private ExplosionManager explosionManager;
         private CoinManager coinManager;
         private Player player;
+        
+        private BackgroundManager backgroundManager;
 
         public Flagpole Flagpole{get { return flagpole; }}
         
@@ -29,6 +36,7 @@ namespace SuperMarioBros3
         private EntityManager entityManager;
 
         private Score score;
+        public List<CoinBrickTile> CoinBrickTiles{get { return coinBrickTiles; }} 
         public List<HiddenTile> HiddenTiles{get { return hiddenTiles; }} 
         public List<HardEarthTile> HardEarthTiles {get { return hardEarthTiles; }}
         public List<EarthTile> EarthTiles
@@ -62,7 +70,7 @@ namespace SuperMarioBros3
             get { return height; }
         }
 
-        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager, Score score, Player player)
+        public Map(ExplosionManager explosionManager, SoundManager soundManager, EntityManager entityManager, CoinManager coinManager, Score score, Player player, BackgroundManager backgroundManager)
         {
             this.explosionManager = explosionManager;
             this.soundManager = soundManager;
@@ -70,6 +78,7 @@ namespace SuperMarioBros3
             this.coinManager = coinManager;
             this.score = score;
             this.player = player;
+            this.backgroundManager = backgroundManager;
         }
 
         public void GenerateMap(int size)
@@ -157,6 +166,17 @@ namespace SuperMarioBros3
                         
                 }
             }
+            foreach (var coinBrick in coinBrickTiles)
+            {
+                coinBrick.Update(gameTime);
+                if (coinBrick.ThrowCoin && coinBrick.IsPunched)
+                {
+                    coinManager.AddCoinAnimation(new Vector2(coinBrick.Rectangle.Center.X - 15, coinBrick.Rectangle.Y - 35)); // Hardcoded 
+                    score.AddPoint(100);
+                    coinBrick.TakeCoin();
+                    coinBrick.ThrowCoin = false;
+                }
+            }
             flagpole.Update(gameTime);
             castle.Update(gameTime);
             entityManager.Update(gameTime, soundManager);
@@ -165,6 +185,7 @@ namespace SuperMarioBros3
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            backgroundManager.Draw(spriteBatch);
             flagpole.Draw(spriteBatch);
             entityManager.Draw(spriteBatch);
             
@@ -197,6 +218,10 @@ namespace SuperMarioBros3
                 if(hiddenTile.IsPunched)
                     hiddenTile.Draw(spriteBatch);
             }
+            foreach (var coinBrick in coinBrickTiles)
+            {
+                coinBrick.Draw(spriteBatch);
+            }
             
             castle.Draw(spriteBatch);
             coinManager.Draw(spriteBatch);
@@ -224,9 +249,12 @@ namespace SuperMarioBros3
                 height = 480; //Hardcoded
             }
 
-
-            //Test
+            entityManager.turtles.Add(new Turtle(new Vector2(200,100)));
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(250, 250, 50, 50), true, "PowerUp"));
+            coinBrickTiles.Add(new CoinBrickTile(new Vector2(400, 200), 5 ));
+            //Test
+
+            CreateBackground();
 
             //Level
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(950, 250, 50, 50), true, "PowerUp"));
@@ -330,6 +358,19 @@ namespace SuperMarioBros3
             hardEarthTiles.Add(new HardEarthTile(new Vector2(9700, 390)));
 
             castle = new Castle(new Vector2(9900,140));
+        }
+
+        private void CreateBackground()
+        {
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(0,300),"biggreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(2200, 300), "biggreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(4250, 300), "biggreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(6720, 300), "biggreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(9350, 300), "biggreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(920, 360), "smallgreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(2750, 360), "smallgreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(5000, 360), "smallgreenhill"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(7650, 360), "smallgreenhill"));
         }
 
         public void AddSmallBlockTriangleLeft(int distance)

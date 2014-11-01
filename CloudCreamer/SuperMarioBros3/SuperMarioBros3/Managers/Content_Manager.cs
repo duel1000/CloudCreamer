@@ -60,6 +60,12 @@ namespace SuperMarioBros3.Managers
             AddTexture("firemariowalking");
             AddTexture("firemariojumping");
             AddTexture("fireball");
+            AddTexture("fireballexplosion");
+            AddTexture("firemarioflagpole");
+            AddTexture("fireworks");
+            AddTexture("turtlewalk");
+            AddTexture("biggreenhill");
+            AddTexture("smallgreenhill");
 
             AddSpriteFont("PointsFont");
         }

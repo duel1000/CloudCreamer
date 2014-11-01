@@ -18,6 +18,7 @@ namespace SuperMarioBros3
             velocity.X = flipSprite ? -12f : 12f;
             velocity.Y = 6.5f;
             _startingPositionX = position.X;
+            BoundingBox = new Rectangle((int)position.X, (int)position.Y, 20, 20);
         }
 
         public override void Update(GameTime gameTime)
@@ -47,5 +48,13 @@ namespace SuperMarioBros3
         {
             velocity.X = velocity.X * -1;
         }
+
+        public bool Exploded { get; set; }
+        public void Explode()
+        {
+            Exploded = true;
+        }
+
+        
     }
 }

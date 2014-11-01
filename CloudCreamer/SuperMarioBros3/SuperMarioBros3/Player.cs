@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -37,6 +38,7 @@ namespace SuperMarioBros3
         private bool _frozen = false;
         private int _stepsIntoPowerUpAnimation = 0;
         private int _stepsIntoPowerDownAnimation = 0;
+        private bool _powerDownFromFireMario;
 
         private SoundManager _soundManager;
         private bool _takeDamageSoundPlayed;
@@ -66,7 +68,7 @@ namespace SuperMarioBros3
             {
                 _fireBalls[i].Update(gameTime);
 
-                if (_fireBalls[i].IsDead)
+                if (_fireBalls[i].IsDead || _fireBalls[i].Exploded)
                 {
                     _fireBalls.Remove(_fireBalls[i]);
                     _fireBallCount--;
@@ -237,6 +239,10 @@ namespace SuperMarioBros3
                 IsInvulnerable = true;
                 _soundManager.PowerDown();
                 _takeDamageSoundPlayed = true;
+
+                if (_isFireMario)
+                    _powerDownFromFireMario = true;
+
                 _isBigMario = false;
                 _isSmallMario = true;
                 _isFireMario = false;
@@ -399,6 +405,8 @@ namespace SuperMarioBros3
             framesPerSecond = 0;
             endFrame = 1;
 
+            var textureToUse = _powerDownFromFireMario ? "firemariostanding" : "bigmariostanding"; //Sorta hardcoded
+
             if (_powerDownAnimationTimer < 200)
             {
                 if (_stepsIntoPowerDownAnimation == 0)
@@ -415,7 +423,7 @@ namespace SuperMarioBros3
                     position.Y -= 25;
                     _stepsIntoPowerDownAnimation++;
                 }
-                texture = Content_Manager.GetInstance().Textures["bigmariostanding"];
+                texture = Content_Manager.GetInstance().Textures[textureToUse];
             }
             else if (_powerDownAnimationTimer < 600)
             {
@@ -433,7 +441,7 @@ namespace SuperMarioBros3
                     position.Y -= 25;
                     _stepsIntoPowerDownAnimation++;
                 }
-                texture = Content_Manager.GetInstance().Textures["bigmariostanding"];
+                texture = Content_Manager.GetInstance().Textures[textureToUse];
             }
             else if (_powerDownAnimationTimer < 1000)
             {
@@ -450,6 +458,7 @@ namespace SuperMarioBros3
                 _powerDownAnimationPlayed = true;
                 _powerDownAnimationTimer = 0;
                 IsInvulnerable = false;
+                _powerDownFromFireMario = false;
             }
         }
 
@@ -591,6 +600,23 @@ namespace SuperMarioBros3
             }
         }
 
+        public void TurtleCollision(Turtle turtle)
+        {
+            if (BoundingBox.TouchTopOf(turtle.BoundingBox) && !turtle.IsDead && velocity.Y > 0)
+            {
+                turtle.IsDead = true;
+                position.Y -= 3f;
+                velocity.Y = -6f;
+                hasJumped = true;
+            }
+            else if (BoundingBox.TouchLeftOf(turtle.BoundingBox) ||
+                    BoundingBox.TouchRightOf(turtle.BoundingBox) ||
+                    BoundingBox.TouchBottomOf(turtle.BoundingBox))
+            {
+                TakeDamage();
+            }
+        }
+
         public void MushroomPowerUpCollision(MushroomPowerUp mushroomPowerUp)
         {
             if (BoundingBox.TouchTopOf(mushroomPowerUp.BoundingBox) ||
@@ -645,6 +671,10 @@ namespace SuperMarioBros3
                 {
                     _soundManager.FlagpoleEffect();
                     texture = _isBigMario ? Content_Manager.GetInstance().Textures["bigmariopole"] : Content_Manager.GetInstance().Textures["smallflagpolemario"];
+                    
+                    if(_isFireMario)
+                        texture = Content_Manager.GetInstance().Textures["firemarioflagpole"];//Hardcoded somewhat
+
                     rows = 1;
                     columns = 2; 
                     currentFrame = 1;
@@ -678,25 +708,33 @@ namespace SuperMarioBros3
                 }
             }
         }
+
+        public void HitACeiling()
+        {
+            velocity.Y = 2.5f;
+        }
+
+        public bool IsMovingUpwards{
+            get 
+            { 
+                if (velocity.Y < 0) 
+                    return true;
+                return false;
+            }
+        }
     }
 }
 
 /*Player*/
 //Shift key for speed run + superjumpsound
 //Star mode = invulnerable/killer
-//FireMario -> powerdownanimation + flagpoleanimation
-//Fireball collisions
 //Fireball bør hoppe ligesom flappybird
 
 /*Game*/
-//PowerUp FireFlower -> grim animation
-//Create ending -> fireworks og pointtælling
 //Add lives
 //Add Background
 
 /*Enemies*/
-//Lav animation på dem
-//Skal give point
 
 /*Bugs*/
 //If you release jumpkey mid air and press it down before he hits the ground he insta-jumps which feels bad

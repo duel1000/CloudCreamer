@@ -16,6 +16,8 @@ namespace SuperMarioBros3
         {
             IsDead = false;
             velocity.X = 2f;
+            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y,
+                DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
         }
 
         public override void Update(GameTime gameTime)
@@ -89,6 +91,102 @@ namespace SuperMarioBros3
                     velocity.X += 4;
                     walkingLeft = false;
                     flipSprite = false;
+                }
+            }
+        }
+
+        public void KillEnemy()
+        {
+            IsDead = true;
+        }
+    }
+
+    public class Turtle : SpriteAnimation
+    {
+        private bool walkingLeft = false;
+        public bool IsDead { get; set; }
+        public bool Spawned { get; set; }
+
+        public Turtle(Vector2 position) : base("turtlewalk", position, 1,2,10)
+        {
+            IsDead = false;
+            velocity.X = 1.8f;
+            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y,
+                DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
+            flipSprite = true;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (!Spawned) return;
+
+            position += velocity;
+
+            if (velocity.Y < 10)
+                velocity.Y += 0.45f;
+
+            BoundingBox = new Rectangle(DestinationRectangle.X + 5, DestinationRectangle.Y,
+                DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
+
+            base.Update(gameTime);
+        }
+
+        public void CheckIfSpawnPointReached(float x)
+        {
+            if (this.position.X - 1000 < x)
+                Spawned = true;
+        }
+
+        public void TileCollision(Tile tile)
+        {
+            if (BoundingBox.TouchTopOf(tile.BoundingBox))
+            {
+                position.Y = tile.BoundingBox.Y - DestinationRectangle.Height;
+                velocity.Y = 0f;
+            }
+            else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
+            {
+                if (!walkingLeft)
+                {
+                    velocity.X = -1.8f;
+                    walkingLeft = true;
+                    flipSprite = !flipSprite;
+                }
+            }
+            else if (BoundingBox.TouchRightOf(tile.BoundingBox))
+            {
+                if (walkingLeft)
+                {
+                    velocity.X = 1.8f;
+                    walkingLeft = false;
+                    flipSprite = !flipSprite;
+                }
+            }
+        }
+
+        public void SimpleCollision(Rectangle objectBoundingBox)
+        {
+            if (BoundingBox.TouchTopOf(objectBoundingBox))
+            {
+                position.Y = objectBoundingBox.Y - DestinationRectangle.Height;
+                velocity.Y = 0f;
+            }
+            else if (BoundingBox.TouchLeftOf(objectBoundingBox))
+            {
+                if (!walkingLeft)
+                {
+                    velocity.X = -1.8f;
+                    walkingLeft = true;
+                    flipSprite = !flipSprite;
+                }
+            }
+            else if (BoundingBox.TouchRightOf(objectBoundingBox))
+            {
+                if (walkingLeft)
+                {
+                    velocity.X = 1.8f;
+                    walkingLeft = false;
+                    flipSprite = !flipSprite;
                 }
             }
         }

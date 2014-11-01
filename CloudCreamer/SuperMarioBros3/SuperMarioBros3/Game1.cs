@@ -25,6 +25,7 @@ namespace SuperMarioBros3
         private SoundManager soundManager;
         private EntityManager entityManager;
         private CollisionManager collisionManager;
+        private BackgroundManager backgroundManager;
 
         public Game1()
         {
@@ -35,15 +36,16 @@ namespace SuperMarioBros3
         protected override void Initialize()
         {
             Content_Manager.GetInstance().LoadTextures(Content);
-            explosionManager = new ExplosionManager();
             soundManager = new SoundManager(Content);
+            explosionManager = new ExplosionManager(soundManager);
             coinManager = new CoinManager(soundManager);
             score = new Score(soundManager);
-            entityManager = new EntityManager();
+            entityManager = new EntityManager(score);
             player = new Player(soundManager);
-            map = new Map(explosionManager, soundManager, entityManager, coinManager, score, player);
+            backgroundManager = new BackgroundManager();
+            map = new Map(explosionManager, soundManager, entityManager, coinManager, score, player, backgroundManager);
             soundManager.PlayBackgroundMusic();
-            collisionManager = new CollisionManager();
+            collisionManager = new CollisionManager(explosionManager, soundManager);
             base.Initialize();
         }
 
@@ -63,6 +65,20 @@ namespace SuperMarioBros3
         
         protected override void Update(GameTime gameTime)
         {
+            if (player.LevelComplete)
+            {
+                score.EndLevel();
+                explosionManager.Update(gameTime);
+                score.Update(gameTime);
+
+                if (score.Timer == 0)
+                {
+                    explosionManager.StartFireworks(map.CastlePosition);
+                }
+
+                return;
+            }
+
             player.Update(gameTime);
 
             if (score.Timer == 0)
@@ -70,6 +86,13 @@ namespace SuperMarioBros3
 
             collisionManager.PlayerFlagpoleCollision(player, map.Flagpole);
             collisionManager.FireBallEarthCollision(player.FireBalls, map.EarthTiles);
+            collisionManager.FireBallBrickCollision(player.FireBalls, map.BrickTiles);
+            collisionManager.FireBallQuestionmarkCollision(player.FireBalls, map.QuestionMarkTiles);
+            collisionManager.FireBallHardTileCollision(player.FireBalls, map.HardTiles);
+            collisionManager.FireBallHardEarthTileCollision(player.FireBalls, map.HardEarthTiles);
+            collisionManager.FireBallHiddenTileCollision(player.FireBalls, map.HiddenTiles);
+            collisionManager.FireBallTubeCollision(player.FireBalls, map.Tubes);
+            collisionManager.FireBallEnemyCollision(player.FireBalls, entityManager.evilMushrooms);
 
             CheckSpawnPoints();
 
@@ -92,6 +115,11 @@ namespace SuperMarioBros3
                 {
                     mushroom.TileCollision(tile);
                 }
+
+                foreach (var turtle in entityManager.turtles)
+                {
+                    turtle.TileCollision(tile);   
+                }
                
                 camera.Update(player.position, map.Width, map.Height, score);
             }
@@ -101,6 +129,16 @@ namespace SuperMarioBros3
                 if(evilshroom.Spawned)
                     player.EvilMushroomCollision(evilshroom);
             }
+            foreach (var turtle in entityManager.turtles)
+            {
+                if (turtle.Spawned)
+                    player.TurtleCollision(turtle);
+            }
+
+            foreach (CoinBrickTile coinBrick in map.CoinBrickTiles)
+            {
+                collisionManager.CoinBrickTileMarioCollision(player, coinBrick);
+            }
 
             foreach (BrickTile brick in map.BrickTiles)
             {
@@ -108,6 +146,10 @@ namespace SuperMarioBros3
                 foreach (var mushroom in entityManager.evilMushrooms)
                 {
                     mushroom.TileCollision(brick);
+                }
+                foreach (var turtle in entityManager.turtles)
+                {
+                    turtle.TileCollision(brick);
                 }
                 foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
                 {
@@ -122,12 +164,20 @@ namespace SuperMarioBros3
                 {
                     mushroomPowerUp.TileCollision(hardBrick);
                 }
+                foreach (var turtle in entityManager.turtles)
+                {
+                    turtle.TileCollision(hardBrick);
+                }
             }
             foreach (var questionMarkTile in map.QuestionMarkTiles)
             {
                 foreach (var mushroomPowerUp in entityManager.mushroomPowerUps)
                 {
                     mushroomPowerUp.TileCollision(questionMarkTile);
+                }
+                foreach (var turtle in entityManager.turtles)
+                {
+                    turtle.TileCollision(questionMarkTile);
                 }
                 player.Collision(questionMarkTile, map.Width, map.Height);
             }
@@ -136,6 +186,10 @@ namespace SuperMarioBros3
                 foreach (var evilMushroom in entityManager.evilMushrooms)
                 {
                     evilMushroom.SimpleCollision(tube.BoundingBox);
+                }
+                foreach (var turtle in entityManager.turtles)
+                {
+                    turtle.SimpleCollision(tube.BoundingBox);
                 }
                 player.SimpelCollision(tube.BoundingBox);
             }
@@ -187,6 +241,10 @@ namespace SuperMarioBros3
             foreach (var evilMushroom in entityManager.evilMushrooms)
             {
                 evilMushroom.CheckIfSpawnPointReached(player.position.X);
+            }
+            foreach (var turtle in entityManager.turtles)
+            {
+                turtle.CheckIfSpawnPointReached(player.position.X);
             }
         }
 

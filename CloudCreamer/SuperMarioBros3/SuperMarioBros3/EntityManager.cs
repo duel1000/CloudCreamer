@@ -7,26 +7,49 @@ namespace SuperMarioBros3
     public class EntityManager
     {
         public List<MushroomEnemy> evilMushrooms = new List<MushroomEnemy>();
+        public List<Turtle> turtles = new List<Turtle>(); 
         public List<MushroomPowerUp> mushroomPowerUps = new List<MushroomPowerUp>(); 
-        public List<FireFlower> fireFlowers = new List<FireFlower>(); 
+        public List<FireFlower> fireFlowers = new List<FireFlower>();
+        private Score score;
+        private float _timeSinceLastScore;
+        private int _enemiesKilledInARow;
 
-        public EntityManager()
+        public EntityManager(Score score)
         {
+            this.score = score;
         }
 
         public void Update(GameTime gameTime, SoundManager soundManager)
         {
+            _timeSinceLastScore += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
             for (int i = 0; i < evilMushrooms.Count; i++)
             {
                 if (evilMushrooms[i].IsDead)
                 {
                     soundManager.StompEffect();
                     evilMushrooms.Remove(evilMushrooms[i]);
+                    ScorePoints();
                     i--;
                 }
                 else
                 {
                     evilMushrooms[i].Update(gameTime);
+                }
+            }
+
+            for (int i = 0; i < turtles.Count; i++)
+            {
+                if (turtles[i].IsDead)
+                {
+                    soundManager.StompEffect();
+                    turtles.Remove(turtles[i]);
+                    ScorePoints();
+                    i--;
+                }
+                else
+                {
+                    turtles[i].Update(gameTime);
                 }
             }
 
@@ -57,11 +80,79 @@ namespace SuperMarioBros3
             }
         }
 
+        //You have a second to multiply score or get a life TODO add points animation
+        private void ScorePoints()
+        {
+            if (_timeSinceLastScore > 1000)
+                _enemiesKilledInARow = 0;
+
+            if (_enemiesKilledInARow == 0)
+            {
+                score.AddPoint(100);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 1)
+            {
+                score.AddPoint(200);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 2)
+            {
+                score.AddPoint(400);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 3)
+            {
+                score.AddPoint(800);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 4)
+            {
+                //Add life
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 5)
+            {
+                score.AddPoint(1000);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 6)
+            {
+                score.AddPoint(1000);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+            if (_timeSinceLastScore < 1000 && _enemiesKilledInARow == 7)
+            {
+                score.AddPoint(1000);
+                _enemiesKilledInARow++;
+                _timeSinceLastScore = 0;
+                return;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var mushroom in evilMushrooms)
             {
                 mushroom.Draw(spriteBatch);
+            }
+            foreach (var turtle in turtles)
+            {
+             turtle.Draw(spriteBatch);   
             }
             foreach (var mushroomPowerUp in mushroomPowerUps)
             {
@@ -76,6 +167,7 @@ namespace SuperMarioBros3
         public void ReLoad()
         {
             evilMushrooms = new List<MushroomEnemy>();
+            turtles = new List<Turtle>();
             mushroomPowerUps = new List<MushroomPowerUp>();
         }
     }

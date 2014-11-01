@@ -8,7 +8,7 @@ using SuperMarioBros3.Managers;
 
 namespace SuperMarioBros3
 {
-    class Score
+    public class Score
     {
         private int _points;
         private int _coinCounter;
@@ -26,6 +26,8 @@ namespace SuperMarioBros3
         private bool _runningOutOfTimeSoundEffectPlayed;
         private bool _changeColor;
 
+        private bool _calculateScoreAnimation;
+
         private readonly SpriteFont spriteFont;
         
         public int Timer{get { return _timer; }}
@@ -39,6 +41,12 @@ namespace SuperMarioBros3
         public void Update(GameTime gameTime)
         {
             _elapsedGameTime += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (_calculateScoreAnimation)
+            {
+                RunCalculateScoreAnimation();
+                return;
+            }
             _elapsedGameTimeForColorChange += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_elapsedGameTime > 1000 && _timer != 0)
             {
@@ -51,6 +59,17 @@ namespace SuperMarioBros3
                 soundManager.RunningOutOfTime();
                 _runningOutOfTimeSoundEffectPlayed = true;
                 _elapsedGameTimeForColorChange = 0;
+            }
+        }
+
+        private void RunCalculateScoreAnimation()
+        {
+            if (_elapsedGameTime > 24 && _timer != 0)
+            {
+                soundManager.CoinEffect();
+                AddPoint(100);
+                _timer--;
+                _elapsedGameTime = 0;
             }
         }
 
@@ -141,6 +160,11 @@ namespace SuperMarioBros3
             _scorePosition = new Vector2(10,40);
             _gameTextPosition = new Vector2(20,8);
             _coinCounterPosition = new Vector2(0,40);
+        }
+
+        public void EndLevel()
+        {
+            _calculateScoreAnimation = true;
         }
     }
 }
