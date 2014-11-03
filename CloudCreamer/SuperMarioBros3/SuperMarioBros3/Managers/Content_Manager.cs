@@ -66,8 +66,11 @@ namespace SuperMarioBros3.Managers
             AddTexture("turtlewalk");
             AddTexture("biggreenhill");
             AddTexture("smallgreenhill");
+            AddTexture("star");
+            AddTexture("flagpoleflag");
 
             AddSpriteFont("PointsFont");
+            AddSpriteFont("FloatingScoreFont");
         }
 
         public void AddTexture(String file, String name = "")

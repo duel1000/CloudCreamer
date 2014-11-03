@@ -50,3 +50,8 @@ Content\Sounds\fireworks.xnb
 Content\turtlewalk.xnb
 Content\biggreenhill.xnb
 Content\smallgreenhill.xnb
+Content\Sounds\starpower.xnb
+Content\Sounds\starpower.wma
+Content\star.xnb
+Content\FloatingScoreFont.xnb
+Content\flagpoleflag.xnb

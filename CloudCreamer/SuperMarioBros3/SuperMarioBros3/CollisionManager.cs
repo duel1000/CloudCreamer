@@ -22,12 +22,12 @@ namespace SuperMarioBros3
             if (player.BoundingBox.TouchTopOf(flagpole.BoundingBox))
             {
                 player.OnTheFlagPole = true;
-                flagpole.RunEndingAnimation(player.position);
+                flagpole.RunFlagEndingAnimation(player.position.Y);
             }
             else if (player.BoundingBox.TouchLeftOf(flagpole.BoundingBox))
             {
                 player.OnTheFlagPole = true;
-                flagpole.RunEndingAnimation(player.position);
+                flagpole.RunFlagEndingAnimation(player.position.Y);
             }
         }
 
@@ -145,7 +145,7 @@ namespace SuperMarioBros3
             }
         }
 
-        public void FireBallEnemyCollision(List<FireBall> fireballs, List<MushroomEnemy> enemies)
+        public void FireBallMushroomEnemyCollision(List<FireBall> fireballs, List<MushroomEnemy> enemies)
         {
             foreach (var fireball in fireballs)
             {
@@ -164,30 +164,59 @@ namespace SuperMarioBros3
             }
         }
 
+        public void FireBallTurtleCollision(List<FireBall> fireballs, List<Turtle> enemies)
+        {
+            foreach (var fireball in fireballs)
+            {
+                foreach (var enemy in enemies)
+                {
+                    if (fireball.BoundingBox.TouchTopOf(enemy.BoundingBox) ||
+                        fireball.BoundingBox.TouchBottomOf(enemy.BoundingBox) ||
+                        fireball.BoundingBox.TouchLeftOf(enemy.BoundingBox) ||
+                        fireball.BoundingBox.TouchRightOf(enemy.BoundingBox))
+                    {
+                        enemy.IsDead = true;
+                        fireball.Explode();
+                        explosionManager.CreateFireballExplosion(fireball.position);
+                    }
+                }
+            }
+        }
+
         public void CoinBrickTileMarioCollision(Player player, CoinBrickTile coinBrickTile)
         {
-            //if (player.BoundingBox.TouchTopOf(coinBrickTile.BoundingBox))
-            //{
-            //    if (player.velocity.Y > 0)
-            //    {
-            //        position.Y = tile.BoundingBox.Y - DestinationRectangle.Height;
-            //        velocity.Y = 0f;
-            //        hasJumped = false;
-            //    }
-            //}
+            if (player.BoundingBox.TouchTopOf(coinBrickTile.BoundingBox))
+            {
+                player.HitTheGround(coinBrickTile.BoundingBox.Y);
+            }
             if (player.BoundingBox.TouchBottomOf(coinBrickTile.BoundingBox) && player.IsMovingUpwards)
             {
                 coinBrickTile.Punch();
                 player.HitACeiling();
             }
-            //else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
-            //{
-            //    position.X = tile.BoundingBox.X - DestinationRectangle.Width - 2;
-            //}
-            //else if (BoundingBox.TouchRightOf(tile.BoundingBox))
-            //{
-            //    position.X = tile.BoundingBox.X + tile.BoundingBox.Width + 2;
-            //}
+            else if (player.BoundingBox.TouchLeftOf(coinBrickTile.BoundingBox))
+            {
+                player.HitWallRightSide(coinBrickTile.BoundingBox.X);
+            }
+            else if (player.BoundingBox.TouchRightOf(coinBrickTile.BoundingBox))
+            {
+                player.HitWallLeftSide(coinBrickTile.BoundingBox.X + coinBrickTile.BoundingBox.Width);
+            }
+        }
+
+        public void StarPowerUpPlayerCollision(Player player, List<StarPowerUp> stars)
+        {
+            foreach (var star in stars)
+            {
+                if (player.BoundingBox.TouchTopOf(star.BoundingBox) ||
+                        player.BoundingBox.TouchBottomOf(star.BoundingBox) ||
+                        player.BoundingBox.TouchLeftOf(star.BoundingBox) ||
+                        player.BoundingBox.TouchRightOf(star.BoundingBox))
+                {
+                    player.StarMode();
+                    star.IsEaten = true;
+                }
+            }
         }
     }
 }

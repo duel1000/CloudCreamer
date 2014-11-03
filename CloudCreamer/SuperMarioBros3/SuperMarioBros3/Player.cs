@@ -24,6 +24,7 @@ namespace SuperMarioBros3
         private bool _isBigMario = false;
         private bool _isSmallMario = true;
         private bool _isFireMario;
+        private bool isRunning;
         public bool IsInvulnerable;
         private bool _powerUpAnimationPlayed = false;
         private bool _powerDownAnimationPlayed = false;
@@ -47,6 +48,10 @@ namespace SuperMarioBros3
         public bool LevelComplete;
         public bool RespawnPlayer { get; set; }
 
+        private bool starMode;
+        private float timeInStarMode;
+        private float timeSinceStarModeColorChange;
+
         private int _fireBallCount;
         private float _timeSinceLastFireball;
         private List<FireBall> _fireBalls; 
@@ -54,7 +59,7 @@ namespace SuperMarioBros3
 
         public bool IsBigMario{get { return _isBigMario; }}
 
-        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1) // 64
+        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(9564,384),1,3,1) // 64
         {
             this._soundManager = soundManager;
             _fireBalls = new List<FireBall>();
@@ -81,6 +86,35 @@ namespace SuperMarioBros3
                 RunFlagPoleAnimation();
                 base.Update(gameTime);
                 return;
+            }
+
+            if (starMode)
+            {
+                timeInStarMode += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                timeSinceStarModeColorChange += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                if (timeInStarMode < 12000)
+                {
+                    if (timeSinceStarModeColorChange < 50)
+                        colorOverlay = Color.Red;
+                    else if (timeSinceStarModeColorChange < 100)
+                        colorOverlay = Color.Green;
+                    else if (timeSinceStarModeColorChange < 150)
+                        colorOverlay = Color.Black;
+                    else if (timeSinceStarModeColorChange < 200)
+                    {
+                        colorOverlay = Color.White;
+                        timeSinceStarModeColorChange = 0;
+                    }
+                }
+                else if (timeInStarMode > 12000)
+                {
+                    colorOverlay = Color.White;
+                    starMode = false;
+                    timeInStarMode = 0;
+                    _soundManager.PlayBackgroundMusic();
+                }
             }
 
             if (_isFireMario && !_powerUpAnimationPlayed)
@@ -143,6 +177,7 @@ namespace SuperMarioBros3
             if (Keyboard.GetState().IsKeyDown(Keys.P))
             {
                 PowerUp();
+                _isFireMario = true;
             }
 
             _timeSinceLastFireball += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -159,19 +194,40 @@ namespace SuperMarioBros3
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                {
+                    isRunning = true;
+                    velocity.X = (float) gameTime.ElapsedGameTime.TotalMilliseconds/2;
+                }
+                else
+                {
+                    isRunning = false;
+                    velocity.X = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                }
+                
                 flipSprite = false;
                 WalkAnimation();
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                velocity.X = -(float) gameTime.ElapsedGameTime.TotalMilliseconds/3;
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                {
+                    isRunning = true;
+                    velocity.X = -(float) gameTime.ElapsedGameTime.TotalMilliseconds/2;
+                }
+                else
+                {
+                    isRunning = false;
+                    velocity.X = -(float)gameTime.ElapsedGameTime.TotalMilliseconds / 3;
+                }
+                    
                 flipSprite = true;
                 WalkAnimation();
             }
 
             else
             {
+                isRunning = false;
                 StopWalkAnimation();
                 velocity.X = 0f;
             }
@@ -192,8 +248,13 @@ namespace SuperMarioBros3
                 endFrame = 1;
 
                 _soundManager.SmallJumpEffect();
+
+                if (isRunning)
+                    velocity.Y = -15.2f;
+                else
+                    velocity.Y = -13.2f;
+
                 position.Y -= 5f;
-                velocity.Y = -13.2f;
                 walking = false;
                 hasJumped = true;
                 jumpKeyReleased = false;
@@ -587,16 +648,26 @@ namespace SuperMarioBros3
         {
             if (BoundingBox.TouchTopOf(mushroom.BoundingBox) && !mushroom.IsDead && velocity.Y > 0)
             {
-                mushroom.IsDead = true;
-                position.Y -= 3f;
-                velocity.Y = -6f;
-                hasJumped = true;
+                if (starMode)
+                {
+                    mushroom.IsDead = true;
+                }
+                else
+                {
+                    mushroom.IsDead = true;
+                    position.Y -= 3f;
+                    velocity.Y = -6f;
+                    hasJumped = true;
+                }
             }
             else if(BoundingBox.TouchLeftOf(mushroom.BoundingBox) ||
                     BoundingBox.TouchRightOf(mushroom.BoundingBox) ||
                     BoundingBox.TouchBottomOf(mushroom.BoundingBox))
             {
-                TakeDamage();
+                if (starMode)
+                    mushroom.IsDead = true;
+                else
+                    TakeDamage();
             }
         }
 
@@ -604,16 +675,26 @@ namespace SuperMarioBros3
         {
             if (BoundingBox.TouchTopOf(turtle.BoundingBox) && !turtle.IsDead && velocity.Y > 0)
             {
-                turtle.IsDead = true;
-                position.Y -= 3f;
-                velocity.Y = -6f;
-                hasJumped = true;
+                if (starMode)
+                {
+                    turtle.IsDead = true;
+                }
+                else
+                {
+                    turtle.IsDead = true;
+                    position.Y -= 3f;
+                    velocity.Y = -6f;
+                    hasJumped = true;
+                }
             }
             else if (BoundingBox.TouchLeftOf(turtle.BoundingBox) ||
                     BoundingBox.TouchRightOf(turtle.BoundingBox) ||
                     BoundingBox.TouchBottomOf(turtle.BoundingBox))
             {
-                TakeDamage();
+                if (starMode)
+                    turtle.IsDead = true;
+                else
+                    TakeDamage();
             }
         }
 
@@ -722,19 +803,46 @@ namespace SuperMarioBros3
                 return false;
             }
         }
+
+        public void HitTheGround(int yPosition)
+        {
+            if (velocity.Y > 0)
+            {
+                position.Y = yPosition - DestinationRectangle.Height;
+                velocity.Y = 0f;
+                hasJumped = false;
+            }
+        }
+
+        public void HitWallRightSide(int xPosition)
+        {
+            position.X = xPosition - DestinationRectangle.Width - 2; // Hardcoded
+        }
+
+        public void HitWallLeftSide(int xPosition)
+        {
+            position.X = xPosition + 2; // Hardcoded
+        }
+
+        public void StarMode()
+        {
+            starMode = true;
+            _soundManager.PlayStarPowerSong();
+        }
     }
 }
 
 /*Player*/
-//Shift key for speed run + superjumpsound
-//Star mode = invulnerable/killer
-//Fireball bør hoppe ligesom flappybird
+//Tweak mario boundingbox
 
 /*Game*/
 //Add lives
-//Add Background
+//Add Backgrounds
+//Tweak flagpole length
+//Points for flagpoleheight
 
 /*Enemies*/
+//Check om fjender spawner de korrekte steder
 
 /*Bugs*/
 //If you release jumpkey mid air and press it down before he hits the ground he insta-jumps which feels bad

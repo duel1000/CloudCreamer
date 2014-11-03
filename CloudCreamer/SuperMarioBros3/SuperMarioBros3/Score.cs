@@ -13,6 +13,8 @@ namespace SuperMarioBros3
         private int _points;
         private int _coinCounter;
 
+        private List<FloatingScoreText> floatingScoreTexts = new List<FloatingScoreText>(); 
+
         private int _timer = 120;
         private float _elapsedGameTime;
         private float _elapsedGameTimeForColorChange;
@@ -60,6 +62,17 @@ namespace SuperMarioBros3
                 _runningOutOfTimeSoundEffectPlayed = true;
                 _elapsedGameTimeForColorChange = 0;
             }
+
+            for (int i = 0; i < floatingScoreTexts.Count; i++)
+            {
+                floatingScoreTexts[i].Update(gameTime);
+
+                if (floatingScoreTexts[i].IsDone)
+                {
+                    floatingScoreTexts.Remove(floatingScoreTexts[i]);
+                    i--;
+                }
+            }
         }
 
         private void RunCalculateScoreAnimation()
@@ -76,9 +89,18 @@ namespace SuperMarioBros3
         public void Draw(SpriteBatch spriteBatch)
         {
             DrawPoints(spriteBatch);
+            DrawFloatingScores(spriteBatch);
             spriteBatch.DrawString(spriteFont, "MARIO", _gameTextPosition, Color.White);
             DrawCoinCounter(spriteBatch);
             DrawTimer(spriteBatch);
+        }
+
+        private void DrawFloatingScores(SpriteBatch spriteBatch)
+        {
+            foreach (var floatingScore in floatingScoreTexts)
+            {
+                floatingScore.Draw(spriteBatch);
+            }
         }
 
         private void DrawTimer(SpriteBatch spriteBatch)
@@ -142,6 +164,13 @@ namespace SuperMarioBros3
             _coinCounter++;
         }
 
+        public void AddPointWithFloatingNumber(int number, Vector2 positionToDraw)
+        {
+            _points += number;
+
+            floatingScoreTexts.Add(new FloatingScoreText(number, positionToDraw));
+        }
+
         public void FollowCamera(Vector2 centre)
         {
             if (_scorePosition.X < centre.X)
@@ -165,6 +194,39 @@ namespace SuperMarioBros3
         public void EndLevel()
         {
             _calculateScoreAnimation = true;
+        }
+    }
+
+    class FloatingScoreText
+    {
+        
+        private int number;
+        private Vector2 position;
+        private SpriteFont spriteFont;
+        public bool IsDone { get; set; }
+        private float timeSinceStart;
+
+        public FloatingScoreText(int number, Vector2 position)
+        {
+            this.number = number;
+            this.position = position;
+            this.spriteFont = Content_Manager.GetInstance().SpriteFonts["FloatingScoreFont"];
+            this.IsDone = false;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            timeSinceStart += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            
+            position.Y -= 0.5f;
+
+            if (timeSinceStart > 1200)
+                IsDone = true;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(spriteFont, number.ToString(), position, Color.White);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace SuperMarioBros3
         protected Vector2 origin;
         protected bool animationPlayedOnce = false;
         protected bool flipSprite;
+        protected Color colorOverlay;
         
         public Vector2 position;
         public Rectangle BoundingBox;
@@ -47,6 +48,7 @@ namespace SuperMarioBros3
             this.imageHeight = texture.Height / rows;
             endFrame = rows * columns;
             startFrame = 0;
+            colorOverlay = Color.White;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -67,7 +69,7 @@ namespace SuperMarioBros3
             spriteBatch.Draw(texture, 
                              DestinationRectangle, 
                              SourceRectangle, 
-                             Color.White, 
+                             colorOverlay, 
                              rotationAngle, 
                              origin, 
                              spriteDirection, 

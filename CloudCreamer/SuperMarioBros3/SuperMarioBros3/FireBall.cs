@@ -12,6 +12,7 @@ namespace SuperMarioBros3
     {
         private float _startingPositionX;
         public bool IsDead { get; set; }
+        private float timeSinceLastBounce;
 
         public FireBall(Vector2 position, bool flipSprite) : base("fireball", position,1,1,1)
         {
@@ -23,6 +24,9 @@ namespace SuperMarioBros3
 
         public override void Update(GameTime gameTime)
         {
+            if (position.X < _startingPositionX)
+                flipSprite = true;
+
             if (position.X - 800 > _startingPositionX || position.X + 800 < _startingPositionX )
             {
                 IsDead = true;
@@ -36,12 +40,20 @@ namespace SuperMarioBros3
             if (velocity.Y < 6.5f)
                 velocity.Y += 1f;
 
+            timeSinceLastBounce += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (timeSinceLastBounce > 180 && rotationAngle < 1.2f)
+            {
+                rotationAngle -= 0.01f;
+            }
+
             base.Update(gameTime);
         }
 
         public void Bounce()
         {
             velocity.Y = -9f;
+            rotationAngle = -0.4f;
+            timeSinceLastBounce = 0;
         }
 
         public void Reverse()

@@ -21,6 +21,7 @@ namespace SuperMarioBros3
         private SoundEffect _stageClear;
         private SoundEffect _fireworks;
         private Song backgroundMusic;
+        private Song starPower;
 
         public SoundManager(ContentManager content)
         {
@@ -39,6 +40,7 @@ namespace SuperMarioBros3
             _stageClear = content.Load<SoundEffect>(@"Sounds\stageclear");
             _fireworks = content.Load<SoundEffect>(@"Sounds\fireworks");
             backgroundMusic = content.Load<Song>(@"Sounds\theme");
+            starPower = content.Load<Song>(@"Sounds\starpower");
         }
 
         public void PlayBackgroundMusic()
@@ -46,6 +48,16 @@ namespace SuperMarioBros3
             if (MediaPlayer.GameHasControl)
             {
                 MediaPlayer.Play(backgroundMusic);
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 0.1f;
+            }
+        }
+
+        public void PlayStarPowerSong()
+        {
+            if (MediaPlayer.GameHasControl)
+            {
+                MediaPlayer.Play(starPower);
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Volume = 0.1f;
             }

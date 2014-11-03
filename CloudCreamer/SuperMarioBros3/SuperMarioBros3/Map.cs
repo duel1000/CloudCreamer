@@ -108,7 +108,11 @@ namespace SuperMarioBros3
                         else
                             entityManager.mushroomPowerUps.Add(new MushroomPowerUp(new Vector2(BrickTiles[i].Rectangle.X, BrickTiles[i].Rectangle.Y - BrickTiles[i].Rectangle.Height)));
                     }
-                        
+                    else if (brickTiles[i].IsContaining == "star")
+                    {
+                        soundManager.PowerUpAppearEffect();
+                        entityManager.StarPowerUps.Add(new StarPowerUp(new Vector2(brickTiles[i].Rectangle.X, brickTiles[i].Rectangle.Y - 50)));
+                    }
                     else
                         soundManager.HardBrickBumpEffect();
                     
@@ -139,7 +143,7 @@ namespace SuperMarioBros3
                     }
                     else if (questionMarkTiles[i].ContainsCoin)
                     {
-                        score.AddPoint(200);
+                        score.AddPointWithFloatingNumber(200, new Vector2(questionMarkTiles[i].Rectangle.Center.X - 20, questionMarkTiles[i].Rectangle.Y - 30));
                         score.AddCoin();
                         soundManager.CoinEffect();
                         coinManager.AddCoinAnimation(new Vector2(questionMarkTiles[i].Rectangle.Center.X - 15, questionMarkTiles[i].Rectangle.Y - 35)); // Hardcoded 
@@ -169,10 +173,10 @@ namespace SuperMarioBros3
             foreach (var coinBrick in coinBrickTiles)
             {
                 coinBrick.Update(gameTime);
-                if (coinBrick.ThrowCoin && coinBrick.IsPunched)
+                if (coinBrick.ThrowCoin && coinBrick.IsPunched && !coinBrick.IsEmpty)
                 {
                     coinManager.AddCoinAnimation(new Vector2(coinBrick.Rectangle.Center.X - 15, coinBrick.Rectangle.Y - 35)); // Hardcoded 
-                    score.AddPoint(100);
+                    score.AddPointWithFloatingNumber(100, new Vector2(coinBrick.Rectangle.Center.X, coinBrick.Rectangle.Y));
                     coinBrick.TakeCoin();
                     coinBrick.ThrowCoin = false;
                 }
@@ -235,6 +239,7 @@ namespace SuperMarioBros3
             hardTiles = new List<HardTile>();
             questionMarkTiles = new List<QuestionMarkTile>();
             tubes = new List<Tube>();
+            coinBrickTiles = new List<CoinBrickTile>();
             entityManager.ReLoad();
             GenerateMap(45);
         }
@@ -249,16 +254,13 @@ namespace SuperMarioBros3
                 height = 480; //Hardcoded
             }
 
-            entityManager.turtles.Add(new Turtle(new Vector2(200,100)));
-            questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(250, 250, 50, 50), true, "PowerUp"));
-            coinBrickTiles.Add(new CoinBrickTile(new Vector2(400, 200), 5 ));
             //Test
 
             CreateBackground();
 
             //Level
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(950, 250, 50, 50), true, "PowerUp"));
-
+            entityManager.evilMushrooms.Add(new MushroomEnemy(new Vector2(1000, 50)));
             brickTiles.Add(new BrickTile(new Vector2(1150, 250)));
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(1200, 250, 50, 50), true, "", true));
             brickTiles.Add(new BrickTile(new Vector2(1250, 250)));
@@ -304,12 +306,12 @@ namespace SuperMarioBros3
             brickTiles.Add(new BrickTile(new Vector2(4150, 130)));
             brickTiles.Add(new BrickTile(new Vector2(4200, 130)));
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(4250, 130, 50, 50), true, "", true));
-            brickTiles.Add(new BrickTile(new Vector2(4250, 280))); //Multiple coins box!
+            coinBrickTiles.Add(new CoinBrickTile(new Vector2(4250, 250), 8)); //Multiple coins box!
 
             brickTiles.Add(new BrickTile(new Vector2(4500, 250)));
-            brickTiles.Add(new BrickTile(new Vector2(4550, 250))); //Contains a star!
+            brickTiles.Add(new BrickTile(new Vector2(4550, 250), true, "star", false)); //Contains a star!
 
-            //ADD TURTLE!
+            entityManager.turtles.Add(new Turtle(new Vector2(4600, 200)));
 
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(4900, 250, 50, 50), true, "", true));
             questionMarkTiles.Add(new QuestionMarkTile(new Rectangle(5050, 250, 50, 50), true, "", true));

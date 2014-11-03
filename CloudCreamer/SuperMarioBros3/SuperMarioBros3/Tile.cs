@@ -160,7 +160,7 @@ namespace SuperMarioBros3
         private float newPositionY;
         private int totalCoins;
         private int coinsTaken;
-        private bool isEmpty;
+        public bool IsEmpty;
         private bool animationPlayedOnce;
         public bool ThrowCoin { get; set; }
 
@@ -183,15 +183,19 @@ namespace SuperMarioBros3
 
         public void Punch()
         {
-            animationPlayedOnce = false;
-            IsPunched = true;
+            if (!IsEmpty)
+            {
+                velocity = -5f;
+                newPositionY -= 5f;
+                animationPlayedOnce = false;
+                IsPunched = true;
+            }
         }
-        
 
         public void Update(GameTime gameTime)
         {
-            if (!animationPlayedOnce && IsPunched && coinsTaken < totalCoins && !isEmpty)
-            {
+            if (!animationPlayedOnce && IsPunched && !IsEmpty)
+               {
                 Rectangle = new Rectangle(Rectangle.X, (int)newPositionY, Rectangle.Width, Rectangle.Height);
 
                 if (Rectangle.Y < startingPosition.Y)
@@ -204,16 +208,18 @@ namespace SuperMarioBros3
                     velocity = 0f;
                     newPositionY = startingPosition.Y;
                     animationPlayedOnce = true;
+                    IsPunched = false;
                     Rectangle = new Rectangle(Rectangle.X, (int)newPositionY, Rectangle.Width, Rectangle.Height);
-                }
-                if (coinsTaken == totalCoins)
-                {
-                    texture = Content_Manager.GetInstance().Textures["hardbrick"];
-                    isEmpty = true;
                 }
             }
             else
             {
+                if (coinsTaken == totalCoins)
+                {
+                    texture = Content_Manager.GetInstance().Textures["hardbrick"];
+                    IsEmpty = true;
+                    Rectangle = new Rectangle(Rectangle.X, (int)newPositionY - 5, Rectangle.Width, Rectangle.Height);
+                }
                 ThrowCoin = true;
             }
         }

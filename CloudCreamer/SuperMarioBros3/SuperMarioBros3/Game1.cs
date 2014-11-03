@@ -92,7 +92,9 @@ namespace SuperMarioBros3
             collisionManager.FireBallHardEarthTileCollision(player.FireBalls, map.HardEarthTiles);
             collisionManager.FireBallHiddenTileCollision(player.FireBalls, map.HiddenTiles);
             collisionManager.FireBallTubeCollision(player.FireBalls, map.Tubes);
-            collisionManager.FireBallEnemyCollision(player.FireBalls, entityManager.evilMushrooms);
+            collisionManager.FireBallMushroomEnemyCollision(player.FireBalls, entityManager.evilMushrooms);
+            collisionManager.FireBallTurtleCollision(player.FireBalls, entityManager.turtles);
+            collisionManager.StarPowerUpPlayerCollision(player, entityManager.StarPowerUps);
 
             CheckSpawnPoints();
 
@@ -107,6 +109,11 @@ namespace SuperMarioBros3
                 foreach (var fireflower in entityManager.fireFlowers)
                 {
                     player.FireflowerPowerUpCollision(fireflower);
+                }
+
+                foreach (var star in entityManager.StarPowerUps)
+                {
+                    star.TileCollision(tile);
                 }
 
                 player.Collision(tile, map.Width, map.Height);
@@ -155,6 +162,10 @@ namespace SuperMarioBros3
                 {
                     mushroomPowerUp.TileCollision(brick);
                 }
+                foreach (var star in entityManager.StarPowerUps)
+                {
+                    star.TileCollision(brick);
+                }
             }
             foreach (var hardBrick in map.HardTiles)
             {
@@ -168,6 +179,10 @@ namespace SuperMarioBros3
                 {
                     turtle.TileCollision(hardBrick);
                 }
+                foreach (var star in entityManager.StarPowerUps)
+                {
+                    star.TileCollision(hardBrick);
+                }
             }
             foreach (var questionMarkTile in map.QuestionMarkTiles)
             {
@@ -180,6 +195,10 @@ namespace SuperMarioBros3
                     turtle.TileCollision(questionMarkTile);
                 }
                 player.Collision(questionMarkTile, map.Width, map.Height);
+                foreach (var star in entityManager.StarPowerUps)
+                {
+                    star.TileCollision(questionMarkTile);
+                }
             }
             foreach (var tube in map.Tubes)
             {
@@ -192,10 +211,19 @@ namespace SuperMarioBros3
                     turtle.SimpleCollision(tube.BoundingBox);
                 }
                 player.SimpelCollision(tube.BoundingBox);
+                foreach (var star in entityManager.StarPowerUps)
+                {
+                    star.SimpleCollision(tube.BoundingBox);
+                }
             }
             foreach (var hardEarthTile in map.HardEarthTiles)
             {
                 player.SimpelCollision(hardEarthTile.BoundingBox);
+
+                foreach (var star in entityManager.StarPowerUps)
+                {
+                    star.TileCollision(hardEarthTile);
+                }
             }
             foreach (var hiddenTile in map.HiddenTiles)
             {

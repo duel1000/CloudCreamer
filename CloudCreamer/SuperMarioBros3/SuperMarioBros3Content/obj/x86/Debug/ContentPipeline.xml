@@ -461,6 +461,43 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\smallgreenhill.xnb</Output>
       <Time>2014-11-01T11:09:25.6227471+01:00</Time>
     </Item>
+    <Item>
+      <Source>Sounds\starpower.wav</Source>
+      <Name>Sounds\starpower</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\starpower.xnb</Output>
+      <Extra>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\starpower.wma</Extra>
+      <Time>2014-11-01T23:19:35.8569217+01:00</Time>
+    </Item>
+    <Item>
+      <Source>star.png</Source>
+      <Name>star</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\star.xnb</Output>
+      <Time>2014-11-01T23:26:45.5724513+01:00</Time>
+    </Item>
+    <Item>
+      <Source>FloatingScoreFont.spritefont</Source>
+      <Name>FloatingScoreFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\FloatingScoreFont.xnb</Output>
+      <Time>2014-11-02T12:03:24.0115463+01:00</Time>
+    </Item>
+    <Item>
+      <Source>flagpoleflag.png</Source>
+      <Name>flagpoleflag</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\flagpoleflag.xnb</Output>
+      <Time>2014-11-03T11:11:01.0501304+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

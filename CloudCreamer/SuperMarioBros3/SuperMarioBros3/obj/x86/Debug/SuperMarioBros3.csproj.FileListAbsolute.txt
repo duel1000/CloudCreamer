@@ -56,3 +56,8 @@ C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBr
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\turtlewalk.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\biggreenhill.xnb
 C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\smallgreenhill.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\starpower.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\Sounds\starpower.wma
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\star.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\FloatingScoreFont.xnb
+C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\flagpoleflag.xnb
