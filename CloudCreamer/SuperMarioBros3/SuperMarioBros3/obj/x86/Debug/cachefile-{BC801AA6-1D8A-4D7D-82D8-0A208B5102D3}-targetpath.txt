@@ -55,3 +55,9 @@ Content\Sounds\starpower.wma
 Content\star.xnb
 Content\FloatingScoreFont.xnb
 Content\flagpoleflag.xnb
+Content\triplebush.xnb
+Content\singlecloud.xnb
+Content\doublecloud.xnb
+Content\triplecloud.xnb
+Content\singlebush.xnb
+Content\doublebush.xnb

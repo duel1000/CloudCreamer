@@ -45,7 +45,7 @@ namespace SuperMarioBros3
             backgroundManager = new BackgroundManager();
             map = new Map(explosionManager, soundManager, entityManager, coinManager, score, player, backgroundManager);
             soundManager.PlayBackgroundMusic();
-            collisionManager = new CollisionManager(explosionManager, soundManager);
+            collisionManager = new CollisionManager(explosionManager, soundManager, score);
             base.Initialize();
         }
 
@@ -223,6 +223,18 @@ namespace SuperMarioBros3
                 foreach (var star in entityManager.StarPowerUps)
                 {
                     star.TileCollision(hardEarthTile);
+                }
+                foreach (var turtle in entityManager.turtles)
+                {
+                 turtle.TileCollision(hardEarthTile);   
+                }
+                foreach (var enemy in entityManager.evilMushrooms)
+                {
+                    enemy.TileCollision(hardEarthTile);
+                }
+                foreach (var mushroom in entityManager.mushroomPowerUps)
+                {
+                    mushroom.TileCollision(hardEarthTile);
                 }
             }
             foreach (var hiddenTile in map.HiddenTiles)

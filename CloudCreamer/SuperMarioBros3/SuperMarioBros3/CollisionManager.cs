@@ -10,11 +10,16 @@ namespace SuperMarioBros3
     {
         private ExplosionManager explosionManager;
         private SoundManager soundManager;
+        private Score score;
 
-        public CollisionManager(ExplosionManager explosionManager, SoundManager soundManager)
+        private bool pointsFromFlagPoleAdded;
+
+        public CollisionManager(ExplosionManager explosionManager, SoundManager soundManager, Score score)
         {
             this.explosionManager = explosionManager;
             this.soundManager = soundManager;
+            this.score = score;
+            pointsFromFlagPoleAdded = false;
         }
 
         public void PlayerFlagpoleCollision(Player player, Flagpole flagpole)
@@ -22,12 +27,26 @@ namespace SuperMarioBros3
             if (player.BoundingBox.TouchTopOf(flagpole.BoundingBox))
             {
                 player.OnTheFlagPole = true;
-                flagpole.RunFlagEndingAnimation(player.position.Y);
+
+                var points = flagpole.RunFlagEndingAnimation(player.position.Y);
+
+                if (!pointsFromFlagPoleAdded)
+                {
+                    pointsFromFlagPoleAdded = true;
+                    score.AddPointWithFloatingNumber(points, player.position);
+                }
             }
             else if (player.BoundingBox.TouchLeftOf(flagpole.BoundingBox))
             {
                 player.OnTheFlagPole = true;
-                flagpole.RunFlagEndingAnimation(player.position.Y);
+
+                var points = flagpole.RunFlagEndingAnimation(player.position.Y);
+
+                if (!pointsFromFlagPoleAdded)
+                {
+                    pointsFromFlagPoleAdded = true;
+                    score.AddPointWithFloatingNumber(points, player.position);
+                }
             }
         }
 

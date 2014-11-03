@@ -68,6 +68,12 @@ namespace SuperMarioBros3.Managers
             AddTexture("smallgreenhill");
             AddTexture("star");
             AddTexture("flagpoleflag");
+            AddTexture("triplebush");
+            AddTexture("singlecloud");
+            AddTexture("doublecloud");
+            AddTexture("triplecloud");
+            AddTexture("singlebush");
+            AddTexture("doublebush");
 
             AddSpriteFont("PointsFont");
             AddSpriteFont("FloatingScoreFont");

@@ -246,7 +246,7 @@ namespace SuperMarioBros3
 
         public void LoadLevel(int number, int size)
         {
-            for (int x = 0; x < 230; x++)
+            for (int x = 0; x < 232; x++)
             {
                 earthTiles.Add(new EarthTile(new Rectangle(x * size, 440, size, size)));
 
@@ -356,10 +356,10 @@ namespace SuperMarioBros3
             tubes.Add(new Tube(new Vector2(8830, 330)));
             AddLargeBlockTriangle(8750);
 
-            flagpole = new Flagpole(new Vector2(9714, 20));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(9700, 390)));
+            flagpole = new Flagpole(new Vector2(9814, 20));
+            hardEarthTiles.Add(new HardEarthTile(new Vector2(9800, 390)));
 
-            castle = new Castle(new Vector2(9900,140));
+            castle = new Castle(new Vector2(10000,140));
         }
 
         private void CreateBackground()
@@ -373,6 +373,44 @@ namespace SuperMarioBros3
             backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(2750, 360), "smallgreenhill"));
             backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(5000, 360), "smallgreenhill"));
             backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(7650, 360), "smallgreenhill"));
+
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(520, 310), "triplebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(3500, 310), "triplebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(4680, 310), "triplebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(6550, 310), "triplebush"));
+
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(1550, 280), "doublebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(3100, 280), "doublebush"));
+
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(1250, 280), "singlebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(4000, 280), "singlebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(5800, 280), "singlebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(7450, 280), "singlebush"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(8000, 280), "singlebush"));
+
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(250, 45), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(1150, 55), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(2100, 70), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(3000, 10), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(4800, 40), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(5400, 20), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(6100, 20), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(7050, 50), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(7890, 30), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(9400, 20), "singlecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(9730, 40), "singlecloud"));
+
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(1740, 0), "doublecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(3740, -10), "doublecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(4250, 0), "doublecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(6550, 30), "doublecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(8850, 20), "doublecloud"));
+
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(1400, 60), "triplecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(3500, -5), "triplecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(4000, 15), "triplecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(6280, 5), "triplecloud"));
+            backgroundManager.AddBackgroundElement(new BackgroundElement(new Vector2(8400, 50), "triplecloud"));
         }
 
         public void AddSmallBlockTriangleLeft(int distance)
@@ -439,41 +477,24 @@ namespace SuperMarioBros3
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 350, 390)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 400, 390)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 450, 390)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 390)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 390)));
 
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 250, 340)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 300, 340)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 350, 340)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 400, 340)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 450, 340)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 340)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 340)));
 
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 300, 290)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 350, 290)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 400, 290)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 450, 290)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 290)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 290)));
 
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 350, 240)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 400, 240)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 450, 240)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 240)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 240)));
 
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 400, 190)));
             hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 450, 190)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 190)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 190)));
-
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 450, 140)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 140)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 140)));
-
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 500, 90)));
-            hardEarthTiles.Add(new HardEarthTile(new Vector2(distance + 550, 90)));
         }
     }
 }

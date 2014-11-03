@@ -41,10 +41,15 @@ namespace SuperMarioBros3
             base.Draw(spriteBatch);
         }
 
-        public void RunFlagEndingAnimation(float yPosition)
+        public int RunFlagEndingAnimation(float yPosition)
         {
             runFlagEnding = true;
-            flagTravelDistance = 550 - yPosition;
+            flagTravelDistance = 600 - yPosition;
+
+            if (flagTravelDistance > 525)
+                return 5000;
+            else
+                return ((int)flagTravelDistance * 10 - 200) / 2; // For points calculation
         }
     }
 }

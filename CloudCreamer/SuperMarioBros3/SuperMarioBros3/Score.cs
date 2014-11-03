@@ -218,9 +218,9 @@ namespace SuperMarioBros3
         {
             timeSinceStart += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             
-            position.Y -= 0.5f;
+            position.Y -= 1.2f;
 
-            if (timeSinceStart > 1200)
+            if (timeSinceStart > 800)
                 IsDone = true;
         }
 

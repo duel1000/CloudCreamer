@@ -59,7 +59,7 @@ namespace SuperMarioBros3
 
         public bool IsBigMario{get { return _isBigMario; }}
 
-        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(9564,384),1,3,1) // 64
+        public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1) // 64
         {
             this._soundManager = soundManager;
             _fireBalls = new List<FireBall>();
@@ -783,7 +783,7 @@ namespace SuperMarioBros3
                 }
                 position.X += velocity.X;
 
-                if (position.X >= 10015)
+                if (position.X >= 10115)
                 {
                     LevelComplete = true;
                 }
@@ -837,9 +837,6 @@ namespace SuperMarioBros3
 
 /*Game*/
 //Add lives
-//Add Backgrounds
-//Tweak flagpole length
-//Points for flagpoleheight
 
 /*Enemies*/
 //Check om fjender spawner de korrekte steder

@@ -487,7 +487,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\FloatingScoreFont.xnb</Output>
-      <Time>2014-11-02T12:03:24.0115463+01:00</Time>
+      <Time>2014-11-03T23:11:23.640904+01:00</Time>
     </Item>
     <Item>
       <Source>flagpoleflag.png</Source>
@@ -497,6 +497,60 @@
       <Options>None</Options>
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\flagpoleflag.xnb</Output>
       <Time>2014-11-03T11:11:01.0501304+01:00</Time>
+    </Item>
+    <Item>
+      <Source>triplebush.png</Source>
+      <Name>triplebush</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\triplebush.xnb</Output>
+      <Time>2014-11-03T22:12:09.2756699+01:00</Time>
+    </Item>
+    <Item>
+      <Source>singlecloud.png</Source>
+      <Name>singlecloud</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\singlecloud.xnb</Output>
+      <Time>2014-11-03T22:27:51.2350152+01:00</Time>
+    </Item>
+    <Item>
+      <Source>doublecloud.png</Source>
+      <Name>doublecloud</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\doublecloud.xnb</Output>
+      <Time>2014-11-03T22:32:10.8517591+01:00</Time>
+    </Item>
+    <Item>
+      <Source>triplecloud.png</Source>
+      <Name>triplecloud</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\triplecloud.xnb</Output>
+      <Time>2014-11-03T22:32:17.556394+01:00</Time>
+    </Item>
+    <Item>
+      <Source>singlebush.png</Source>
+      <Name>singlebush</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\singlebush.xnb</Output>
+      <Time>2014-11-03T23:00:55.9169538+01:00</Time>
+    </Item>
+    <Item>
+      <Source>doublebush.png</Source>
+      <Name>doublebush</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\doublebush.xnb</Output>
+      <Time>2014-11-03T23:01:01.7433848+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
