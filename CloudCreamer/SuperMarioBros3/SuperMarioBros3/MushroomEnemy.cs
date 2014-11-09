@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using SuperMarioBros3.Managers;
 
 namespace SuperMarioBros3
 {
@@ -11,6 +12,12 @@ namespace SuperMarioBros3
         private bool walkingLeft = false;
         public bool IsDead { get; set; }
         public bool Spawned { get; set; }
+        public bool DeathAnimationPlayed { get; set; }
+        public bool SquishSoundPlayed { get; set; }
+        public bool IsShot { get; set; }
+
+        public bool IsSquished = false;
+        private float squishAnimationTime;
 
         public MushroomEnemy(Vector2 position) : base("evilmushroom", position, 1,1,1)
         {
@@ -23,7 +30,13 @@ namespace SuperMarioBros3
         public override void Update(GameTime gameTime)
         {
             if (!Spawned) return;
-            
+
+            if (IsDead && !DeathAnimationPlayed && IsSquished)
+            {
+                RunDeathBySquishAnimation(gameTime);
+                return;
+            }
+
             position += velocity;
 
             if (velocity.Y < 10)
@@ -33,6 +46,19 @@ namespace SuperMarioBros3
                 DestinationRectangle.Width - 10, DestinationRectangle.Height + 5);
 
             base.Update(gameTime);
+        }
+
+        private void RunDeathBySquishAnimation(GameTime gameTime)
+        {
+            squishAnimationTime += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            texture = Content_Manager.GetInstance().Textures["squishedMushroom"];
+            rows = 1;
+            columns = 1;
+            framesPerSecond = 0;
+
+            if (squishAnimationTime > 1200)
+                DeathAnimationPlayed = true;
         }
 
         public void CheckIfSpawnPointReached(float x)
@@ -98,6 +124,18 @@ namespace SuperMarioBros3
         public void KillEnemy()
         {
             IsDead = true;
+        }
+
+        public void SquishEnemy()
+        {
+            IsDead = true;
+            IsSquished = true;
+        }
+
+        public void HitByShot()
+        {
+            IsShot = true;
+            KillEnemy();
         }
     }
 

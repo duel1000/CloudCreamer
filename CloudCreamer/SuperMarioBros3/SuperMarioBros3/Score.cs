@@ -103,6 +103,15 @@ namespace SuperMarioBros3
             }
         }
 
+        public void ResetScores()
+        {
+            _timer = 120;
+            _elapsedGameTime = 0;
+            _elapsedGameTimeForColorChange = 0;
+            _points = 0;
+            _coinCounter = 0;
+        }
+
         private void DrawTimer(SpriteBatch spriteBatch)
         {
             var color = new Color();

@@ -33,7 +33,7 @@ namespace SuperMarioBros3
         {
             texture = Content_Manager.GetInstance().Textures["singleEarthBlock"];
             this.Rectangle = newRectangle;
-            BoundingBox = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height - 10);
+            BoundingBox = new Rectangle(Rectangle.X, Rectangle.Y, Rectangle.Width - 10, Rectangle.Height - 10);
         }
     }
 
@@ -42,7 +42,7 @@ namespace SuperMarioBros3
         public HardEarthTile(Vector2 position)
         {
             texture = Content_Manager.GetInstance().Textures["hardearthtile"];
-            this.Rectangle = new Rectangle((int) position.X, (int) position.Y, texture.Height, texture.Width);
+            this.Rectangle = new Rectangle((int) position.X, (int) position.Y, texture.Width - 10, texture.Width);
             BoundingBox = Rectangle;
         }
     }

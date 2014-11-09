@@ -26,13 +26,27 @@ namespace SuperMarioBros3
 
             for (int i = 0; i < evilMushrooms.Count; i++)
             {
-                if (evilMushrooms[i].IsDead)
+                if (evilMushrooms[i].IsDead && evilMushrooms[i].IsSquished && !evilMushrooms[i].SquishSoundPlayed)
                 {
                     soundManager.StompEffect();
                     ScorePoints(new Vector2(evilMushrooms[i].BoundingBox.X, evilMushrooms[i].BoundingBox.Y));
+                    evilMushrooms[i].SquishSoundPlayed = true;
+                }
+
+                if (evilMushrooms[i].IsDead && evilMushrooms[i].DeathAnimationPlayed)
+                {
                     evilMushrooms.Remove(evilMushrooms[i]);
                     i--;
                 }
+
+                else if (evilMushrooms[i].IsShot)
+                {
+                    ScorePoints(new Vector2(evilMushrooms[i].BoundingBox.X, evilMushrooms[i].BoundingBox.Y));
+                    soundManager.StompEffect();
+                    evilMushrooms.Remove(evilMushrooms[i]);
+                    i--;
+                }
+
                 else
                 {
                     evilMushrooms[i].Update(gameTime);

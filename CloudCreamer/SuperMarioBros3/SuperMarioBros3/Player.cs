@@ -59,6 +59,10 @@ namespace SuperMarioBros3
 
         public bool IsBigMario{get { return _isBigMario; }}
 
+        //hardcoded values for spritesheets
+        private int currentSpriteHeight;
+        private int currentSpriteWidth;
+
         public Player(SoundManager soundManager) : base("smallstillmario", new Vector2(64,384),1,3,1) // 64
         {
             this._soundManager = soundManager;
@@ -68,6 +72,7 @@ namespace SuperMarioBros3
 
         public override void Update(GameTime gameTime)
         {
+            
 
             for (int i = 0; i < _fireBalls.Count; i++)
             {
@@ -147,8 +152,10 @@ namespace SuperMarioBros3
 
                 DestinationRectangle = new Rectangle((int)position.X, (int)position.Y, imageWidth, imageHeight);
 
-                BoundingBox = DestinationRectangle;
+                
             }
+
+            SetupBoundingBox();
 
             if (Keyboard.GetState().IsKeyDown(Keys.O) && _isDead)
             {
@@ -170,6 +177,25 @@ namespace SuperMarioBros3
             }
 
             base.Draw(spriteBatch);
+        }
+
+        private void SetupBoundingBox()
+        {
+            if (_isSmallMario)
+            {
+                currentSpriteHeight = 45;
+                currentSpriteWidth = 40;
+                BoundingBox = new Rectangle(DestinationRectangle.X = flipSprite ? DestinationRectangle.X - 10 : DestinationRectangle.X,
+                                            DestinationRectangle.Y, 
+                                            currentSpriteWidth, 
+                                            currentSpriteHeight);
+            }
+            else if(_isBigMario || _isFireMario)
+            {
+                currentSpriteHeight = 70;
+                currentSpriteWidth = 40;
+                BoundingBox = new Rectangle(DestinationRectangle.X, DestinationRectangle.Y, currentSpriteWidth, currentSpriteHeight);
+            }
         }
 
         private void Input(GameTime gameTime)
@@ -277,6 +303,7 @@ namespace SuperMarioBros3
                 _soundManager.PowerUpEffect();
                 _isBigMario = true;
                 _isSmallMario = false;
+                position.Y -= 30;
             }
         }
 
@@ -433,8 +460,6 @@ namespace SuperMarioBros3
             {
                 texture = Content_Manager.GetInstance().Textures["fireflowerpowerupanimation"];
 
-                flipSprite = !flipSprite;
-
                 _frozen = true;
                 walking = false;
                 currentFrame = 1;
@@ -586,7 +611,7 @@ namespace SuperMarioBros3
             {
                 if (velocity.Y > 0)
                 {
-                    position.Y = tile.BoundingBox.Y - DestinationRectangle.Height;
+                    position.Y = tile.BoundingBox.Y - currentSpriteHeight;
                     velocity.Y = 0f;
                     hasJumped = false;
                 }
@@ -620,7 +645,7 @@ namespace SuperMarioBros3
             }
             else if (BoundingBox.TouchLeftOf(tile.BoundingBox))
             {
-                position.X = tile.BoundingBox.X - DestinationRectangle.Width - 2;
+                position.X = tile.BoundingBox.X - currentSpriteWidth - 2;
             }
             else if (BoundingBox.TouchRightOf(tile.BoundingBox))
             {
@@ -628,7 +653,7 @@ namespace SuperMarioBros3
             }
 
             if (position.X < 0) position.X = 0;
-            if (position.X > xOffset - DestinationRectangle.Width) position.X = xOffset - DestinationRectangle.Width;
+            if (position.X > xOffset - currentSpriteWidth) position.X = xOffset - currentSpriteWidth;
             //if (position.Y < 0) velocity.Y = 1f; Makes mario able to jump out top of the map
             if (position.Y > yOffset && !_isDead)
                 _isDead = true; //;position.Y = yOffset - DestinationRectangle.Height;
@@ -646,6 +671,9 @@ namespace SuperMarioBros3
 
         public void EvilMushroomCollision(MushroomEnemy mushroom)
         {
+            if(mushroom.IsDead)
+                return;
+
             if (BoundingBox.TouchTopOf(mushroom.BoundingBox) && !mushroom.IsDead && velocity.Y > 0)
             {
                 if (starMode)
@@ -654,7 +682,7 @@ namespace SuperMarioBros3
                 }
                 else
                 {
-                    mushroom.IsDead = true;
+                    mushroom.SquishEnemy();
                     position.Y -= 3f;
                     velocity.Y = -6f;
                     hasJumped = true;
@@ -728,20 +756,47 @@ namespace SuperMarioBros3
         public void Respawn()
         {
             texture = Content_Manager.GetInstance().Textures["smallstillmario"];
-            RespawnPlayer = false;
+            
             position = new Vector2(64,384);
-            _isDead = false;
-            _frozen = false;
+
+            ResetAllPlayerBooleans();
+
             _hitPoints = 1;
-            IsInvulnerable = false;
-            _DeathAnimationPlayed = false;
-            _killPlayerSoundPlayed = false;
-            _flagPoleAnimationSetup = false;
             rows = 1;
             framesPerSecond = 0;
             columns = 1;
             currentFrame = 1;
             endFrame = 1;
+        }
+
+        private void ResetAllPlayerBooleans()
+        {
+            flipSprite = false;
+            RespawnPlayer = false;
+            hasJumped = false;
+            walking = false;
+            jumpKeyReleased = true;
+            _isDead = false;
+            _isSmallMario = true;
+            _isBigMario = false;
+            _isFireMario = false;
+            isRunning = false;
+            IsInvulnerable = false;
+            _powerDownAnimationPlayed = false;
+            _powerUpAnimationPlayed = false;
+            _DeathAnimationPlayed = false;
+            _fireFlowerAnimationSetup = false;
+            OnTheFlagPole = false;
+            _flagPoleAnimationSetup = false;
+            _walkIntoCastleAnimationSetup = false;
+            _frozen = false;
+            _stepsIntoPowerDownAnimation = 0;
+            _stepsIntoPowerUpAnimation = 0;
+            _powerDownFromFireMario = false;
+            _takeDamageSoundPlayed = false;
+            _killPlayerSoundPlayed = false;
+            LevelComplete = false;
+            starMode = false;
         }
 
         public void RunFlagPoleAnimation()

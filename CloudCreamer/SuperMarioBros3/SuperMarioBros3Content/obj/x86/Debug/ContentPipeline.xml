@@ -552,6 +552,15 @@
       <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\doublebush.xnb</Output>
       <Time>2014-11-03T23:01:01.7433848+01:00</Time>
     </Item>
+    <Item>
+      <Source>squishedMushroom.png</Source>
+      <Name>squishedMushroom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Martin\Documents\CloudCreamer\CloudCreamer\SuperMarioBros3\SuperMarioBros3\bin\x86\Debug\Content\squishedMushroom.xnb</Output>
+      <Time>2014-11-08T23:17:01.0476637+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

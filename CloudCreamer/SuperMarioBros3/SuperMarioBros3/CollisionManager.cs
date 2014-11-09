@@ -175,7 +175,7 @@ namespace SuperMarioBros3
                         fireball.BoundingBox.TouchLeftOf(enemy.BoundingBox) ||
                         fireball.BoundingBox.TouchRightOf(enemy.BoundingBox))
                     {
-                         enemy.KillEnemy();
+                         enemy.HitByShot();
                          fireball.Explode();
                          explosionManager.CreateFireballExplosion(fireball.position);
                     }

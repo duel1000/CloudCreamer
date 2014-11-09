@@ -74,6 +74,7 @@ namespace SuperMarioBros3.Managers
             AddTexture("triplecloud");
             AddTexture("singlebush");
             AddTexture("doublebush");
+            AddTexture("squishedMushroom");
 
             AddSpriteFont("PointsFont");
             AddSpriteFont("FloatingScoreFont");
